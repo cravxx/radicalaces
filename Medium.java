@@ -2,32 +2,57 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Medium {
+
     boolean isun = false;
 
     SinCos cs = new SinCos();
+
     int focus_point = 400;
+
     int ground = 250;
+
     int er = 0;
+
     int eg = 0;
+
     int eb = 0;
+
     int jumping = 0;
+
     int cx = 250;
+
     int cy = 150;
+
     int cz = 50;
+
     int xz = 0;
+
     int zy = 0;
+
     int x = 3000;
+
     int y = -1000;
+
     int z = -2000;
+
     int w = 500;
+
     int h = 360;
+
     int tart = 0;
+
     int yart = -100;
+
     int zart = 0;
+
     int ztgo = 0;
+
     boolean td = false;
+
     int vxz = 0;
+
     int adv = -500;
+
     boolean vert = false;
 
     public int ys(final int i, int j) {

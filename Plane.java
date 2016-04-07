@@ -4,38 +4,71 @@ import java.awt.Graphics;
 public class Plane {
 
     Medium m;
+
     int[] ox;
+
     int[] oy;
+
     int[] oz;
+
     int n;
+
     int[] c = new int[3];
+
     float deltaf = 1.0F;
+
     float projf = 1.0F;
+
     int av = 0;
+
     int exp = 0;
+
     int ofx = 0;
+
     int adx = 0;
+
     int ofy = 0;
+
     int adz = 0;
+
     int ofz = 0;
+
     double ady = 0.0D;
+
     int ofcx = 0;
+
     int ofcy = 0;
+
     int ofcz = 0;
+
     int nx = 0;
+
     int ny = 0;
+
     int nz = 0;
+
     int ezy = 0;
+
     int exy = 0;
+
     int azy = 0;
+
     int axy = 0;
+
     int[] sx = new int[4];
+
     int[] sy = new int[4];
+
     int[] sz = new int[4];
+
     int sdx = 0;
+
     int sdz = 0;
+
     double sdy = 0.0D;
+
     int sr = 255;
+
     int sg = 220;
 
     public void loadprojf() {

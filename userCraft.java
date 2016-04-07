@@ -1,21 +1,31 @@
 import java.awt.Graphics;
 
 public class userCraft {
+
     int rspeed = 0;
+
     float speed = 0.0F;
+
     int rlift = 0;
+
     double lift = 0.0D;
+
     boolean pexp = false;
+
     int ltyp = 0;
+
     int[] maxspeed = new int[] {
             120, 100, 90, 80, 76
     };
+
     int[] elev = new int[] {
             1, 2, 1, 1, 1
     };
+
     int[] trnn = new int[] {
             0, 0, 1, 2, 1
     };
+
     int[] dnjm = new int[] {
             7, 5, 4, 3, 4
     };
@@ -23,36 +33,65 @@ public class userCraft {
     String[] name = new String[] {
             "E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend"
     };
+
     int njumps = 0;
+
     int ester = 0;
+
     int[] lx = new int[20];
+
     int[] ly = new int[20];
+
     int[] lz = new int[20];
+
     int[] lxz = new int[20];
+
     int[] lzy = new int[20];
+
     int[] lxy = new int[20];
+
     int[] lstage = new int[20];
+
     int[] lspeed = new int[20];
+
     int[] lhit = new int[20];
+
     int nl = 0;
 
     Lasers lsr;
+
     boolean skip = false;
+
     int bulkc = 0;
+
     int[] sms = new int[4];
+
     int[] sx = new int[4];
+
     int[] sy = new int[4];
+
     int[] sz = new int[4];
+
     int[] sxz = new int[4];
+
     int[] szy = new int[4];
+
     int ns = 0;
+
     boolean smoke = false;
+
     int[] dms = new int[4];
+
     int[] dx = new int[4];
+
     int[] dy = new int[4];
+
     int[] dz = new int[4];
+
     int[] dxz = new int[4];
+
     int[] dzy = new int[4];
+
     int nd = 0;
 
     public void preform(final Control control, final ContO conto, final ContO[] contos, final int[] ints, final int i) {

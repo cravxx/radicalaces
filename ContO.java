@@ -7,28 +7,51 @@ public class ContO {
     Medium m;
 
     Plane[] p;
+
     int npl = 0;
+
     int x = 0;
+
     int y = 0;
+
     int z = 0;
+
     int xz = 0;
+
     int xy = 0;
+
     int zy = 0;
+
     int dist = 0;
+
     int maxR = 0;
+
     int disp = 0;
+
     boolean shadow = false;
+
     boolean loom = false;
+
     int grounded = 1;
+
     boolean colides = false;
+
     int rcol = 0;
+
     int pcol = 0;
+
     boolean out = false;
+
     boolean fire = false;
+
     boolean hit = false;
+
     int nhits = 0;
+
     int maxhits = -1;
+
     boolean wire = false;
+
     boolean exp = false;
 
     public int ys(final int i, int j) {

@@ -33,6 +33,7 @@ public class F51 extends Applet implements Runnable {
     Image offImage;
 
     Thread gamer;
+
     boolean mon = true;
 
     String moner = "Click here to Start";
@@ -43,12 +44,17 @@ public class F51 extends Applet implements Runnable {
     String[] modelNames = new String[53];
 
     String sndfrm = "default";
+
     boolean nounif = false;
 
     Control u = new Control();
+
     boolean tab = false;
+
     int view = 0;
+
     int maxco = 0;
+
     int maxmo = -1;
 
     AudioClip upl;
@@ -84,25 +90,45 @@ public class F51 extends Applet implements Runnable {
     AudioClip[] las = new AudioClip[5];
 
     AudioClip[] mtrak = new AudioClip[7];
+
     boolean[] loadet = new boolean[7];
+
     boolean plow = false;
+
     boolean pmed = false;
+
     boolean pexph = false;
+
     boolean pint = false;
+
     boolean pmis = false;
+
     boolean pman = false;
+
     boolean psel = false;
+
     boolean nomusic = false;
+
     boolean nosound = false;
+
     boolean enterd = false;
+
     boolean sosun = false;
+
     int pgrnd = 0;
+
     int pdownl = 0;
+
     int pupl = 0;
+
     int lascnt = 0;
+
     int crntt = -1;
+
     int plcnt = 0;
+
     int frags = 0;
+
     int dnload = 0;
 
     @Override

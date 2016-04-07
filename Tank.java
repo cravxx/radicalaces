@@ -3,40 +3,73 @@ import java.awt.Graphics;
 public class Tank {
 
     cControl u = new cControl();
+
     int rspeed = 0;
+
     int ltyp = 0;
+
     float speed = 0.0F;
+
     boolean pexp = false;
+
     boolean left = false;
+
     boolean right = false;
+
     int[] lx = new int[20];
+
     int[] ly = new int[20];
+
     int[] lz = new int[20];
+
     int[] lxz = new int[20];
+
     int[] lzy = new int[20];
+
     int[] lxy = new int[20];
+
     int[] lstage = new int[20];
+
     int[] lspeed = new int[20];
+
     int[] lhit = new int[20];
+
     int[] nf = new int[20];
+
     int nl = 0;
 
     Lasers lsr;
+
     boolean skip = false;
+
     int bulkc = 0;
+
     int[] sms = new int[4];
+
     int[] sx = new int[4];
+
     int[] sy = new int[4];
+
     int[] sz = new int[4];
+
     int[] sxz = new int[4];
+
     int ns = 0;
+
     boolean smoke = false;
+
     int turnat = (int) (Math.random() * 50.0D);
+
     int tcnt = 0;
+
     int gxz = 0;
+
     int attack = 0;
+
     boolean responce = false;
+
     int trgxz = 180;
+
     int trgt = 0;
 
     public void preform(final ContO conto, final ContO[] contos, final int i, final int j) {

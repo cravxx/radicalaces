@@ -3,63 +3,119 @@ import java.awt.Graphics;
 public class Craft {
 
     cControl u = new cControl();
+
     int rspeed = 0;
+
     float speed = 0.0F;
+
     int rlift = 0;
+
     double lift = 0.0D;
+
     boolean pexp = false;
+
     int ltyp = 3;
+
     int[] lx = new int[20];
+
     int[] ly = new int[20];
+
     int[] lz = new int[20];
+
     int[] lxz = new int[20];
+
     int[] lzy = new int[20];
+
     int[] lxy = new int[20];
+
     int[] lstage = new int[20];
+
     int[] lspeed = new int[20];
+
     int[] lhit = new int[20];
+
     int[] nf = new int[20];
+
     int nl = 0;
 
     Lasers lsr;
+
     boolean skip = false;
+
     int bulkc = 0;
+
     int[] sms = new int[4];
+
     int[] sx = new int[4];
+
     int[] sy = new int[4];
+
     int[] sz = new int[4];
+
     int[] sxz = new int[4];
+
     int[] szy = new int[4];
+
     int ns = 0;
+
     boolean smoke = false;
+
     int[] dms = new int[4];
+
     int[] dx = new int[4];
+
     int[] dy = new int[4];
+
     int[] dz = new int[4];
+
     int[] dxz = new int[4];
+
     int[] dzy = new int[4];
+
     int nd = 0;
+
     int gxz = 0;
+
     int gzy = 0;
+
     boolean responce = false;
+
     int trgxz = 0;
+
     int trgzy = 0;
+
     int out = 0;
+
     int turnat = (int) (Math.random() * 50.0D);
+
     int tcnt = 0;
+
     boolean engage = true;
+
     int enx = 0;
+
     int eny = 0;
+
     int enz = 0;
+
     int ens = 4;
+
     boolean targeting = false;
+
     int mode = 0;
+
     int m3o = 0;
+
     int m3cnt = 0;
+
     int m1cnt = 0;
+
     int relax = 50;
+
     int runn = 30;
+
     int liftup = 500;
+
     boolean dracs = false;
 
     public void preform(final ContO conto, final ContO[] contos, final int[] ints, final int i, final int j, final int k) {

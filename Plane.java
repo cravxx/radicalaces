@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Plane {
+
     Medium m;
     int[] ox;
     int[] oy;
@@ -36,6 +37,7 @@ public class Plane {
     double sdy = 0.0D;
     int sr = 255;
     int sg = 220;
+
     public void loadprojf() {
         projf = 1.0F;
         int i = 0;
@@ -51,12 +53,14 @@ public class Plane {
         } while (i < 3);
         projf /= 3.0F;
     }
+
     public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cy - i) / j + i;
     }
+
     public Plane(final Medium var1, final int[] var2, final int[] var3, final int[] var4, final int var5, final int[] var6) {
         m = var1;
         n = var5;
@@ -87,6 +91,7 @@ public class Plane {
         } while (var7 < 3);
         deltaf /= 3.0F;
     }
+
     public void d(final Graphics graphics, final int i, final int j, final int k, final int l, final int i1, final int j1, final boolean flag, final boolean flag2, final boolean flag3) {
         if (exp != 7) {
             final int[] ints = new int[n];
@@ -376,6 +381,7 @@ public class Plane {
             av /= n;
         }
     }
+
     public void rot(final int[] ints, final int[] ints2, final int i, final int j, final int k, final int l) {
         if (k != 0) {
             for (int i1 = 0; i1 < l; ++i1) {
@@ -386,12 +392,14 @@ public class Plane {
             }
         }
     }
+
     public int xs(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cx - i) / j + i;
     }
+
     public void s(final Graphics graphics, final int i, final int j, final int k, final int l, final int i1, final int j1, final boolean flag) {
         if (exp != 7) {
             final int[] ints = new int[n];
@@ -469,6 +477,7 @@ public class Plane {
             }
         }
     }
+
     public int spy(final int i, final int j) {
         return (int) Math.sqrt((i - m.cx) * (i - m.cx) + j * j);
     }

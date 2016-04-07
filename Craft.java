@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 
 public class Craft {
+
     cControl u = new cControl();
     int rspeed = 0;
     float speed = 0.0F;
@@ -19,6 +20,7 @@ public class Craft {
     int[] lhit = new int[20];
     int[] nf = new int[20];
     int nl = 0;
+
     Lasers lsr;
     boolean skip = false;
     int bulkc = 0;
@@ -59,6 +61,7 @@ public class Craft {
     int runn = 30;
     int liftup = 500;
     boolean dracs = false;
+
     public void preform(final ContO conto, final ContO[] contos, final int[] ints, final int i, final int j, final int k) {
         int l;
         for (l = Math.abs(conto.zy); l > 360; l -= 360) {
@@ -576,6 +579,7 @@ public class Craft {
             u.fire = false;
         }
     }
+
     public void dosmokes(final Graphics graphics, final ContO conto) {
         if (!conto.exp) {
             int i;
@@ -638,6 +642,7 @@ public class Craft {
             }
         }
     }
+
     public int nearst(final ContO[] contos, final int[] ints, final int i, final int j, final ContO conto) {
         int k = getcpy(contos[ints[0]], conto);
         int l = ints[0];
@@ -652,6 +657,7 @@ public class Craft {
         }
         return l;
     }
+
     public void reset(final int i, final int j, final int k, final int l, final int i1, final int j1) {
         rspeed = i;
         speed = i;
@@ -674,6 +680,7 @@ public class Craft {
             ++k1;
         } while (k1 < 20);
     }
+
     public Craft(final Medium m) {
         lsr = new Lasers(m);
         for (int i = 0; i < 4; i++) {
@@ -681,6 +688,7 @@ public class Craft {
             dms[i] = -1;
         }
     }
+
     public void lasercolid(final ContO conto) {
         if (!conto.exp && !conto.out) {
             int i = 0;
@@ -714,12 +722,15 @@ public class Craft {
             } while (i < 20);
         }
     }
+
     public int getpy(final int i, final int j, final int k, final int l) {
         return (i - lx[l]) / 10 * ((i - lx[l]) / 10) + (j - ly[l]) / 10 * ((j - ly[l]) / 10) + (k - lz[l]) / 10 * ((k - lz[l]) / 10);
     }
+
     public int getcpy(final ContO conto, final ContO conto2) {
         return (conto.x - conto2.x) / 100 * ((conto.x - conto2.x) / 100) + (conto.y - conto2.y) / 100 * ((conto.y - conto2.y) / 100) + (conto.z - conto2.z) / 100 * ((conto.z - conto2.z) / 100);
     }
+
     public boolean myway(final ContO[] contos, final int[] ints, final int i, final int j, final int k, final int l, final int i1) {
         for (int j1 = 0; j1 < i; ++j1) {
             if (ints[j1] != j) {
@@ -734,6 +745,7 @@ public class Craft {
         }
         return false;
     }
+
     public void dl(final Graphics graphics) {
         int i = 0;
         do {
@@ -749,6 +761,7 @@ public class Craft {
             ++i;
         } while (i < 20);
     }
+
     public int getepy(final ContO conto) {
         return (conto.x - enx) / 100 * ((conto.x - enx) / 100) + (conto.y - eny) / 100 * ((conto.y - eny) / 100) + (conto.z - enz) / 100 * ((conto.z - enz) / 100);
     }

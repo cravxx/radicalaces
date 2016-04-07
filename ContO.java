@@ -3,7 +3,9 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
 public class ContO {
+
     Medium m;
+
     Plane[] p;
     int npl = 0;
     int x = 0;
@@ -28,12 +30,14 @@ public class ContO {
     int maxhits = -1;
     boolean wire = false;
     boolean exp = false;
+
     public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cy - i) / j + i;
     }
+
     public void reset() {
         exp = false;
         nhits = 0;
@@ -41,6 +45,7 @@ public class ContO {
         xy = 0;
         zy = 0;
     }
+
     public ContO(final byte[] var1, final Medium var2, final int var3, final int var4, final int var5) {
         m = var2;
         p = new Plane[100];
@@ -118,6 +123,7 @@ public class ContO {
             ;
         }
     }
+
     public ContO(final Medium var1, final ContO var2, final int var3, final int var4, final int var5) {
         m = var1;
         npl = var2.npl;
@@ -139,6 +145,7 @@ public class ContO {
             p[var6] = new Plane(m, var2.p[var6].ox, var2.p[var6].oz, var2.p[var6].oy, var2.p[var6].n, var2.p[var6].c);
         }
     }
+
     public void d(final Graphics graphics) {
         if (dist != 0) {
             dist = 0;
@@ -212,6 +219,7 @@ public class ContO {
             }
         }
     }
+
     public void tryexp(final ContO conto) {
         if (!conto.exp && !out && !exp) {
             final int i = getpy(conto.x, conto.y, conto.z);
@@ -232,9 +240,11 @@ public class ContO {
             }
         }
     }
+
     public int getpy(final int i, final int j, final int k) {
         return (i - x) / 10 * ((i - x) / 10) + (j - y) / 10 * ((j - y) / 10) + (k - z) / 10 * ((k - z) / 10);
     }
+
     public void loadrots(final boolean flag) {
         if (!flag) {
             reset();
@@ -249,6 +259,7 @@ public class ContO {
             reset();
         }
     }
+
     public int getvalue(final String string, final String string2, final int i) {
         int j = 0;
         String string3 = "";
@@ -264,6 +275,7 @@ public class ContO {
         }
         return Integer.valueOf(string3).intValue();
     }
+
     public int xs(final int i, int j) {
         if (j < 10) {
             j = 10;

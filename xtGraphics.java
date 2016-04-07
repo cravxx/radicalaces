@@ -13,24 +13,41 @@ public class xtGraphics extends Panel {
      * 
      */
     private static final long serialVersionUID = -7269675935604010359L;
+
     Medium m;
+
     FontMetrics ftm;
     boolean goodsun = false;
     int cl = 1;
+
     Image radar;
+
     Image stube;
+
     Image sback;
+
     Image destr;
+
     Image mback;
+
     Image lay;
+
     Image complete;
+
     Image main;
+
     Image rad;
+
     Image inst1;
+
     Image inst2;
+
     Image inst3;
+
     Image mars;
+
     Image text;
+
     Image[] as = new Image[5];
     int[] pix = new int[180000];
     int[] bpix = new int[180000];
@@ -40,6 +57,7 @@ public class xtGraphics extends Panel {
     int cnt = 0;
     boolean flik = false;
     int cnts = 10;
+
     String[] mname = new String[19];
     int[] cnte = new int[19];
     int cntf = 0;
@@ -57,6 +75,7 @@ public class xtGraphics extends Panel {
     int oldfase = -5;
     int nb = 0;
     int[] ob = new int[3];
+
     String[] nam = new String[3];
     boolean[] tnk = new boolean[3];
     int[] obx = new int[3];
@@ -67,6 +86,7 @@ public class xtGraphics extends Panel {
     boolean[] dest = new boolean[10];
     boolean mcomp = false;
     int tcnt = 1;
+
     public void denter(final Graphics graphics, final int i, final ContO[] contos, final userCraft usercraft, final Control control) {
         int j;
         if (fase == 4) {
@@ -665,6 +685,7 @@ public class xtGraphics extends Panel {
             }
         }
     }
+
     public void drawefimg(final Image image) {
         saveit(image, pix);
         int i = 0;
@@ -698,6 +719,7 @@ public class xtGraphics extends Panel {
         } while (i < 180000);
         mback = this.createImage(new MemoryImageSource(500, 360, pix, 0, 500));
     }
+
     public boolean alldest() {
         int i = 0;
         int j = 0;
@@ -712,6 +734,7 @@ public class xtGraphics extends Panel {
         else
             return false;
     }
+
     public void drawpimg(final Image image) {
         saveit(image, pix);
         int i = 0;
@@ -776,12 +799,14 @@ public class xtGraphics extends Panel {
         } while (i < 500);
         mback = this.createImage(new MemoryImageSource(500, 360, pix, 0, 500));
     }
+
     public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cy - i) / j + i;
     }
+
     public void reset() {
         int i = 0;
         do {
@@ -790,6 +815,7 @@ public class xtGraphics extends Panel {
         } while (i < 5);
         level = 0;
     }
+
     public void creset() {
         cnt = 0;
         flik = false;
@@ -800,10 +826,12 @@ public class xtGraphics extends Panel {
         rcnt = 0;
         cnty = 0;
     }
+
     public xtGraphics(final Medium var1, final Graphics var2) {
         m = var1;
         ftm = var2.getFontMetrics();
     }
+
     public void saveit(final Image image, final int[] ints) {
         final PixelGrabber pixelgrabber = new PixelGrabber(image, 0, 0, 500, 360, ints, 0, 500);
         try {
@@ -812,15 +840,18 @@ public class xtGraphics extends Panel {
             ;
         }
     }
+
     public int xs(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cx - i) / j + i;
     }
+
     public int getcpy(final ContO conto, final ContO conto2) {
         return (conto.x - conto2.x) / 100 * ((conto.x - conto2.x) / 100) + (conto.y - conto2.y) / 100 * ((conto.y - conto2.y) / 100) + (conto.z - conto2.z) / 100 * ((conto.z - conto2.z) / 100);
     }
+
     public void drawop(final Graphics graphics, final Image image) {
         saveit(image, pix);
         int i = 0;
@@ -853,6 +884,7 @@ public class xtGraphics extends Panel {
         } while (i < 180000);
         graphics.drawImage(this.createImage(new MemoryImageSource(500, 360, pix, 0, 500)), 0, 0, (ImageObserver) null);
     }
+
     public void cmback(final int i) {
         int j = 0;
         do {
@@ -894,6 +926,7 @@ public class xtGraphics extends Panel {
         } while (j < 500);
         mback = this.createImage(new MemoryImageSource(500, 360, pix, 0, 500));
     }
+
     public void drawl(final Graphics graphics, final Image image) {
         saveit(image, pix);
         int i = 0;
@@ -926,6 +959,7 @@ public class xtGraphics extends Panel {
         } while (i < 180000);
         graphics.drawImage(this.createImage(new MemoryImageSource(500, 360, pix, 0, 500)), 0, 0, (ImageObserver) null);
     }
+
     public void drawovimg(final Image image) {
         saveit(image, pix);
         int i = 0;
@@ -959,6 +993,7 @@ public class xtGraphics extends Panel {
         } while (i < 180000);
         mback = this.createImage(new MemoryImageSource(500, 360, pix, 0, 500));
     }
+
     public void dtrakers(final Graphics graphics, final int[] ints, final int[] ints2, final int i, final ContO[] contos, final userCraft usercraft, final Control control) {
         cl = 1;
         int j = getcpy(contos[ints2[0]], contos[ints2[1]]);
@@ -1225,6 +1260,7 @@ public class xtGraphics extends Panel {
             }
         }
     }
+
     public void drawcs(final Graphics graphics, final int i, final String string, final int j, final int k, final int l, final boolean flag) {
         if (flag) {
             graphics.setColor(new Color(0, 0, 0));

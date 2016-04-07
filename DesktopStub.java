@@ -9,6 +9,7 @@ import java.net.URL;
  * @author DragShot
  */
 public class DesktopStub implements AppletStub {
+
     AppletContext context = new DesktopContext();
 
     /**

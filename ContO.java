@@ -1,6 +1,8 @@
 import java.awt.Graphics;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.InputStreamReader;
 
 public class ContO {
     Medium m;
@@ -60,9 +62,10 @@ public class ContO {
                 50, 50, 50
         };
         try {
-            final DataInputStream var15 = new DataInputStream(new ByteArrayInputStream(var1));
+            final BufferedReader var15 = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(var1)));
             String var6;
             while ((var6 = var15.readLine()) != null) {
+                System.out.println("read: " + var6);
                 final String var7 = "" + var6.trim();
                 if (var7.startsWith("<p>")) {
                     var8 = true;

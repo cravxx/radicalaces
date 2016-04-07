@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,8 +25,8 @@ public class F51 extends Applet implements Runnable {
      *
      */
     private static final long serialVersionUID = -1399200686375699720L;
-    public static final String modelsDir = "data/models.radq";
-    public static final String imagesDir = "data/images/";
+    public static final String modelsFile = "./data/models.radq";
+    public static final String imagesDir = "./data/images/";
     Graphics rd;
     Image offImage;
     Thread gamer;
@@ -419,10 +421,10 @@ public class F51 extends Applet implements Runnable {
         }
     }
 
-    public Image returnImg(final String string) {
+    public Image getImage(final String string) {
         Image image = null;
         try {
-            image = ImageIO.read(new URL(getCodeBase(), string).openStream());
+            image = ImageIO.read(new FileInputStream(new File(string)));
         } catch (final MalformedURLException e) {
             e.printStackTrace();
         } catch (final IOException e) {
@@ -433,12 +435,10 @@ public class F51 extends Applet implements Runnable {
 
     public void loadbase(final ContO[] contos, final Medium medium) {
         try {
-            final URL url = new URL(getCodeBase(), modelsDir);
-            final DataInputStream datainputstream = new DataInputStream(url.openStream());
-            final ZipInputStream zipinputstream = new ZipInputStream(datainputstream);
+            final ZipInputStream zipinputstream = new ZipInputStream(new FileInputStream(new File(modelsFile)));
             ZipEntry zipentry = zipinputstream.getNextEntry();
-            final Object object = null;
             for (int i = 0; zipentry != null; zipentry = zipinputstream.getNextEntry()) {
+                System.out.println("loading file...");
                 int j = (int) zipentry.getSize();
                 final byte[] bytes = new byte[j];
                 int k;
@@ -451,7 +451,6 @@ public class F51 extends Applet implements Runnable {
                 ++i;
             }
             zipinputstream.close();
-            datainputstream.close();
         } catch (final Exception var12) {
             System.out.println("Error Reading Models: " + var12);
         }
@@ -589,45 +588,45 @@ public class F51 extends Applet implements Runnable {
     }
 
     public void downloadall(final xtGraphics xtgraphics) {
-        xtgraphics.radar = returnImg("data/images/radar.gif");
+        xtgraphics.radar = getImage(imagesDir + "/radar.gif");
         lstat("Loading Images...", 1);
-        xtgraphics.stube = returnImg("data/images/stube.gif");
+        xtgraphics.stube = getImage(imagesDir + "/stube.gif");
         lstat("Loading Images...", 2);
-        xtgraphics.sback = returnImg("data/images/select.jpg");
+        xtgraphics.sback = getImage(imagesDir + "/select.jpg");
         lstat("Loading Images...", 18);
-        xtgraphics.destr = returnImg("data/images/destroyed.gif");
+        xtgraphics.destr = getImage(imagesDir + "/destroyed.gif");
         lstat("Loading Images...", 2);
-        xtgraphics.saveit(returnImg("data/images/failed.jpg"), xtgraphics.bpix);
+        xtgraphics.saveit(getImage(imagesDir + "/failed.jpg"), xtgraphics.bpix);
         lstat("Loading Images...", 31);
-        xtgraphics.saveit(returnImg("data/images/mission.jpg"), xtgraphics.mpix);
+        xtgraphics.saveit(getImage(imagesDir + "/mission.jpg"), xtgraphics.mpix);
         lstat("Loading Images...", 22);
-        xtgraphics.saveit(returnImg("data/images/over.jpg"), xtgraphics.opix);
+        xtgraphics.saveit(getImage(imagesDir + "/over.jpg"), xtgraphics.opix);
         lstat("Loading Images...", 21);
-        /*var1.saveit(returnImg("data/images/paused.jpg"), var1.ppix);*/
+        /*var1.saveit(returnImg(imagesDir + "/paused.jpg"), var1.ppix);*/
         lstat("Loading Images...", 10);
-        xtgraphics.lay = returnImg("data/images/layout.gif");
+        xtgraphics.lay = getImage(imagesDir + "/layout.gif");
         lstat("Loading Images...", 1);
-        xtgraphics.complete = returnImg("data/images/comp.gif");
+        xtgraphics.complete = getImage(imagesDir + "/comp.gif");
         lstat("Loading Images...", 2);
-        xtgraphics.main = returnImg("data/images/main.gif");
+        xtgraphics.main = getImage(imagesDir + "/main.gif");
         lstat("Loading Images...", 32);
-        xtgraphics.rad = returnImg("data/images/radicalplay.gif");
+        xtgraphics.rad = getImage(imagesDir + "/radicalplay.gif");
         lstat("Loading Images...", 2);
         int i = 0;
         do {
-            xtgraphics.as[i] = returnImg("data/images/a" + i + ".gif");
+            xtgraphics.as[i] = getImage(imagesDir + "/a" + i + ".gif");
             lstat("Loading Images...", 1);
             ++i;
         } while (i < 5);
-        xtgraphics.inst1 = returnImg("data/images/inst1.gif");
+        xtgraphics.inst1 = getImage(imagesDir + "/inst1.gif");
         lstat("Loading Images...", 10);
-        xtgraphics.inst2 = returnImg("data/images/inst2.gif");
+        xtgraphics.inst2 = getImage(imagesDir + "/inst2.gif");
         lstat("Loading Images...", 11);
-        xtgraphics.inst3 = returnImg("data/images/inst3.gif");
+        xtgraphics.inst3 = getImage(imagesDir + "/inst3.gif");
         lstat("Loading Images...", 4);
-        /*var1.text = returnImg("data/images/text.gif");*/
+        /*var1.text = returnImg(imagesDir + "/text.gif");*/
         lstat("Loading Images...", 6);
-        xtgraphics.mars = returnImg("data/images/mars.jpg");
+        xtgraphics.mars = getImage(imagesDir + "/mars.jpg");
         lstat("Loading Images...", 15);
         into = loadsnd("data/music/intro.au");
         lstat("Loading Music...", 24);

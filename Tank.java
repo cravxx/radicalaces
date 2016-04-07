@@ -138,11 +138,11 @@ public class Tank {
         if (conto.x < -40000) {
             conto.x = -40000;
         }
-        if (conto.x > '鱀') {
-            conto.x = '鱀';
+        if (conto.x > 40000) {
+            conto.x = 40000;
         }
-        if (conto.z > '鱀') {
-            conto.z = '鱀';
+        if (conto.z > 40000) {
+            conto.z = 40000;
         }
         if (conto.z < -40000) {
             conto.z = -40000;

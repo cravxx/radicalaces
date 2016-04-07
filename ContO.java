@@ -191,7 +191,7 @@ public class ContO {
             j = m.cx + (int) ((float) (x - m.x - m.cx) * m.cs.getcos(m.xz) - (float) (z - m.z - m.cz) * m.cs.getsin(m.xz));
             int k = m.cz + (int) ((float) (x - m.x - m.cx) * m.cs.getsin(m.xz) + (float) (z - m.z - m.cz) * m.cs.getcos(m.xz));
             int l = m.cz + (int) ((float) (y - m.y - m.cy) * m.cs.getsin(m.zy) + (float) (k - m.cz) * m.cs.getcos(m.zy));
-            if (xs(j + maxR, l) > 0 && xs(j - maxR, l) < m.w && l > -maxR && l < '썐' && xs(j + maxR, l) - xs(j - maxR, l) > disp || exp) {
+            if (xs(j + maxR, l) > 0 && xs(j - maxR, l) < m.w && l > -maxR && l < 50000 && xs(j + maxR, l) - xs(j - maxR, l) > disp || exp) {
                 int i1;
                 int j1;
                 if (shadow || exp) {

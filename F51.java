@@ -840,8 +840,8 @@ public class F51 extends Applet implements Runnable {
 		 * set up 20 crafts
 		 */
         Craft[] craft = new Craft[20];
-        for (int i = 0; i < 20; i++) {
-            craft[i] = new Craft(m);
+        for (int j = 0; j < 20; j++) {
+            craft[j] = new Craft(m);
         }
         loadbase(conto, m);
         lstat("Loading 3D Models...", 17);

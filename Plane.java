@@ -318,7 +318,7 @@ public class Plane {
                 if (ints9[k4] > this.m.w || ints2[k4] < 10) {
                     ++i4;
                 }
-                if (ints2[k4] > '썐') {
+                if (ints2[k4] > 50000) {
                     ++j4;
                 }
             }
@@ -495,7 +495,7 @@ public class Plane {
                 for (int i2 = 0; i2 < this.n; ++i2) {
                     ints4[i2] = this.xs(ints[i2], ints2[i2]);
                     ints5[i2] = this.ys(ints3[i2], ints2[i2]);
-                    if (ints5[i2] > 0 && ints5[i2] < this.m.h && ints4[i2] > 0 && ints4[i2] < this.m.w && ints2[i2] > 10 && ints2[i2] < '썐') {
+                    if (ints5[i2] > 0 && ints5[i2] < this.m.h && ints4[i2] > 0 && ints4[i2] < this.m.w && ints2[i2] > 10 && ints2[i2] < 50000) {
                         flag2 = true;
                     }
                 }

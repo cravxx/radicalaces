@@ -6,9 +6,7 @@ import java.util.ArrayList;
 public class RunApp extends Panel {
 
     static Frame frame;
-
     static F51 applet;
-
     public static ArrayList<Image> icons;
 
     /**
@@ -17,7 +15,7 @@ public class RunApp extends Panel {
     public static ArrayList<Image> getIcons() {
         if (icons == null) {
             icons = new ArrayList<Image>();
-            int[] resols = { 16, 32, 48 };
+            int[] resols = {16, 32, 48};
             for (int res : resols) {
                 icons.add(Toolkit.getDefaultToolkit().createImage("data/ico_" + res + ".gif"));
             }
@@ -27,8 +25,7 @@ public class RunApp extends Panel {
 
     public static void main(String[] strings) {
         System.runFinalizersOnExit(true);
-        //Change this to the messgae of your preference
-        System.out.println("Nfm2-Mod Console");
+        System.out.println("Nfm2-Mod Console");//Change this to the messgae of your preference
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
@@ -38,25 +35,21 @@ public class RunApp extends Panel {
     }
 
     static void startup() {
-        //Change this to the name of your preference
-        frame = new Frame("Radical Aces");
+        frame = new Frame("Radical Aces");//Change this to the name of your preference
         frame.setBackground(new Color(0, 0, 0));
         frame.setIgnoreRepaint(true);
         frame.setIconImages(getIcons());
         applet = new F51();
         applet.setStub(new DesktopStub());
         frame.addWindowListener(new WindowAdapter() {
-
             @Override
             public void windowClosing(WindowEvent windowevent) {
                 exitsequance();
             }
         });
-        //The resolution of your game goes here
-        applet.setPreferredSize(new java.awt.Dimension(500, 360));
+        applet.setPreferredSize(new java.awt.Dimension(500, 360));//The resolution of your game goes here
         frame.add("Center", applet);
-        //If you plan to make you game support changes in resolution, you can comment out this line.
-        frame.setResizable(false);
+        frame.setResizable(false);//If you plan to make you game support changes in resolution, you can comment out this line.
         frame.pack();
         frame.setMinimumSize(frame.getSize());
         frame.setLocationRelativeTo(null);
@@ -70,10 +63,10 @@ public class RunApp extends Panel {
         frame.removeAll();
         try {
             Thread.sleep(200L);
-        } catch (Exception exception) {
-        }
+        } catch (Exception exception) {}
         applet.destroy();
         applet = null;
         System.exit(0);
-    }
+    }    
+    
 }

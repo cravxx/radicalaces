@@ -951,8 +951,8 @@ public class Lasers {
             for (int i1 = 0; i1 < l; ++i1) {
                 int j1 = ints[i1];
                 int k1 = ints2[i1];
-                ints[i1] = i + (int) ((float) (j1 - i) * this.m.cs.getcos(k) - (float) (k1 - j) * this.m.cs.getsin(k));
-                ints2[i1] = j + (int) ((float) (j1 - i) * this.m.cs.getsin(k) + (float) (k1 - j) * this.m.cs.getcos(k));
+                ints[i1] = i + (int) ((float) (j1 - i) * this.m.cs.cos(k) - (float) (k1 - j) * this.m.cs.sin(k));
+                ints2[i1] = j + (int) ((float) (j1 - i) * this.m.cs.sin(k) + (float) (k1 - j) * this.m.cs.cos(k));
             }
         }
     }

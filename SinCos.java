@@ -1,39 +1,39 @@
 public class SinCos {
 
-    float[] tcos = new float[360];
+    private static float[] tcos = new float[360];
 
-    float[] tsin = new float[360];
+    private static float[] tsin = new float[360];
 
-    public  SinCos() {
-        int var1 = 0;
+    static {
+        int i = 0;
         do {
-            this.tcos[var1] = (float) Math.cos((double) var1 * 0.017453292519943295D);
-            ++var1;
-        } while (var1 < 360);
-        var1 = 0;
+            tcos[i] = (float) Math.cos((double) i * 0.017453292519943295D);
+            ++i;
+        } while (i < 360);
+        i = 0;
         do {
-            this.tsin[var1] = (float) Math.sin((double) var1 * 0.017453292519943295D);
-            ++var1;
-        } while (var1 < 360);
+            tsin[i] = (float) Math.sin((double) i * 0.017453292519943295D);
+            ++i;
+        } while (i < 360);
     }
 
-    public float getsin(int i) {
+    public static float sin(int i) {
         while (i >= 360) {
             i -= 360;
         }
         while (i < 0) {
             i += 360;
         }
-        return this.tsin[i];
+        return tsin[i];
     }
 
-    public float getcos(int i) {
+    public static float cos(int i) {
         while (i >= 360) {
             i -= 360;
         }
         while (i < 0) {
             i += 360;
         }
-        return this.tcos[i];
+        return tcos[i];
     }
 }

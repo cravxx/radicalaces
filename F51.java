@@ -23,66 +23,41 @@ public class F51 extends Applet implements Runnable {
      * 
      */
     private static final long serialVersionUID = -1399200686375699720L;
-
     public static final String modelsDir = "data/models.radq";
-
     public static final String imagesDir = "data/images/";
-
     Graphics rd;
-
     Image offImage;
-
     Thread gamer;
     boolean mon = true;
-
     String moner = "Click here to Start";
 
     /**
      * names of the .rad's are loaded into this String array in loadbase()
      */
     String[] modelNames = new String[53];
-
     String sndfrm = "default";
     boolean nounif = false;
-
     Control u = new Control();
     boolean tab = false;
     int view = 0;
     int maxco = 0;
     int maxmo = -1;
-
     AudioClip upl;
-
     AudioClip low;
-
     AudioClip med;
-
     AudioClip downl;
-
     AudioClip ljump;
-
     AudioClip grnd;
-
     AudioClip exp;
-
     AudioClip exph;
-
     AudioClip hit;
-
     AudioClip hitl;
-
     AudioClip charged;
-
     AudioClip into;
-
     AudioClip miso;
-
     AudioClip mano;
-
     AudioClip selo;
-
     AudioClip[] las = new AudioClip[5];
-
     AudioClip[] mtrak = new AudioClip[7];
     boolean[] loadet = new boolean[7];
     boolean plow = false;
@@ -161,7 +136,6 @@ public class F51 extends Applet implements Runnable {
         }
         return false;
     }
-
     public void playsounds(final userCraft usercraft, final ContO conto, final boolean flag, final xtGraphics xtgraphics) {
         if (!flag) {
             if (!nosound) {
@@ -354,7 +328,6 @@ public class F51 extends Applet implements Runnable {
             }
         }
     }
-
     public void unloadit() {
         try {
             final JSObject jsobject = JSObject.getWindow(this);
@@ -363,7 +336,6 @@ public class F51 extends Applet implements Runnable {
             ;
         }
     }
-
     public AudioClip loadsnd(final String string) {
         final AudioClip audioclip = getAudioClip(getCodeBase(), string);
         if (!sosun) {
@@ -373,7 +345,6 @@ public class F51 extends Applet implements Runnable {
         }
         return audioclip;
     }
-
     public String getstring(final String string, final String string2, final int i) {
         int j = 0;
         String string3 = "";
@@ -389,7 +360,6 @@ public class F51 extends Applet implements Runnable {
         }
         return string3;
     }
-
     public int getint(final String string, final String string2, final int i) {
         int j = 0;
         String string3 = "";
@@ -410,7 +380,6 @@ public class F51 extends Applet implements Runnable {
     public void paint(final Graphics graphics) {
         graphics.drawImage(offImage, 0, 0, this);
     }
-
     public void savegame(final ContO[] contos, final xtGraphics xtgraphics, final int i) {
         try {
             final JSObject jsobject = JSObject.getWindow(this);
@@ -437,13 +406,11 @@ public class F51 extends Applet implements Runnable {
         }
         gamer = null;
     }
-
     public void loadrots(final ContO[] contos, final boolean flag) {
         for (int i = 0; i < maxco; ++i) {
             contos[i].loadrots(flag);
         }
     }
-
     public Image returnImg(final String string) {
         Image image = null;
         try {
@@ -455,7 +422,6 @@ public class F51 extends Applet implements Runnable {
         }
         return image;
     }
-
     public void loadbase(final ContO[] contos, final Medium medium) {
         try {
             final URL url = new URL(getCodeBase(), modelsDir);
@@ -487,7 +453,6 @@ public class F51 extends Applet implements Runnable {
     public void update(final Graphics graphics) {
         paint(graphics);
     }
-
     public void loadmovers(final int[] ints, final int[] ints2, final ContO[] conto, final Craft[] craft, final Tank[] tank, final userCraft usercraft, final xtGraphics xtgraphics) {
         for (int i = 1; i < maxmo; ++i) {
             conto[ints[i]].out = true;
@@ -545,7 +510,6 @@ public class F51 extends Applet implements Runnable {
         }
         System.gc();
     }
-
     public void set0() {
         try {
             final JSObject jsobject = JSObject.getWindow(this);
@@ -612,7 +576,6 @@ public class F51 extends Applet implements Runnable {
         }
         gamer.start();
     }
-
     public void downloadall(final xtGraphics xtgraphics) {
         xtgraphics.radar = returnImg("data/images/radar.gif");
         lstat("Loading Images...", 1);
@@ -733,7 +696,6 @@ public class F51 extends Applet implements Runnable {
         u.jump = 0;
         xtgraphics.creset();
     }
-
     public void loadobjects(final ContO[] contos, final ContO[] contos2, final Medium medium, final String string) {
         try {
             final URL url = new URL(getCodeBase(), "siters/" + string + ".txt");
@@ -1292,7 +1254,6 @@ public class F51 extends Applet implements Runnable {
             }
         }
     }
-
     public void lstat(final String string, final int i) {
         dnload += i;
         rd.setColor(new Color(223, 223, 223));
@@ -1316,7 +1277,6 @@ public class F51 extends Applet implements Runnable {
         }
         rd.setFont(new Font("SansSerif", 1, 11));
     }
-
     public void getslevel(final xtGraphics xtgraphics) {
         try {
             final JSObject jsobject = JSObject.getWindow(this);
@@ -1332,7 +1292,6 @@ public class F51 extends Applet implements Runnable {
             ;
         }
     }
-
     public void loadsaved(final ContO[] contos, final xtGraphics xtgraphics, final int i) {
         try {
             final JSObject jsobject = JSObject.getWindow(this);

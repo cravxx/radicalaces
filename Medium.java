@@ -3,7 +3,6 @@ import java.awt.Graphics;
 
 public class Medium {
     boolean isun = false;
-
     SinCos cs = new SinCos();
     int focus_point = 400;
     int ground = 250;
@@ -29,14 +28,12 @@ public class Medium {
     int vxz = 0;
     int adv = -500;
     boolean vert = false;
-
     public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - focus_point) * (cy - i) / j + i;
     }
-
     public void infront(final ContO conto) {
         int i = conto.zy;
         int j;
@@ -70,7 +67,6 @@ public class Medium {
         z = (int) (z + (j1 - cz - z) / 1.5D);
         y = (int) (y + (k - cy - y) / 1.5D);
     }
-
     public void d(final Graphics graphics) {
         if (zy > 90) {
             zy = 90;
@@ -155,7 +151,6 @@ public class Medium {
             jumping += -1;
         }
     }
-
     public void watch(final ContO conto) {
         if (!td) {
             y = conto.y + (int) ((conto.y - 300 - conto.y) * cs.cos(conto.zy) - (conto.z + 3000 - conto.z) * cs.sin(conto.zy));
@@ -181,7 +176,6 @@ public class Medium {
             td = false;
         }
     }
-
     public void around(final ContO conto, final int i) {
         byte b = 1;
         if (i == 6000) {
@@ -235,7 +229,6 @@ public class Medium {
         xz = -vxz + 90;
         zy += (l - zy) / 10;
     }
-
     public void left(final ContO conto) {
         final int i = conto.y;
         final int j = conto.x + (int) ((conto.x + 600 - conto.x) * cs.cos(conto.xz));
@@ -246,7 +239,6 @@ public class Medium {
         z = (int) (z + (k - cz - z) / 1.5D);
         y = (int) (y + (i - cy - y) / 1.5D);
     }
-
     public void right(final ContO conto) {
         final int i = conto.y;
         final int j = conto.x + (int) ((conto.x - 600 - conto.x) * cs.cos(conto.xz));
@@ -257,7 +249,6 @@ public class Medium {
         z = (int) (z + (k - cz - z) / 1.5D);
         y = (int) (y + (i - cy - y) / 1.5D);
     }
-
     public void behinde(final ContO conto) {
         int i = conto.zy;
         int j;

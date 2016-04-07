@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 
 public class Tank {
-
     cControl u = new cControl();
     int rspeed = 0;
     int ltyp = 0;
@@ -20,7 +19,6 @@ public class Tank {
     int[] lhit = new int[20];
     int[] nf = new int[20];
     int nl = 0;
-
     Lasers lsr;
     boolean skip = false;
     int bulkc = 0;
@@ -38,7 +36,6 @@ public class Tank {
     boolean responce = false;
     int trgxz = 180;
     int trgt = 0;
-
     public void preform(final ContO conto, final ContO[] contos, final int i, final int j) {
         int k;
         for (k = Math.abs(conto.zy); k > 270; k -= 360) {
@@ -348,7 +345,6 @@ public class Tank {
             responce = true;
         }
     }
-
     public void dosmokes(final Graphics graphics, final ContO conto) {
         if (conto.y > 200) {
             if (smoke && !conto.exp && sms[ns] == -1) {
@@ -379,7 +375,6 @@ public class Tank {
             } while (i < 4);
         }
     }
-
     public void reset(final int i, final int j) {
         rspeed = i;
         pexp = false;
@@ -390,7 +385,6 @@ public class Tank {
             ++k;
         } while (k < 20);
     }
-
     public Tank(final Medium var1) {
         lsr = new Lasers(var1);
         int var2 = 0;
@@ -399,7 +393,6 @@ public class Tank {
             ++var2;
         } while (var2 < 4);
     }
-
     public void lasercolid(final ContO conto) {
         if (!conto.exp && !conto.out) {
             int i = 0;
@@ -433,15 +426,12 @@ public class Tank {
             } while (i < 20);
         }
     }
-
     public int getpy(final int i, final int j, final int k, final int l) {
         return (i - lx[l]) / 10 * ((i - lx[l]) / 10) + (j - ly[l]) / 10 * ((j - ly[l]) / 10) + (k - lz[l]) / 10 * ((k - lz[l]) / 10);
     }
-
     public int getcpy(final ContO conto, final ContO conto2) {
         return (conto.x - conto2.x) / 100 * ((conto.x - conto2.x) / 100) + (conto.y - conto2.y) / 100 * ((conto.y - conto2.y) / 100) + (conto.z - conto2.z) / 100 * ((conto.z - conto2.z) / 100);
     }
-
     public void dl(final Graphics graphics) {
         int i = 0;
         do {

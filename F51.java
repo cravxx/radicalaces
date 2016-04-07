@@ -69,7 +69,7 @@ public class F51 extends Applet implements Runnable {
 	int frags = 0;
 	int dnload = 0;
 
-	public void testlocation(Medium var1, int var2) {
+	/*public void testlocation(Medium var1, int var2) {
 		try {
 			JSObject var9 = JSObject.getWindow(this);
 			var9.eval("canstand=true;");
@@ -143,7 +143,7 @@ public class F51 extends Applet implements Runnable {
 			}
 		}
 
-	}
+	}*/
 
 	public void stop() {
 		into.stop();
@@ -293,7 +293,7 @@ public class F51 extends Applet implements Runnable {
 					if (!pexph) {
 						exph.play();
 						pexph = true;
-						shake();
+						/*shake();*/
 					}
 				} else if (pexph) {
 					pexph = false;
@@ -835,7 +835,7 @@ public class F51 extends Applet implements Runnable {
 		return true;
 	}
 
-	public void shake() {
+	/*public void shake() {
 		try {
 			JSObject var1 = JSObject.getWindow(this);
 			var1.eval("shake()");
@@ -843,7 +843,7 @@ public class F51 extends Applet implements Runnable {
 			;
 		}
 
-	}
+	}*/
 
 	public void setmover(int[] var1, ContO[] var2, userCraft var3, xtGraphics var4) {
 		int var5 = 0;
@@ -951,7 +951,7 @@ public class F51 extends Applet implements Runnable {
 			var3 = 15;
 		}
 
-		testlocation(m, var3);
+		/*testlocation(m, var3);*/
 		lstat("Preparing for loading...", 0);
 		ContO[] conto = new ContO[53];
 		ContO[] conto1 = new ContO[3000];
@@ -1340,9 +1340,9 @@ public class F51 extends Applet implements Runnable {
 						u.space = false;
 					}
 
-					if (xtgraphics.fase == 4) {
+					/*if (xtgraphics.fase == 4) {
 						shake();
-					}
+					}*/
 
 					if (xtgraphics.fase == -33) {
 						if (xtgraphics.frst && xtgraphics.select == 0) {
@@ -1426,12 +1426,12 @@ public class F51 extends Applet implements Runnable {
 					repaint();
 					System.gc();
 
-					try {
+					/*try {
 						var42 = new URL(getCodeBase(), "web/exit.html");
 						getAppletContext().showDocument(var42);
 					} catch (Exception var37) {
 						;
-					}
+					}*/
 
 					System.gc();
 					gamer.stop();
@@ -1442,12 +1442,12 @@ public class F51 extends Applet implements Runnable {
 					System.gc();
 					unloadit();
 
-					try {
+					/*try {
 						var42 = new URL(getCodeBase(), "http://www.radicalplay.com/aces/winner/index.html");
 						getAppletContext().showDocument(var42);
 					} catch (Exception var36) {
 						;
-					}
+					}*/
 
 					System.gc();
 					gamer.stop();

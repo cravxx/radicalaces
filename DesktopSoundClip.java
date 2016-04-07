@@ -10,15 +10,20 @@ import javax.sound.sampled.*;
 public class DesktopSoundClip implements AudioClip {
 
     Clip clip = null;
+
     AudioInputStream sound;
+
     boolean loaded = false;
+
     int lfrpo = -1;
+
     int cntcheck = 0;
-   
+
     /**
     * Creates an unloaded, empty SoundClip.
     */
-    public DesktopSoundClip() {}
+    public DesktopSoundClip() {
+    }
 
     /**
     * Creates a SoundClip from an array of bytes.
@@ -32,16 +37,10 @@ public class DesktopSoundClip implements AudioClip {
             AudioFormat format = sound.getFormat();
             //ULAW format is not directly supported, it needs to be wrapped.
             if (format.getEncoding() != AudioFormat.Encoding.PCM_SIGNED) {
-                format = new AudioFormat(
-                    AudioFormat.Encoding.PCM_SIGNED,
-                    format.getSampleRate(),
-                    format.getSampleSizeInBits()*2,
-                    format.getChannels(),
-                    format.getFrameSize()*2,
-                    format.getFrameRate(),
-                    true); // big endian
-                sound = AudioSystem.getAudioInputStream(format,sound);
-                sound.mark(is.length*2);
+                format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, format.getSampleRate(), format.getSampleSizeInBits() * 2, format.getChannels(), format.getFrameSize() * 2, format.getFrameRate(), // big endian
+                true);
+                sound = AudioSystem.getAudioInputStream(format, sound);
+                sound.mark(is.length * 2);
             }
             DataLine.Info info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);
@@ -62,14 +61,16 @@ public class DesktopSoundClip implements AudioClip {
                 if (!clip.isOpen()) {
                     try {
                         clip.open(sound);
-                    } catch (Exception exception) {}
+                    } catch (Exception exception) {
+                    }
                     clip.loop(0);
                 } else {
                     clip.loop(1);
                 }
                 lfrpo = -1;
                 cntcheck = 5;
-            } catch (Exception exception) {}
+            } catch (Exception exception) {
+            }
         }
     }
 
@@ -83,12 +84,14 @@ public class DesktopSoundClip implements AudioClip {
                 if (!clip.isOpen()) {
                     try {
                         clip.open(sound);
-                    } catch (Exception exception) {}
+                    } catch (Exception exception) {
+                    }
                 }
                 clip.loop(70);
                 lfrpo = -2;
                 cntcheck = 0;
-            } catch (Exception exception) {}
+            } catch (Exception exception) {
+            }
         }
     }
 
@@ -101,7 +104,8 @@ public class DesktopSoundClip implements AudioClip {
             try {
                 clip.stop();
                 lfrpo = -1;
-            } catch (Exception exception) {}
+            } catch (Exception exception) {
+            }
         }
     }
 
@@ -118,7 +122,8 @@ public class DesktopSoundClip implements AudioClip {
                     try {
                         clip.close();
                         sound.reset();
-                    } catch (Exception exception) {}
+                    } catch (Exception exception) {
+                    }
                     lfrpo = -1;
                 } else {
                     lfrpo = i;

@@ -5,16 +5,28 @@ import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MediaTracker;
 import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import javax.imageio.ImageIO;
+
 import netscape.javascript.JSObject;
 
 public class F51 extends Applet implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1399200686375699720L;
+	
+	public static final String modelsDir = "data/models.radq"; 
+	public static final String imagesDir = "data/images/"; 
+	
 	Graphics rd;
 	Image offImage;
 	Thread gamer;
@@ -533,22 +545,21 @@ public class F51 extends Applet implements Runnable {
 
 	}
 
-	public Image loadimg(String var1, MediaTracker var2) {
-		Image var3 = getImage(getCodeBase(), var1);
-		var2.addImage(var3, 0);
-
+	public Image returnImg(String var) {
+		Image image = null;
 		try {
-			var2.waitForID(0);
-		} catch (Exception var4) {
-			;
+			image = ImageIO.read(new URL(getCodeBase(), var).openStream());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
-		return var3;
+		return image;
 	}
 
 	public void loadbase(ContO[] var1, Medium var2) {
 		try {
-			URL var3 = new URL(getCodeBase(), "graphics/models.radq");
+			URL var3 = new URL(getCodeBase(), modelsDir);
 			DataInputStream var4 = new DataInputStream(var3.openStream());
 			ZipInputStream var5 = new ZipInputStream(var4);
 			ZipEntry var6 = var5.getNextEntry();
@@ -737,86 +748,85 @@ public class F51 extends Applet implements Runnable {
 	}
 
 	public void downloadall(xtGraphics var1) {
-		MediaTracker var2 = new MediaTracker(this);
-		var1.radar = loadimg("graphics/radar.gif", var2);
+		var1.radar = returnImg("data/images/radar.gif");
 		lstat("Loading Images...", 1);
-		var1.stube = loadimg("graphics/stube.gif", var2);
+		var1.stube = returnImg("data/images/stube.gif");
 		lstat("Loading Images...", 2);
-		var1.sback = loadimg("graphics/select.jpg", var2);
+		var1.sback = returnImg("data/images/select.jpg");
 		lstat("Loading Images...", 18);
-		var1.destr = loadimg("graphics/destroyed.gif", var2);
+		var1.destr = returnImg("data/images/destroyed.gif");
 		lstat("Loading Images...", 2);
-		var1.saveit(loadimg("graphics/failed.jpg", var2), var1.bpix);
+		var1.saveit(returnImg("data/images/failed.jpg"), var1.bpix);
 		lstat("Loading Images...", 31);
-		var1.saveit(loadimg("graphics/mission.jpg", var2), var1.mpix);
+		var1.saveit(returnImg("data/images/mission.jpg"), var1.mpix);
 		lstat("Loading Images...", 22);
-		var1.saveit(loadimg("graphics/over.jpg", var2), var1.opix);
+		var1.saveit(returnImg("data/images/over.jpg"), var1.opix);
 		lstat("Loading Images...", 21);
-		var1.saveit(loadimg("graphics/paused.jpg", var2), var1.ppix);
+		/*var1.saveit(returnImg("data/images/paused.jpg"), var1.ppix);*/
 		lstat("Loading Images...", 10);
-		var1.lay = loadimg("graphics/layout.gif", var2);
+		var1.lay = returnImg("data/images/layout.gif");
 		lstat("Loading Images...", 1);
-		var1.complete = loadimg("graphics/comp.gif", var2);
+		var1.complete = returnImg("data/images/comp.gif");
 		lstat("Loading Images...", 2);
-		var1.main = loadimg("graphics/main.gif", var2);
+		var1.main = returnImg("data/images/main.gif");
 		lstat("Loading Images...", 32);
-		var1.rad = loadimg("graphics/radicalplay.gif", var2);
+		var1.rad = returnImg("data/images/radicalplay.gif");
 		lstat("Loading Images...", 2);
 		int var3 = 0;
 
 		do {
-			var1.as[var3] = loadimg("graphics/a" + var3 + ".gif", var2);
+			var1.as[var3] = returnImg("data/images/a" + var3 + ".gif");
 			lstat("Loading Images...", 1);
 			++var3;
 		} while (var3 < 5);
 
-		var1.inst1 = loadimg("graphics/inst1.gif", var2);
+		var1.inst1 = returnImg("data/images/inst1.gif");
 		lstat("Loading Images...", 10);
-		var1.inst2 = loadimg("graphics/inst2.gif", var2);
+		var1.inst2 = returnImg("data/images/inst2.gif");
 		lstat("Loading Images...", 11);
-		var1.inst3 = loadimg("graphics/inst3.gif", var2);
+		var1.inst3 = returnImg("data/images/inst3.gif");
 		lstat("Loading Images...", 4);
-		var1.text = loadimg("graphics/text.gif", var2);
+		/*var1.text = returnImg("data/images/text.gif");*/
 		lstat("Loading Images...", 6);
-		var1.mars = loadimg("graphics/mars.jpg", var2);
+		var1.mars = returnImg("data/images/mars.jpg");
 		lstat("Loading Images...", 15);
-		into = loadsnd("music/intro.au");
+		into = loadsnd("data/music/intro.au");
 		lstat("Loading Music...", 24);
-		miso = loadsnd("music/mission.au");
+		miso = loadsnd("data/music/mission.au");
 		lstat("Loading Music...", 29);
-		selo = loadsnd("music/select.au");
+		selo = loadsnd("data/music/select.au");
 		lstat("Loading Music...", 52);
-		mano = loadsnd("music/main.au");
+		mano = loadsnd("data/music/main.au");
 		lstat("Loading Music...", 50);
-		upl = loadsnd("sounds/" + sndfrm + "/up.au");
+		upl = loadsnd("data/sounds/" + sndfrm + "/up.au");
 		lstat("Loading Sound Effects...", 11);
-		hitl = loadsnd("sounds/" + sndfrm + "/hitl.au");
+		hitl = loadsnd("data/sounds/" + sndfrm + "/hitl.au");
 		lstat("Loading Sound Effects...", 7);
-		downl = loadsnd("sounds/" + sndfrm + "/down.au");
+		downl = loadsnd("data/sounds/" + sndfrm + "/down.au");
 		lstat("Loading Sound Effects...", 10);
-		low = loadsnd("sounds/" + sndfrm + "/low.au");
+		low = loadsnd("data/sounds/" + sndfrm + "/low.au");
 		lstat("Loading Sound Effects...", 11);
-		med = loadsnd("sounds/" + sndfrm + "/med.au");
+		med = loadsnd("data/sounds/" + sndfrm + "/med.au");
 		lstat("Loading Sound Effects...", 6);
-		ljump = loadsnd("sounds/" + sndfrm + "/jump.au");
+		ljump = loadsnd("data/sounds/" + sndfrm + "/jump.au");
 		lstat("Loading Sound Effects...", 25);
-		grnd = loadsnd("sounds/" + sndfrm + "/grnd.au");
+		grnd = loadsnd("data/sounds/" + sndfrm + "/grnd.au");
 		lstat("Loading Sound Effects...", 5);
-		exp = loadsnd("sounds/" + sndfrm + "/exp.au");
+		exp = loadsnd("data/sounds/" + sndfrm + "/exp.au");
 		lstat("Loading Sound Effects...", 10);
-		exph = loadsnd("sounds/" + sndfrm + "/exph.au");
+		exph = loadsnd("data/sounds/" + sndfrm + "/exph.au");
 		lstat("Loading Sound Effects...", 12);
-		hit = loadsnd("sounds/" + sndfrm + "/hit.au");
+		hit = loadsnd("data/sounds/" + sndfrm + "/hit.au");
 		lstat("Loading Sound Effects...", 25);
 		var3 = 0;
 
 		do {
-			las[var3] = loadsnd("sounds/" + sndfrm + "/l" + var3 + ".au");
+			las[var3] = loadsnd("data/sounds/" + sndfrm + "/l" + var3 + ".au");
 			lstat("Loading Sound Effects...", 9);
 			++var3;
 		} while (var3 < 5);
 
-		charged = loadsnd("sounds/" + sndfrm + "/charged.au");
+		charged = loadsnd("data/sounds/" + sndfrm + "/charged.au");
 		lstat("Loading Sound Effects...", 12);
 	}
 
@@ -1356,7 +1366,7 @@ public class F51 extends Applet implements Runnable {
 								nounif = true;
 							}
 
-							mtrak[var25] = getAudioClip(getCodeBase(), "music/" + var25 + ".au");
+							mtrak[var25] = getAudioClip(getCodeBase(), "data/music/" + var25 + ".au");
 							loadet[var25] = true;
 							++var25;
 						} else if (xtgraphics.goodsun) {

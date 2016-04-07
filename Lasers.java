@@ -4,13 +4,9 @@ import java.awt.Graphics;
 public class Lasers {
 
     Medium m;
-
     int[] speed = new int[12];
-
     int[] rads = new int[12];
-
     int[] srate = new int[12];
-
     int[] damg = new int[12];
 
     public int ys(final int i, int j) {

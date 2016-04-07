@@ -17,9 +17,7 @@ public class xtGraphics extends Panel {
     Medium m;
 
     FontMetrics ftm;
-
     boolean goodsun = false;
-
     int cl = 1;
 
     Image radar;
@@ -51,73 +49,42 @@ public class xtGraphics extends Panel {
     Image text;
 
     Image[] as = new Image[5];
-
     int[] pix = new int[180000];
-
     int[] bpix = new int[180000];
-
     int[] mpix = new int[180000];
-
     int[] opix = new int[180000];
-
     int[] ppix = new int[180000];
-
     int cnt = 0;
-
     boolean flik = false;
-
     int cnts = 10;
 
     String[] mname = new String[19];
-
     int[] cnte = new int[19];
-
     int cntf = 0;
-
     boolean left = false;
-
     int wcnt = 0;
-
     int rcnt = 0;
-
     int cnty = 0;
-
     int fase = -8;
-
     int selected = 4;
-
     int select = 0;
-
     int[] ws = new int[] {
             62, 73, 59, 40, 50
     };
-
     boolean frst = false;
-
     int oldfase = -5;
-
     int nb = 0;
-
     int[] ob = new int[3];
 
     String[] nam = new String[3];
-
     boolean[] tnk = new boolean[3];
-
     int[] obx = new int[3];
-
     int[] oby = new int[3];
-
     int[] obz = new int[3];
-
     int sgame = -1;
-
     int level = 0;
-
     boolean[] dest = new boolean[10];
-
     boolean mcomp = false;
-
     int tcnt = 1;
 
     public void denter(final Graphics graphics, final int i, final ContO[] contos, final userCraft usercraft, final Control control) {

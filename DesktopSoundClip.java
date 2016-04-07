@@ -17,11 +17,8 @@ public class DesktopSoundClip implements AudioClip {
     Clip clip = null;
 
     AudioInputStream sound;
-
     boolean loaded = false;
-
     int lfrpo = -1;
-
     int cntcheck = 0;
 
     /**

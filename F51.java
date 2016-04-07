@@ -12,16 +12,14 @@ import java.net.URL;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-
 import javax.imageio.ImageIO;
-
 import netscape.javascript.JSObject;
 
 public class F51 extends Applet implements Runnable {
 
     /**
-     * 
-     */
+	 * 
+	 */
     private static final long serialVersionUID = -1399200686375699720L;
 
     public static final String modelsDir = "data/models.radq";
@@ -39,8 +37,8 @@ public class F51 extends Applet implements Runnable {
     String moner = "Click here to Start";
 
     /**
-     * names of the .rad's are loaded into this String array in loadbase()
-     */
+	 * names of the .rad's are loaded into this String array in loadbase()
+	 */
     String[] modelNames = new String[53];
 
     String sndfrm = "default";
@@ -131,7 +129,6 @@ public class F51 extends Applet implements Runnable {
 
     int dnload = 0;
 
-    @Override
     public void stop() {
         into.stop();
         miso.stop();
@@ -167,8 +164,7 @@ public class F51 extends Applet implements Runnable {
         rd.dispose();
     }
 
-    @Override
-    public boolean lostFocus(final Event event, final Object object) {
+    public boolean lostFocus(Event event, Object object) {
         if (!nounif) {
             mon = true;
         }
@@ -188,7 +184,7 @@ public class F51 extends Applet implements Runnable {
         return false;
     }
 
-    public void playsounds(final userCraft usercraft, final ContO conto, final boolean flag, final xtGraphics xtgraphics) {
+    public void playsounds(userCraft usercraft, ContO conto, boolean flag, xtGraphics xtgraphics) {
         if (!flag) {
             if (!nosound) {
                 if (!conto.exp && usercraft.speed > 10.0F && !pmed) {
@@ -262,7 +258,7 @@ public class F51 extends Applet implements Runnable {
                     if (!pexph) {
                         exph.play();
                         pexph = true;
-                        /*shake();*/
+                    /*shake();*/
                     }
                 } else if (pexph) {
                     pexph = false;
@@ -383,15 +379,15 @@ public class F51 extends Applet implements Runnable {
 
     public void unloadit() {
         try {
-            final JSObject jsobject = JSObject.getWindow(this);
+            JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("loaded=false;");
-        } catch (final Exception var2) {
+        } catch (Exception var2) {
             ;
         }
     }
 
-    public AudioClip loadsnd(final String string) {
-        final AudioClip audioclip = getAudioClip(getCodeBase(), string);
+    public AudioClip loadsnd(String string) {
+        AudioClip audioclip = getAudioClip(getCodeBase(), string);
         if (!sosun) {
             audioclip.play();
             Thread.yield();
@@ -400,11 +396,11 @@ public class F51 extends Applet implements Runnable {
         return audioclip;
     }
 
-    public String getstring(final String string, final String string2, final int i) {
+    public String getstring(String string, String string2, int i) {
         int j = 0;
         String string3 = "";
         for (int k = string.length() + 1; k < string2.length(); ++k) {
-            final String string4 = "" + string2.charAt(k);
+            String string4 = "" + string2.charAt(k);
             if (string4.equals(",") || string4.equals(")")) {
                 ++j;
                 ++k;
@@ -416,11 +412,11 @@ public class F51 extends Applet implements Runnable {
         return string3;
     }
 
-    public int getint(final String string, final String string2, final int i) {
+    public int getint(String string, String string2, int i) {
         int j = 0;
         String string3 = "";
         for (int k = string.length() + 1; k < string2.length(); ++k) {
-            final String string4 = "" + string2.charAt(k);
+            String string4 = "" + string2.charAt(k);
             if (string4.equals(",") || string4.equals(")")) {
                 ++j;
                 ++k;
@@ -432,14 +428,13 @@ public class F51 extends Applet implements Runnable {
         return Integer.valueOf(string3).intValue();
     }
 
-    @Override
-    public void paint(final Graphics graphics) {
+    public void paint(Graphics graphics) {
         graphics.drawImage(offImage, 0, 0, this);
     }
 
-    public void savegame(final ContO[] contos, final xtGraphics xtgraphics, final int i) {
+    public void savegame(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
-            final JSObject jsobject = JSObject.getWindow(this);
+            JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("SetCookie(\'radxv\',\'" + xtgraphics.level + "\')");
             int j;
             for (j = i; j < i + 13; ++j) {
@@ -451,12 +446,11 @@ public class F51 extends Applet implements Runnable {
                 ++j;
             } while (j < 5);
             xtgraphics.sgame = 1;
-        } catch (final Exception var6) {
+        } catch (Exception var6) {
             ;
         }
     }
 
-    @Override
     public void destroy() {
         if (gamer != null) {
             gamer.stop();
@@ -464,34 +458,34 @@ public class F51 extends Applet implements Runnable {
         gamer = null;
     }
 
-    public void loadrots(final ContO[] contos, final boolean flag) {
+    public void loadrots(ContO[] contos, boolean flag) {
         for (int i = 0; i < maxco; ++i) {
             contos[i].loadrots(flag);
         }
     }
 
-    public Image returnImg(final String string) {
+    public Image returnImg(String string) {
         Image image = null;
         try {
             image = ImageIO.read(new URL(getCodeBase(), string).openStream());
-        } catch (final MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
-        } catch (final IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return image;
     }
 
-    public void loadbase(final ContO[] contos, final Medium medium) {
+    public void loadbase(ContO[] contos, Medium medium) {
         try {
-            final URL url = new URL(getCodeBase(), modelsDir);
-            final DataInputStream datainputstream = new DataInputStream(url.openStream());
-            final ZipInputStream zipinputstream = new ZipInputStream(datainputstream);
+            URL url = new URL(getCodeBase(), modelsDir);
+            DataInputStream datainputstream = new DataInputStream(url.openStream());
+            ZipInputStream zipinputstream = new ZipInputStream(datainputstream);
             ZipEntry zipentry = zipinputstream.getNextEntry();
-            final Object object = null;
+            Object object = null;
             for (int i = 0; zipentry != null; zipentry = zipinputstream.getNextEntry()) {
                 int j = (int) zipentry.getSize();
-                final byte[] bytes = new byte[j];
+                byte[] bytes = new byte[j];
                 int k;
                 for (int l = 0; j > 0; j -= k) {
                     k = zipinputstream.read(bytes, l, j);
@@ -503,18 +497,17 @@ public class F51 extends Applet implements Runnable {
             }
             zipinputstream.close();
             datainputstream.close();
-        } catch (final Exception var12) {
+        } catch (Exception var12) {
             System.out.println("Error Reading Models: " + var12);
         }
         System.gc();
     }
 
-    @Override
-    public void update(final Graphics graphics) {
+    public void update(Graphics graphics) {
         paint(graphics);
     }
 
-    public void loadmovers(final int[] ints, final int[] ints2, final ContO[] conto, final Craft[] craft, final Tank[] tank, final userCraft usercraft, final xtGraphics xtgraphics) {
+    public void loadmovers(int[] ints, int[] ints2, ContO[] conto, Craft[] craft, Tank[] tank, userCraft usercraft, xtGraphics xtgraphics) {
         for (int i = 1; i < maxmo; ++i) {
             conto[ints[i]].out = true;
         }
@@ -522,11 +515,11 @@ public class F51 extends Applet implements Runnable {
         xtgraphics.nb = 0;
         xtgraphics.mcomp = false;
         try {
-            final URL url = new URL(getCodeBase(), "levels/" + xtgraphics.level + ".txt");
-            final DataInputStream datainputstream = new DataInputStream(url.openStream());
+            URL url = new URL(getCodeBase(), "levels/" + xtgraphics.level + ".txt");
+            DataInputStream datainputstream = new DataInputStream(url.openStream());
             String string;
             while ((string = datainputstream.readLine()) != null) {
-                final String string2 = "" + string.trim();
+                String string2 = "" + string.trim();
                 if (string2.startsWith("craft")) {
                     ints[maxmo] = getint("craft", string2, 0);
                     ints2[maxmo] = 0;
@@ -566,7 +559,7 @@ public class F51 extends Applet implements Runnable {
                 }
             }
             datainputstream.close();
-        } catch (final Exception var12) {
+        } catch (Exception var12) {
             ;
         }
         System.gc();
@@ -574,15 +567,14 @@ public class F51 extends Applet implements Runnable {
 
     public void set0() {
         try {
-            final JSObject jsobject = JSObject.getWindow(this);
+            JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("SetCookie(\'radxv\',\'0\')");
-        } catch (final Exception var2) {
+        } catch (Exception var2) {
             ;
         }
     }
 
-    @Override
-    public boolean keyUp(final Event event, final int i) {
+    public boolean keyUp(Event event, int i) {
         if (i == 49 && view == 1) {
             view = 0;
         }
@@ -631,7 +623,6 @@ public class F51 extends Applet implements Runnable {
         return false;
     }
 
-    @Override
     public void start() {
         if (gamer == null) {
             gamer = new Thread(this);
@@ -639,7 +630,7 @@ public class F51 extends Applet implements Runnable {
         gamer.start();
     }
 
-    public void downloadall(final xtGraphics xtgraphics) {
+    public void downloadall(xtGraphics xtgraphics) {
         xtgraphics.radar = returnImg("data/images/radar.gif");
         lstat("Loading Images...", 1);
         xtgraphics.stube = returnImg("data/images/stube.gif");
@@ -718,8 +709,7 @@ public class F51 extends Applet implements Runnable {
         lstat("Loading Sound Effects...", 12);
     }
 
-    @Override
-    public boolean mouseDown(final Event event, final int i, final int j) {
+    public boolean mouseDown(Event event, int i, int j) {
         if (maxmo != -1) {
             mon = false;
             if (moner.equals("Click here to Start")) {
@@ -733,15 +723,15 @@ public class F51 extends Applet implements Runnable {
     }
 
     /*public void shake() {
-    	try {
-    		JSObject var1 = JSObject.getWindow(this);
-    		var1.eval("shake()");
-    	} catch (Exception var2) {
-    		;
-    	}
-    
-    }*/
-    public void setmover(final int[] ints, final ContO[] contos, final userCraft usercraft, final xtGraphics xtgraphics) {
+		try {
+			JSObject var1 = JSObject.getWindow(this);
+			var1.eval("shake()");
+		} catch (Exception var2) {
+			;
+		}
+
+	}*/
+    public void setmover(int[] ints, ContO[] contos, userCraft usercraft, xtGraphics xtgraphics) {
         int i = 0;
         do {
             contos[i].out = true;
@@ -760,16 +750,16 @@ public class F51 extends Applet implements Runnable {
         xtgraphics.creset();
     }
 
-    public void loadobjects(final ContO[] contos, final ContO[] contos2, final Medium medium, final String string) {
+    public void loadobjects(ContO[] contos, ContO[] contos2, Medium medium, String string) {
         try {
-            final URL url = new URL(getCodeBase(), "siters/" + string + ".txt");
-            final DataInputStream datainputstream = new DataInputStream(url.openStream());
+            URL url = new URL(getCodeBase(), "siters/" + string + ".txt");
+            DataInputStream datainputstream = new DataInputStream(url.openStream());
             boolean flag = false;
             String string2;
             while ((string2 = datainputstream.readLine()) != null) {
-                final String string3 = "" + string2.trim();
+                String string3 = "" + string2.trim();
                 if (string3.startsWith("l")) {
-                    final String string4 = getstring("l", string3, 0);
+                    String string4 = getstring("l", string3, 0);
                     int i;
                     int j;
                     int k;
@@ -809,20 +799,19 @@ public class F51 extends Applet implements Runnable {
                 }
             }
             datainputstream.close();
-        } catch (final Exception var15) {
+        } catch (Exception var15) {
             ;
         }
         System.gc();
     }
 
-    @Override
     public void run() {
         gamer.setPriority(10);
-        final Medium m = new Medium();
-        final xtGraphics xtgraphics = new xtGraphics(m, rd);
+        Medium m = new Medium();
+        xtGraphics xtgraphics = new xtGraphics(m, rd);
         byte b = 5;
-        final String javaV = System.getProperty("java.version");
-        final String appC = "" + getAppletContext();
+        String javaV = System.getProperty("java.version");
+        String appC = "" + getAppletContext();
         if (appC.startsWith("sun.")) {
             if (javaV.startsWith("1.3")) {
                 xtgraphics.goodsun = true;
@@ -836,21 +825,21 @@ public class F51 extends Applet implements Runnable {
         }
         /*testlocation(m, var3);*/
         lstat("Preparing for loading...", 0);
-        final ContO[] conto = new ContO[53];
-        final ContO[] conto1 = new ContO[3000];
-        final userCraft usercraft = new userCraft(m);
+        ContO[] conto = new ContO[53];
+        ContO[] conto1 = new ContO[3000];
+        userCraft usercraft = new userCraft(m);
         /*
-         * set up 20 tanks
-         */
-        final Tank[] tank = new Tank[20];
+		 * set up 20 tanks
+		 */
+        Tank[] tank = new Tank[20];
         for (int i = 0; i < 20; i++) {
             tank[i] = new Tank(m);
         }
         int i = 0;
         /*
-         * set up 20 crafts
-         */
-        final Craft[] craft = new Craft[20];
+		 * set up 20 crafts
+		 */
+        Craft[] craft = new Craft[20];
         for (int j = 0; j < 20; j++) {
             craft[j] = new Craft(m);
         }
@@ -867,15 +856,15 @@ public class F51 extends Applet implements Runnable {
         lstat("Loading 3D Models...", 1);
         loadrots(conto1, true);
         int j = 0;
-        final int[] ints = new int[600];
+        int[] ints = new int[600];
         for (int k = 0; k < maxco; ++k) {
             if (conto1[k].colides) {
                 ints[j] = k;
                 ++j;
             }
         }
-        final int[] ints2 = new int[20];
-        final int[] ints3 = new int[20];
+        int[] ints2 = new int[20];
+        int[] ints3 = new int[20];
         int l = 0;
         do {
             loadet[l] = false;
@@ -894,7 +883,7 @@ public class F51 extends Applet implements Runnable {
         maxmo = 0;
         while (true) {
             date = new Date();
-            final long lo3 = date.getTime();
+            long lo3 = date.getTime();
             if (!mon) {
                 int k1;
                 int[] ints4;
@@ -1233,16 +1222,16 @@ public class F51 extends Applet implements Runnable {
                 rd.setColor(new Color(223, 223, 223));
                 rd.fillRect(0, 0, 500, 360);
                 xtgraphics.drawcs(rd, 170, moner, 0, 0, 0, false);
-                final URL url;
+                URL url;
                 if (moner.equals("Exiting game...")) {
                     repaint();
                     System.gc();
                     /*try {
-                    	var42 = new URL(getCodeBase(), "web/exit.html");
-                    	getAppletContext().showDocument(var42);
-                    } catch (Exception var37) {
-                    	;
-                    }*/
+						var42 = new URL(getCodeBase(), "web/exit.html");
+						getAppletContext().showDocument(var42);
+					} catch (Exception var37) {
+						;
+					}*/
                     System.gc();
                     gamer.stop();
                 }
@@ -1251,11 +1240,11 @@ public class F51 extends Applet implements Runnable {
                     System.gc();
                     unloadit();
                     /*try {
-                    	var42 = new URL(getCodeBase(), "http://www.radicalplay.com/aces/winner/index.html");
-                    	getAppletContext().showDocument(var42);
-                    } catch (Exception var36) {
-                    	;
-                    }*/
+						var42 = new URL(getCodeBase(), "http://www.radicalplay.com/aces/winner/index.html");
+						getAppletContext().showDocument(var42);
+					} catch (Exception var36) {
+						;
+					}*/
                     System.gc();
                     gamer.stop();
                 }
@@ -1265,7 +1254,7 @@ public class F51 extends Applet implements Runnable {
                 playsounds(usercraft, conto1[ints2[0]], flag2, xtgraphics);
             }
             date = new Date();
-            final long lo4 = date.getTime();
+            long lo4 = date.getTime();
             if (!flag2) {
                 if (!flag) {
                     f = f2;
@@ -1274,9 +1263,9 @@ public class F51 extends Applet implements Runnable {
                 }
                 if (i1 == 10) {
                     if (lo4 - lo2 < 560L) {
-                        f = (float) (f + 0.5D);
+                        f = (float) ((double) f + 0.5D);
                     } else {
-                        f = (float) (f - 0.5D);
+                        f = (float) ((double) f - 0.5D);
                         if (f < 5.0F) {
                             f = 5.0F;
                         }
@@ -1294,9 +1283,9 @@ public class F51 extends Applet implements Runnable {
                 }
                 if (i1 == 10) {
                     if (lo4 - lo2 < 400L) {
-                        f = (float) (f + 3.5D);
+                        f = (float) ((double) f + 3.5D);
                     } else {
-                        f = (float) (f - 3.5D);
+                        f = (float) ((double) f - 3.5D);
                         if (f < 5.0F) {
                             f = 5.0F;
                         }
@@ -1307,34 +1296,33 @@ public class F51 extends Applet implements Runnable {
                     ++i1;
                 }
             }
-            lo = Math.round(f) - (lo4 - lo3);
-            if (lo < b) {
-                lo = b;
+            lo = (long) Math.round(f) - (lo4 - lo3);
+            if (lo < (long) b) {
+                lo = (long) b;
             }
             try {
                 Thread.sleep(lo);
-            } catch (final InterruptedException var35) {
+            } catch (InterruptedException var35) {
                 ;
             }
         }
     }
 
-    public void lstat(final String string, final int i) {
+    public void lstat(String string, int i) {
         dnload += i;
         rd.setColor(new Color(223, 223, 223));
         rd.fillRect(0, 0, 500, 360);
         rd.setColor(new Color(174, 185, 198));
         rd.drawRect(150, 200, 200, 5);
-        rd.fillRect(150, 200, 24 + (int) (dnload / 594.0F * 176.0F), 5);
+        rd.fillRect(150, 200, 24 + (int) ((float) dnload / 594.0F * 176.0F), 5);
         rd.setColor(new Color(151, 166, 183));
         rd.drawString(string, 290, 220);
         rd.drawString("Remaining: " + (594 - dnload) + " KB", 202, 250);
         rd.setColor(new Color(0, 0, 0));
-        rd.drawString("Loading " + (int) ((24 + (int) (dnload / 594.0F * 176.0F)) / 200.0F * 100.0F) + "%", 103, 194);
+        rd.drawString("Loading " + (int) ((float) (24 + (int) ((float) dnload / 594.0F * 176.0F)) / 200.0F * 100.0F) + "%", 103, 194);
         repaint();
     }
 
-    @Override
     public void init() {
         offImage = createImage(500, 360);
         if (offImage != null) {
@@ -1343,27 +1331,27 @@ public class F51 extends Applet implements Runnable {
         rd.setFont(new Font("SansSerif", 1, 11));
     }
 
-    public void getslevel(final xtGraphics xtgraphics) {
+    public void getslevel(xtGraphics xtgraphics) {
         try {
-            final JSObject jsobject = JSObject.getWindow(this);
+            JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("s=GetCookie(\'radxv\')");
-            final String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
+            String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
             if (string.equals("0")) {
                 xtgraphics.sgame = 0;
             } else {
                 xtgraphics.sgame = 1;
                 xtgraphics.select = 1;
             }
-        } catch (final Exception var4) {
+        } catch (Exception var4) {
             ;
         }
     }
 
-    public void loadsaved(final ContO[] contos, final xtGraphics xtgraphics, final int i) {
+    public void loadsaved(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
-            final JSObject jsobject = JSObject.getWindow(this);
+            JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("s=GetCookie(\'radxv\')");
-            final String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
+            String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
             xtgraphics.level = Integer.valueOf(string).intValue();
             int j;
             String string2;
@@ -1389,13 +1377,12 @@ public class F51 extends Applet implements Runnable {
                 }
                 ++j;
             } while (j < 5);
-        } catch (final Exception var8) {
+        } catch (Exception var8) {
             ;
         }
     }
 
-    @Override
-    public boolean keyDown(final Event event, final int i) {
+    public boolean keyDown(Event event, int i) {
         if (i == 49) {
             view = 1;
         }

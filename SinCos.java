@@ -7,12 +7,12 @@ public class SinCos {
     static {
         int i = 0;
         do {
-            tcos[i] = (float) Math.cos(i * 0.017453292519943295D);
+            tcos[i] = (float) Math.cos((double) i * 0.017453292519943295D);
             ++i;
         } while (i < 360);
         i = 0;
         do {
-            tsin[i] = (float) Math.sin(i * 0.017453292519943295D);
+            tsin[i] = (float) Math.sin((double) i * 0.017453292519943295D);
             ++i;
         } while (i < 360);
     }

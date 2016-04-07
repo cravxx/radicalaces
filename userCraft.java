@@ -14,25 +14,15 @@ public class userCraft {
 
     int ltyp = 0;
 
-    int[] maxspeed = new int[] {
-            120, 100, 90, 80, 76
-    };
+    int[] maxspeed = new int[] { 120, 100, 90, 80, 76 };
 
-    int[] elev = new int[] {
-            1, 2, 1, 1, 1
-    };
+    int[] elev = new int[] { 1, 2, 1, 1, 1 };
 
-    int[] trnn = new int[] {
-            0, 0, 1, 2, 1
-    };
+    int[] trnn = new int[] { 0, 0, 1, 2, 1 };
 
-    int[] dnjm = new int[] {
-            7, 5, 4, 3, 4
-    };
+    int[] dnjm = new int[] { 7, 5, 4, 3, 4 };
 
-    String[] name = new String[] {
-            "E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend"
-    };
+    String[] name = new String[] { "E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend" };
 
     int njumps = 0;
 
@@ -94,7 +84,7 @@ public class userCraft {
 
     int nd = 0;
 
-    public void preform(final Control control, final ContO conto, final ContO[] contos, final int[] ints, final int i) {
+    public void preform(Control control, ContO conto, ContO[] contos, int[] ints, int i) {
         int j;
         for (j = Math.abs(conto.zy); j > 360; j -= 360) {
             ;
@@ -111,12 +101,12 @@ public class userCraft {
         int l2;
         if (conto.y < 207) {
             if (control.up) {
-                conto.zy -= (int) ((4 + elev[ltyp]) * SinCos.cos(conto.xy));
-                conto.xz += (int) (b * (2 + elev[ltyp]) * SinCos.sin(conto.xy));
+                conto.zy -= (int) ((float) (4 + this.elev[this.ltyp]) * conto.m.cs.cos(conto.xy));
+                conto.xz += (int) ((float) (b * (2 + this.elev[this.ltyp])) * conto.m.cs.sin(conto.xy));
             }
             if (control.down) {
-                conto.zy += (int) ((4 + elev[ltyp]) * SinCos.cos(conto.xy));
-                conto.xz -= (int) (b * (2 + elev[ltyp]) * SinCos.sin(conto.xy));
+                conto.zy += (int) ((float) (4 + this.elev[this.ltyp]) * conto.m.cs.cos(conto.xy));
+                conto.xz -= (int) ((float) (b * (2 + this.elev[this.ltyp])) * conto.m.cs.sin(conto.xy));
             }
         } else {
             for (k = Math.abs(conto.zy); k > 90; k -= 180) {
@@ -131,13 +121,13 @@ public class userCraft {
             for (j1 = Math.abs(conto.xy); j1 > 270; j1 -= 360) {
                 ;
             }
-            final boolean flag = Math.abs(i1) < 90 && Math.abs(j1) < 90 || Math.abs(i1) > 90 && Math.abs(j1) > 90;
-            final boolean flag2 = Math.abs(k) > 30 || Math.abs(l) > 30;
+            boolean flag = Math.abs(i1) < 90 && Math.abs(j1) < 90 || Math.abs(i1) > 90 && Math.abs(j1) > 90;
+            boolean flag2 = Math.abs(k) > 30 || Math.abs(l) > 30;
             if ((!flag || flag2) && !conto.exp) {
                 conto.exp = true;
                 conto.y = 170;
-                speed = 30.0F;
-                pexp = true;
+                this.speed = 30.0F;
+                this.pexp = true;
             }
             for (k1 = Math.abs(conto.zy); k1 > 270; k1 -= 360) {
                 ;
@@ -155,14 +145,14 @@ public class userCraft {
             }
             if (l2 > 0) {
                 conto.zy += -1;
-                smoke = true;
+                this.smoke = true;
             }
             if (l2 < 0) {
                 ++conto.zy;
-                smoke = true;
+                this.smoke = true;
             }
-            if (speed > 10.0F && control.down) {
-                conto.zy += (int) (5.0F * SinCos.cos(conto.xy));
+            if (this.speed > 10.0F && control.down) {
+                conto.zy += (int) (5.0F * conto.m.cs.cos(conto.xy));
             }
         }
         if (control.left) {
@@ -179,23 +169,23 @@ public class userCraft {
                 conto.xz -= 2;
             }
         }
-        k = (int) (b * (3 + trnn[ltyp]) * SinCos.sin(conto.xy));
+        k = (int) ((float) (b * (3 + this.trnn[this.ltyp])) * conto.m.cs.sin(conto.xy));
         conto.xz -= k;
-        rlift = (int) (speed * SinCos.cos(conto.zy) * SinCos.cos(conto.xy)) - 40;
-        if (lift < rlift) {
-            lift += 0.5D;
+        this.rlift = (int) (this.speed * conto.m.cs.cos(conto.zy) * conto.m.cs.cos(conto.xy)) - 40;
+        if (this.lift < (double) this.rlift) {
+            this.lift += 0.5D;
         }
-        if (lift > rlift) {
-            lift -= 0.5D;
+        if (this.lift > (double) this.rlift) {
+            this.lift -= 0.5D;
         }
-        if (lift < -(50.0F - speed / 2.0F)) {
-            lift = -(50.0F - speed / 2.0F);
+        if (this.lift < (double) (-(50.0F - this.speed / 2.0F))) {
+            this.lift = (double) (-(50.0F - this.speed / 2.0F));
         }
-        l = (int) (5.0F * SinCos.cos(conto.zy) * SinCos.cos(conto.xy));
-        if (lift > l) {
-            lift = l;
+        l = (int) (5.0F * conto.m.cs.cos(conto.zy) * conto.m.cs.cos(conto.xy));
+        if (this.lift > (double) l) {
+            this.lift = (double) l;
         }
-        conto.y -= (int) lift;
+        conto.y -= (int) this.lift;
         if (conto.x < -40000) {
             conto.x = -40000;
             if (k <= 0) {
@@ -228,133 +218,133 @@ public class userCraft {
                 conto.xz -= 5;
             }
         }
-        if (!pexp && conto.exp) {
-            if (speed > 40.0F) {
-                speed = -15.0F;
-                pexp = true;
+        if (!this.pexp && conto.exp) {
+            if (this.speed > 40.0F) {
+                this.speed = -15.0F;
+                this.pexp = true;
             } else if (conto.nhits > conto.maxhits) {
-                pexp = true;
+                this.pexp = true;
             } else {
                 conto.exp = false;
-                speed = -((rspeed + speed) / 2.0F);
+                this.speed = -(((float) this.rspeed + this.speed) / 2.0F);
             }
         }
-        if (pexp) {
-            if (speed > 0.0F) {
-                speed = (float) (speed - 0.3D);
+        if (this.pexp) {
+            if (this.speed > 0.0F) {
+                this.speed = (float) ((double) this.speed - 0.3D);
             }
-            if (speed < 0.0F) {
-                speed = (float) (speed + 0.3D);
+            if (this.speed < 0.0F) {
+                this.speed = (float) ((double) this.speed + 0.3D);
             }
         } else {
-            if (speed > rspeed) {
-                if (speed > maxspeed[ltyp]) {
-                    speed -= (speed - rspeed) / 20.0F;
+            if (this.speed > (float) this.rspeed) {
+                if (this.speed > (float) this.maxspeed[this.ltyp]) {
+                    this.speed -= (this.speed - (float) this.rspeed) / 20.0F;
                 } else {
-                    speed = (float) (speed - 0.5D);
+                    this.speed = (float) ((double) this.speed - 0.5D);
                 }
             }
-            if (speed < rspeed) {
-                ++speed;
+            if (this.speed < (float) this.rspeed) {
+                ++this.speed;
             }
         }
         if (conto.nhits > conto.maxhits - conto.maxhits / 6 && !conto.exp) {
-            if (speed > 60.0F) {
-                speed = 60.0F;
+            if (this.speed > 60.0F) {
+                this.speed = 60.0F;
             }
-            conto.xz += (int) (Math.random() * (speed / 10.0F) - speed / 20.0F);
-            conto.zy += (int) (Math.random() * (speed / 10.0F) - speed / 20.0F);
+            conto.xz += (int) (Math.random() * (double) (this.speed / 10.0F) - (double) (this.speed / 20.0F));
+            conto.zy += (int) (Math.random() * (double) (this.speed / 10.0F) - (double) (this.speed / 20.0F));
         }
-        if (control.plus && rspeed < maxspeed[ltyp]) {
-            rspeed += 2;
+        if (control.plus && this.rspeed < this.maxspeed[this.ltyp]) {
+            this.rspeed += 2;
         }
-        if (control.mins && rspeed > 0) {
-            rspeed -= 2;
+        if (control.mins && this.rspeed > 0) {
+            this.rspeed -= 2;
         }
-        if (control.jump != 0 && njumps != 0) {
+        if (control.jump != 0 && this.njumps != 0) {
             if (control.jump == 1) {
-                speed = 400.0F;
+                this.speed = 400.0F;
                 control.jump = 2;
                 conto.m.jumping = 5;
             }
             if (conto.m.jumping == 0) {
-                speed = 800.0F;
+                this.speed = 800.0F;
                 control.jump = 0;
-                njumps += -1;
+                this.njumps += -1;
             }
         }
         if (control.fire && !conto.exp) {
-            if (skip && bulkc < lsr.srate[ltyp]) {
-                lx[nl] = conto.x;
-                ly[nl] = conto.y;
-                lz[nl] = conto.z;
-                lxz[nl] = conto.xz;
-                lzy[nl] = conto.zy;
-                lxy[nl] = conto.xy;
-                if (ly[nl] > 215) {
-                    ly[nl] = 215;
+            if (this.skip && this.bulkc < this.lsr.srate[this.ltyp]) {
+                this.lx[this.nl] = conto.x;
+                this.ly[this.nl] = conto.y;
+                this.lz[this.nl] = conto.z;
+                this.lxz[this.nl] = conto.xz;
+                this.lzy[this.nl] = conto.zy;
+                this.lxy[this.nl] = conto.xy;
+                if (this.ly[this.nl] > 215) {
+                    this.ly[this.nl] = 215;
                 }
-                lspeed[nl] = (int) (lsr.speed[ltyp] + speed);
-                lstage[nl] = 1;
-                lhit[nl] = 0;
-                ++nl;
-                if (nl == 20) {
-                    nl = 0;
+                this.lspeed[this.nl] = (int) ((float) this.lsr.speed[this.ltyp] + this.speed);
+                this.lstage[this.nl] = 1;
+                this.lhit[this.nl] = 0;
+                ++this.nl;
+                if (this.nl == 20) {
+                    this.nl = 0;
                 }
-                skip = false;
-            } else if (!skip) {
-                skip = true;
+                this.skip = false;
+            } else if (!this.skip) {
+                this.skip = true;
             }
-            ++bulkc;
-            if (bulkc > 12) {
-                bulkc = 0;
+            ++this.bulkc;
+            if (this.bulkc > 12) {
+                this.bulkc = 0;
             }
         }
         i1 = 0;
         j1 = 0;
         do {
-            if (lstage[j1] != 0) {
+            if (this.lstage[j1] != 0) {
                 ++i1;
-                if (ly[j1] > 240 && lhit[j1] == 0) {
-                    lhit[j1] = 1;
+                if (this.ly[j1] > 240 && this.lhit[j1] == 0) {
+                    this.lhit[j1] = 1;
                 }
-                if (lhit[j1] == 0) {
-                    if (lstage[j1] > 10) {
+                if (this.lhit[j1] == 0) {
+                    if (this.lstage[j1] > 10) {
                         int i2 = 22500;
                         int j2 = -1;
                         for (k1 = 1; k1 < i; ++k1) {
-                            l2 = getpy(contos[ints[k1]].x, contos[ints[k1]].y, contos[ints[k1]].z, j1);
+                            l2 = this.getpy(contos[ints[k1]].x, contos[ints[k1]].y, contos[ints[k1]].z, j1);
                             if (l2 < i2 && l2 > 0 && !contos[ints[k1]].exp) {
                                 i2 = l2;
                                 j2 = k1;
                             }
                         }
                         if (j2 != -1) {
-                            if (lspeed[j1] > 230) {
-                                lspeed[j1] = 230;
+                            if (this.lspeed[j1] > 230) {
+                                this.lspeed[j1] = 230;
                             }
                             k1 = contos[ints[j2]].x;
                             l2 = contos[ints[j2]].z;
-                            final int k2 = contos[ints[j2]].y;
+                            int k2 = contos[ints[j2]].y;
                             short s = 0;
-                            if (k1 - lx[j1] > 0) {
+                            if (k1 - this.lx[j1] > 0) {
                                 s = 180;
                             }
-                            lxz[j1] = (int) (90 + s + Math.atan((double) (l2 - lz[j1]) / (double) (k1 - lx[j1])) / 0.017453292519943295D);
+                            this.lxz[j1] = (int) ((double) (90 + s) + Math.atan((double) (l2 - this.lz[j1]) / (double) (k1 - this.lx[j1])) / 0.017453292519943295D);
                             short s2 = 0;
-                            if (k2 - ly[j1] < 0) {
+                            if (k2 - this.ly[j1] < 0) {
                                 s2 = -180;
                             }
-                            final int l3 = (int) Math.sqrt((l2 - lz[j1]) * (l2 - lz[j1]) + (k1 - lx[j1]) * (k1 - lx[j1]));
-                            lzy[j1] = -((int) (90 + s2 - Math.atan((double) l3 / (double) (k2 - ly[j1])) / 0.017453292519943295D));
+                            int l3 = (int) Math.sqrt((double) ((l2 - this.lz[j1]) * (l2 - this.lz[j1]) + (k1 - this.lx[j1]) * (k1 - this.lx[j1])));
+                            this.lzy[j1] = -((int) ((double) (90 + s2) - Math.atan((double) l3 / (double) (k2 - this.ly[j1])) / 0.017453292519943295D));
                         }
                     }
-                    lx[j1] -= (int) (lspeed[j1] * SinCos.sin(lxz[j1]) * SinCos.cos(lzy[j1]));
-                    lz[j1] += (int) (lspeed[j1] * SinCos.cos(lxz[j1]) * SinCos.cos(lzy[j1]));
-                    ly[j1] -= (int) (lspeed[j1] * SinCos.sin(lzy[j1]));
-                    ++lstage[j1];
-                    if (lstage[j1] > 80) {
-                        lstage[j1] = 0;
+                    this.lx[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.sin(this.lxz[j1]) * conto.m.cs.cos(this.lzy[j1]));
+                    this.lz[j1] += (int) ((float) this.lspeed[j1] * conto.m.cs.cos(this.lxz[j1]) * conto.m.cs.cos(this.lzy[j1]));
+                    this.ly[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.sin(this.lzy[j1]));
+                    ++this.lstage[j1];
+                    if (this.lstage[j1] > 80) {
+                        this.lstage[j1] = 0;
                     }
                 }
             }
@@ -366,48 +356,48 @@ public class userCraft {
             }
         } else if (conto.fire) {
             conto.fire = false;
-            bulkc = 0;
+            this.bulkc = 0;
         }
-        conto.x -= (int) (speed * SinCos.sin(conto.xz) * SinCos.cos(conto.zy));
-        conto.z += (int) (speed * SinCos.cos(conto.xz) * SinCos.cos(conto.zy));
-        conto.y -= (int) (speed * SinCos.sin(conto.zy));
+        conto.x -= (int) (this.speed * conto.m.cs.sin(conto.xz) * conto.m.cs.cos(conto.zy));
+        conto.z += (int) (this.speed * conto.m.cs.cos(conto.xz) * conto.m.cs.cos(conto.zy));
+        conto.y -= (int) (this.speed * conto.m.cs.sin(conto.zy));
         if (conto.y > 215) {
             conto.y = 215;
         }
         if (conto.y < -25000) {
             conto.y = -25000;
         }
-        if (ester == 0) {
+        if (this.ester == 0) {
             if (conto.x > 2800 && conto.x < 3200 && conto.z > -2100 && conto.z < -1900 && conto.y > -30) {
-                ester = 1;
+                this.ester = 1;
                 conto.nhits = 0;
                 control.jump = 0;
-                njumps = dnjm[ltyp];
+                this.njumps = this.dnjm[this.ltyp];
             }
         } else {
-            if (ester < 13) {
-                if (ltyp == 0) {
+            if (this.ester < 13) {
+                if (this.ltyp == 0) {
                     if (conto.m.er == 0) {
                         conto.m.er = 1;
                     } else {
                         conto.m.er = 0;
                     }
                 }
-                if (ltyp == 1) {
+                if (this.ltyp == 1) {
                     if (conto.m.eg == 0) {
                         conto.m.eg = 1;
                     } else {
                         conto.m.eg = 0;
                     }
                 }
-                if (ltyp == 2) {
+                if (this.ltyp == 2) {
                     if (conto.m.eb == 0) {
                         conto.m.eb = 1;
                     } else {
                         conto.m.eb = 0;
                     }
                 }
-                if (ltyp == 3) {
+                if (this.ltyp == 3) {
                     if (conto.m.er == 0) {
                         conto.m.er = 1;
                         conto.m.eg = 1;
@@ -416,7 +406,7 @@ public class userCraft {
                         conto.m.eg = 0;
                     }
                 }
-                if (ltyp == 4) {
+                if (this.ltyp == 4) {
                     if (conto.m.eb == 0) {
                         conto.m.eb = 1;
                         conto.m.eg = 1;
@@ -426,73 +416,73 @@ public class userCraft {
                     }
                 }
             }
-            if (ester == 1) {
+            if (this.ester == 1) {
                 conto.wire = true;
             }
-            if (ester == 3) {
+            if (this.ester == 3) {
                 conto.wire = false;
             }
-            ++ester;
-            if (ester == 45) {
-                ester = 0;
+            ++this.ester;
+            if (this.ester == 45) {
+                this.ester = 0;
             }
         }
     }
 
-    public void dosmokes(final Graphics graphics, final ContO conto) {
+    public void dosmokes(Graphics graphics, ContO conto) {
         if (!conto.exp) {
             int i;
             if (conto.nhits > conto.maxhits - conto.maxhits / 3) {
-                if (dms[nd] == -1) {
-                    dx[nd] = conto.x + (int) (Math.random() * 60.0D - 30.0D);
-                    dy[nd] = conto.y;
-                    dz[nd] = conto.z;
-                    dxz[nd] = conto.xz;
-                    dzy[nd] = conto.zy;
-                    dms[nd] = 0;
-                    ++nd;
-                    if (nd == 4) {
-                        nd = 0;
+                if (this.dms[this.nd] == -1) {
+                    this.dx[this.nd] = conto.x + (int) (Math.random() * 60.0D - 30.0D);
+                    this.dy[this.nd] = conto.y;
+                    this.dz[this.nd] = conto.z;
+                    this.dxz[this.nd] = conto.xz;
+                    this.dzy[this.nd] = conto.zy;
+                    this.dms[this.nd] = 0;
+                    ++this.nd;
+                    if (this.nd == 4) {
+                        this.nd = 0;
                     }
                 }
                 i = 0;
                 do {
-                    if (dms[i] != -1) {
-                        if (dms[i] < 4) {
-                            lsr.hsmoke(graphics, dx[i], dy[i], dz[i], dxz[i], dzy[i], dms[i]);
+                    if (this.dms[i] != -1) {
+                        if (this.dms[i] < 4) {
+                            this.lsr.hsmoke(graphics, this.dx[i], this.dy[i], this.dz[i], this.dxz[i], this.dzy[i], this.dms[i]);
                         }
-                        dy[i] -= 15;
-                        ++dms[i];
-                        if (dms[i] >= 7) {
-                            dms[i] = -1;
+                        this.dy[i] -= 15;
+                        ++this.dms[i];
+                        if (this.dms[i] >= 7) {
+                            this.dms[i] = -1;
                         }
                     }
                     ++i;
                 } while (i < 4);
             }
-            if (smoke && conto.y > 200 && sms[ns] == -1) {
-                sx[ns] = conto.x + (int) (Math.random() * 80.0D - 40.0D);
-                sy[ns] = conto.y + 15;
-                sz[ns] = conto.z;
-                sxz[ns] = conto.xz;
-                szy[ns] = conto.zy;
-                sms[ns] = 0;
-                ++ns;
-                if (ns == 4) {
-                    ns = 0;
+            if (this.smoke && conto.y > 200 && this.sms[this.ns] == -1) {
+                this.sx[this.ns] = conto.x + (int) (Math.random() * 80.0D - 40.0D);
+                this.sy[this.ns] = conto.y + 15;
+                this.sz[this.ns] = conto.z;
+                this.sxz[this.ns] = conto.xz;
+                this.szy[this.ns] = conto.zy;
+                this.sms[this.ns] = 0;
+                ++this.ns;
+                if (this.ns == 4) {
+                    this.ns = 0;
                 }
-                smoke = false;
+                this.smoke = false;
             }
             i = 0;
             do {
-                if (sms[i] != -1) {
-                    if (sms[i] < 4) {
-                        lsr.gsmoke(graphics, sx[i], sy[i], sz[i], sxz[i], szy[i], sms[i]);
+                if (this.sms[i] != -1) {
+                    if (this.sms[i] < 4) {
+                        this.lsr.gsmoke(graphics, this.sx[i], this.sy[i], this.sz[i], this.sxz[i], this.szy[i], this.sms[i]);
                     }
-                    sy[i] -= 15;
-                    ++sms[i];
-                    if (sms[i] == 10) {
-                        sms[i] = -1;
+                    this.sy[i] -= 15;
+                    ++this.sms[i];
+                    if (this.sms[i] == 10) {
+                        this.sms[i] = -1;
                     }
                 }
                 ++i;
@@ -500,48 +490,48 @@ public class userCraft {
         }
     }
 
-    public void reset(final int i) {
-        rspeed = 0;
-        speed = 0.0F;
-        rlift = 0;
-        lift = 0.0D;
-        pexp = false;
-        ltyp = i;
-        njumps = dnjm[i];
+    public void reset(int i) {
+        this.rspeed = 0;
+        this.speed = 0.0F;
+        this.rlift = 0;
+        this.lift = 0.0D;
+        this.pexp = false;
+        this.ltyp = i;
+        this.njumps = this.dnjm[i];
         int j = 0;
         do {
-            lstage[j] = 0;
+            this.lstage[j] = 0;
             ++j;
         } while (j < 20);
     }
 
-    public userCraft(final Medium var1) {
-        lsr = new Lasers(var1);
+    public  userCraft(Medium var1) {
+        this.lsr = new Lasers(var1);
         int var2 = 0;
         do {
-            sms[var2] = -1;
+            this.sms[var2] = -1;
             ++var2;
         } while (var2 < 4);
         var2 = 0;
         do {
-            dms[var2] = -1;
+            this.dms[var2] = -1;
             ++var2;
         } while (var2 < 4);
     }
 
-    public void lasercolid(final ContO conto) {
+    public void lasercolid(ContO conto) {
         if (!conto.exp && !conto.out) {
             int i = 0;
             do {
-                if (lstage[i] != 0 && lhit[i] == 0) {
-                    final int j = getpy(conto.x, conto.y, conto.z, i);
+                if (this.lstage[i] != 0 && this.lhit[i] == 0) {
+                    int j = this.getpy(conto.x, conto.y, conto.z, i);
                     if (j < conto.maxR / 10 * (conto.maxR / 10) && j > 0) {
-                        if (conto.rcol != 0 && j < conto.maxR / (10 * conto.rcol) * (conto.maxR / (10 * conto.rcol)) + lsr.rads[ltyp] / 10 * (lsr.rads[ltyp] / 10)) {
-                            lhit[i] = 1;
+                        if (conto.rcol != 0 && j < conto.maxR / (10 * conto.rcol) * (conto.maxR / (10 * conto.rcol)) + this.lsr.rads[this.ltyp] / 10 * (this.lsr.rads[this.ltyp] / 10)) {
+                            this.lhit[i] = 1;
                             if (conto.maxhits != -1) {
                                 conto.hit = true;
                                 if (Math.random() > 0.5D) {
-                                    conto.nhits += lsr.damg[ltyp];
+                                    conto.nhits += this.lsr.damg[this.ltyp];
                                 } else {
                                     conto.nhits += 2;
                                 }
@@ -550,12 +540,12 @@ public class userCraft {
                         if (conto.pcol != 0) {
                             for (int k = 0; k < conto.npl; ++k) {
                                 for (int l = 0; l < conto.p[k].n; ++l) {
-                                    if (!conto.hit && (lx[i] - (conto.x + conto.p[k].ox[l])) * (lx[i] - (conto.x + conto.p[k].ox[l])) + (ly[i] - (conto.y + conto.p[k].oy[l])) * (ly[i] - (conto.y + conto.p[k].oy[l])) + (lz[i] - (conto.z + conto.p[k].oz[l])) * (lz[i] - (conto.z + conto.p[k].oz[l])) < lsr.rads[ltyp] * 10 / conto.pcol * (lsr.rads[ltyp] * 10 / conto.pcol)) {
-                                        lhit[i] = 1;
+                                    if (!conto.hit && (this.lx[i] - (conto.x + conto.p[k].ox[l])) * (this.lx[i] - (conto.x + conto.p[k].ox[l])) + (this.ly[i] - (conto.y + conto.p[k].oy[l])) * (this.ly[i] - (conto.y + conto.p[k].oy[l])) + (this.lz[i] - (conto.z + conto.p[k].oz[l])) * (this.lz[i] - (conto.z + conto.p[k].oz[l])) < this.lsr.rads[this.ltyp] * 10 / conto.pcol * (this.lsr.rads[this.ltyp] * 10 / conto.pcol)) {
+                                        this.lhit[i] = 1;
                                         if (conto.maxhits != -1) {
                                             conto.hit = true;
                                             if (Math.random() > 0.5D) {
-                                                conto.nhits += lsr.damg[ltyp];
+                                                conto.nhits += this.lsr.damg[this.ltyp];
                                             } else {
                                                 conto.nhits += 2;
                                             }
@@ -571,19 +561,19 @@ public class userCraft {
         }
     }
 
-    public int getpy(final int i, final int j, final int k, final int l) {
-        return (i - lx[l]) / 10 * ((i - lx[l]) / 10) + (j - ly[l]) / 10 * ((j - ly[l]) / 10) + (k - lz[l]) / 10 * ((k - lz[l]) / 10);
+    public int getpy(int i, int j, int k, int l) {
+        return (i - this.lx[l]) / 10 * ((i - this.lx[l]) / 10) + (j - this.ly[l]) / 10 * ((j - this.ly[l]) / 10) + (k - this.lz[l]) / 10 * ((k - this.lz[l]) / 10);
     }
 
-    public void dl(final Graphics graphics) {
+    public void dl(Graphics graphics) {
         int i = 0;
         do {
-            if (lstage[i] != 0) {
-                lsr.d(graphics, ltyp, lx[i], ly[i], lz[i], lxz[i], lzy[i], lxy[i], lhit[i]);
-                if (lhit[i] != 0) {
-                    ++lhit[i];
-                    if (lhit[i] > 2) {
-                        lstage[i] = 0;
+            if (this.lstage[i] != 0) {
+                this.lsr.d(graphics, this.ltyp, this.lx[i], this.ly[i], this.lz[i], this.lxz[i], this.lzy[i], this.lxy[i], this.lhit[i]);
+                if (this.lhit[i] != 0) {
+                    ++this.lhit[i];
+                    if (this.lhit[i] > 2) {
+                        this.lstage[i] = 0;
                     }
                 }
             }

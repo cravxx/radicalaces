@@ -8,9 +8,9 @@ import java.net.URL;
  * It's not complete though, only the methods needed by Nfm2 are implemented.
  * @author DragShot
  */
-public class DesktopStub implements AppletStub{
-   
-    AppletContext context=new DesktopContext();
+public class DesktopStub implements AppletStub {
+
+    AppletContext context = new DesktopContext();
 
     /**
     * @inheritdoc
@@ -26,7 +26,7 @@ public class DesktopStub implements AppletStub{
     @Override
     public URL getDocumentBase() {
         try {
-            return new URL("file:///"+System.getProperty("user.dir")+"/");
+            return new URL("file:///" + System.getProperty("user.dir") + "/");
         } catch (MalformedURLException ex) {
             return null;
         }
@@ -38,7 +38,7 @@ public class DesktopStub implements AppletStub{
     @Override
     public URL getCodeBase() {
         try {
-            return new URL("file:///"+System.getProperty("user.dir")+"/");
+            return new URL("file:///" + System.getProperty("user.dir") + "/");
         } catch (MalformedURLException ex) {
             return null;
         }
@@ -64,5 +64,6 @@ public class DesktopStub implements AppletStub{
     * @inheritdoc
     */
     @Override
-    public void appletResize(int width, int height) {}   
+    public void appletResize(int width, int height) {
+    }
 }

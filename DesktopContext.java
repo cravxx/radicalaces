@@ -8,28 +8,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
-//import sun.applet.AppletAudioClip;
 
 /**
  * An implementation of <code>AppletContext</code>, optimized for desktop apps.
  * It's not complete though, only the methods needed by Nfm2 are implemented.
  * @author DragShot
  */
-public class DesktopContext implements AppletContext, Runnable{
-    List<DesktopSoundClip> clips=Collections.synchronizedList(new LinkedList<DesktopSoundClip>());
+public class DesktopContext implements AppletContext, Runnable {
+
+    List<DesktopSoundClip> clips = Collections.synchronizedList(new LinkedList<DesktopSoundClip>());
+
     Thread clipper;
 
     /**
     * Small procedure to close the unused audio lines.
     */
     @Override
-    public void run(){
-        while(true){
-            for(DesktopSoundClip clip:clips)
-                clip.checkopen();
+    public void run() {
+        while (true) {
+            for (DesktopSoundClip clip : clips) clip.checkopen();
             try {
                 Thread.sleep(100);
-            } catch (InterruptedException ex) {}
+            } catch (InterruptedException ex) {
+            }
         }
     }
 
@@ -38,25 +39,26 @@ public class DesktopContext implements AppletContext, Runnable{
     */
     @Override
     public AudioClip getAudioClip(URL url) {
-        try{
+        try {
             InputStream in = url.openStream();
-            int size=in.available(),read=0;
-            byte[] buffer=new byte[size];
-            while(size>0){
+            int size = in.available(), read = 0;
+            byte[] buffer = new byte[size];
+            while (size > 0) {
                 read = in.read(buffer, 0, size);
-                size-=read;
+                size -= read;
             }
             in.close();
-            DesktopSoundClip clip=new DesktopSoundClip(buffer);
+            DesktopSoundClip clip = new DesktopSoundClip(buffer);
             clips.add(clip);
-            if(clipper==null){
-                clipper=new Thread(this, "Clip stopper service");
+            if (clipper == null) {
+                clipper = new Thread(this, "Clip stopper service");
                 clipper.start();
             }
             return clip;
-        }catch(Exception ex){}
+        } catch (Exception ex) {
+        }
         return new DesktopSoundClip();
-//        return new AppletAudioClip(url);
+    //        return new AppletAudioClip(url);
     }
 
     /**
@@ -88,10 +90,11 @@ public class DesktopContext implements AppletContext, Runnable{
     */
     @Override
     public void showDocument(URL url) {
-        if(Desktop.isDesktopSupported()){
-            try{
+        if (Desktop.isDesktopSupported()) {
+            try {
                 Desktop.getDesktop().browse(url.toURI());
-            }catch(Exception ex){}
+            } catch (Exception ex) {
+            }
         }
     }
 
@@ -107,7 +110,8 @@ public class DesktopContext implements AppletContext, Runnable{
     * This method is not implemented.
     */
     @Override
-    public void showStatus(String status) {}
+    public void showStatus(String status) {
+    }
 
     /**
     * This method is not implemented.
@@ -132,5 +136,4 @@ public class DesktopContext implements AppletContext, Runnable{
     public Iterator<String> getStreamKeys() {
         throw new UnsupportedOperationException("Not supported.");
     }
-   
 }

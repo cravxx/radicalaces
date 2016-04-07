@@ -54,7 +54,7 @@ public class ContO {
 
     boolean exp = false;
 
-    public int ys(int i, int j) {
+    public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
@@ -69,7 +69,7 @@ public class ContO {
         zy = 0;
     }
 
-    public  ContO(byte[] var1, Medium var2, int var3, int var4, int var5) {
+    public ContO(final byte[] var1, final Medium var2, final int var3, final int var4, final int var5) {
         m = var2;
         p = new Plane[100];
         x = var3;
@@ -78,15 +78,17 @@ public class ContO {
         boolean var8 = false;
         int var9 = 0;
         float var10 = 1.0F;
-        int[] var11 = new int[100];
-        int[] var12 = new int[100];
-        int[] var13 = new int[100];
-        int[] var14 = new int[] { 50, 50, 50 };
+        final int[] var11 = new int[100];
+        final int[] var12 = new int[100];
+        final int[] var13 = new int[100];
+        final int[] var14 = new int[] {
+                50, 50, 50
+        };
         try {
-            DataInputStream var15 = new DataInputStream(new ByteArrayInputStream(var1));
+            final DataInputStream var15 = new DataInputStream(new ByteArrayInputStream(var1));
             String var6;
             while ((var6 = var15.readLine()) != null) {
-                String var7 = "" + var6.trim();
+                final String var7 = "" + var6.trim();
                 if (var7.startsWith("<p>")) {
                     var8 = true;
                     var9 = 0;
@@ -98,9 +100,9 @@ public class ContO {
                         var14[2] = getvalue("c", var7, 2);
                     }
                     if (var7.startsWith("p")) {
-                        var11[var9] = (int) ((float) getvalue("p", var7, 0) * var10);
-                        var12[var9] = (int) ((float) getvalue("p", var7, 1) * var10);
-                        var13[var9] = (int) ((float) getvalue("p", var7, 2) * var10);
+                        var11[var9] = (int) (getvalue("p", var7, 0) * var10);
+                        var12[var9] = (int) (getvalue("p", var7, 1) * var10);
+                        var13[var9] = (int) (getvalue("p", var7, 2) * var10);
                         ++var9;
                     }
                 }
@@ -136,16 +138,16 @@ public class ContO {
                     grounded = getvalue("grounded", var7, 0);
                 }
                 if (var7.startsWith("div")) {
-                    var10 = (float) getvalue("div", var7, 0) / 10.0F;
+                    var10 = getvalue("div", var7, 0) / 10.0F;
                 }
             }
             var15.close();
-        } catch (Exception var16) {
+        } catch (final Exception var16) {
             ;
         }
     }
 
-    public  ContO(Medium var1, ContO var2, int var3, int var4, int var5) {
+    public ContO(final Medium var1, final ContO var2, final int var3, final int var4, final int var5) {
         m = var1;
         npl = var2.npl;
         maxR = var2.maxR;
@@ -167,7 +169,7 @@ public class ContO {
         }
     }
 
-    public void d(Graphics graphics) {
+    public void d(final Graphics graphics) {
         if (dist != 0) {
             dist = 0;
         }
@@ -188,27 +190,27 @@ public class ContO {
             if (fire) {
                 dist = 1;
             }
-            j = m.cx + (int) ((float) (x - m.x - m.cx) * m.cs.cos(m.xz) - (float) (z - m.z - m.cz) * m.cs.sin(m.xz));
-            int k = m.cz + (int) ((float) (x - m.x - m.cx) * m.cs.sin(m.xz) + (float) (z - m.z - m.cz) * m.cs.cos(m.xz));
-            int l = m.cz + (int) ((float) (y - m.y - m.cy) * m.cs.sin(m.zy) + (float) (k - m.cz) * m.cs.cos(m.zy));
+            j = m.cx + (int) ((x - m.x - m.cx) * SinCos.cos(m.xz) - (z - m.z - m.cz) * SinCos.sin(m.xz));
+            final int k = m.cz + (int) ((x - m.x - m.cx) * SinCos.sin(m.xz) + (z - m.z - m.cz) * SinCos.cos(m.xz));
+            final int l = m.cz + (int) ((y - m.y - m.cy) * SinCos.sin(m.zy) + (k - m.cz) * SinCos.cos(m.zy));
             if (xs(j + maxR, l) > 0 && xs(j - maxR, l) < m.w && l > -maxR && l < 32 && xs(j + maxR, l) - xs(j - maxR, l) > disp || exp) {
                 int i1;
                 int j1;
                 if (shadow || exp) {
-                    i1 = m.cy + (int) ((float) (m.ground - m.cy) * m.cs.cos(m.zy) - (float) (k - m.cz) * m.cs.sin(m.zy));
-                    int k1 = m.cz + (int) ((float) (m.ground - m.cy) * m.cs.sin(m.zy) + (float) (k - m.cz) * m.cs.cos(m.zy));
+                    i1 = m.cy + (int) ((m.ground - m.cy) * SinCos.cos(m.zy) - (k - m.cz) * SinCos.sin(m.zy));
+                    final int k1 = m.cz + (int) ((m.ground - m.cy) * SinCos.sin(m.zy) + (k - m.cz) * SinCos.cos(m.zy));
                     if (ys(i1 + maxR, k1) > 0 && ys(i1 - maxR, k1) < m.h || exp) {
                         for (j1 = 0; j1 < npl; ++j1) {
                             p[j1].s(graphics, x - m.x, y - m.y, z - m.z, xz, xy, zy, loom);
                         }
                     }
                 }
-                i1 = m.cy + (int) ((float) (y - m.y - m.cy) * m.cs.cos(m.zy) - (float) (k - m.cz) * m.cs.sin(m.zy));
+                i1 = m.cy + (int) ((y - m.y - m.cy) * SinCos.cos(m.zy) - (k - m.cz) * SinCos.sin(m.zy));
                 if (ys(i1 + maxR, l) > 0 && ys(i1 - maxR, l) < m.h || exp) {
                     if (m.jumping != 0 && m.jumping < 4) {
                         hit = true;
                     }
-                    int[] ints = new int[npl];
+                    final int[] ints = new int[npl];
                     int l2;
                     for (j1 = 0; j1 < npl; ++j1) {
                         ints[j1] = 0;
@@ -229,7 +231,7 @@ public class ContO {
                             }
                         }
                     }
-                    dist = (int) Math.sqrt((double) ((int) Math.sqrt((double) ((m.x + m.cx - x) * (m.x + m.cx - x) + (m.z - z) * (m.z - z) + (m.y + m.cy - y) * (m.y + m.cy - y))))) * grounded;
+                    dist = (int) Math.sqrt((int) Math.sqrt((m.x + m.cx - x) * (m.x + m.cx - x) + (m.z - z) * (m.z - z) + (m.y + m.cy - y) * (m.y + m.cy - y))) * grounded;
                 }
             }
         }
@@ -241,9 +243,9 @@ public class ContO {
         }
     }
 
-    public void tryexp(ContO conto) {
+    public void tryexp(final ContO conto) {
         if (!conto.exp && !out && !exp) {
-            int i = getpy(conto.x, conto.y, conto.z);
+            final int i = getpy(conto.x, conto.y, conto.z);
             if (i < maxR / 10 * (maxR / 10) + conto.maxR / 10 * (conto.maxR / 10) && i > 0) {
                 if (pcol != 0) {
                     for (int j = 0; j < npl; ++j) {
@@ -262,11 +264,11 @@ public class ContO {
         }
     }
 
-    public int getpy(int i, int j, int k) {
+    public int getpy(final int i, final int j, final int k) {
         return (i - x) / 10 * ((i - x) / 10) + (j - y) / 10 * ((j - y) / 10) + (k - z) / 10 * ((k - z) / 10);
     }
 
-    public void loadrots(boolean flag) {
+    public void loadrots(final boolean flag) {
         if (!flag) {
             reset();
         }
@@ -281,11 +283,11 @@ public class ContO {
         }
     }
 
-    public int getvalue(String string, String string2, int i) {
+    public int getvalue(final String string, final String string2, final int i) {
         int j = 0;
         String string3 = "";
         for (int k = string.length() + 1; k < string2.length(); ++k) {
-            String string4 = "" + string2.charAt(k);
+            final String string4 = "" + string2.charAt(k);
             if (string4.equals(",") || string4.equals(")")) {
                 ++j;
                 ++k;
@@ -297,7 +299,7 @@ public class ContO {
         return Integer.valueOf(string3).intValue();
     }
 
-    public int xs(int i, int j) {
+    public int xs(final int i, int j) {
         if (j < 10) {
             j = 10;
         }

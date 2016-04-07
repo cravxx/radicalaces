@@ -118,7 +118,7 @@ public class Craft {
 
     boolean dracs = false;
 
-    public void preform(ContO conto, ContO[] contos, int[] ints, int i, int j, int k) {
+    public void preform(final ContO conto, final ContO[] contos, final int[] ints, final int i, final int j, final int k) {
         int l;
         for (l = Math.abs(conto.zy); l > 360; l -= 360) {
             ;
@@ -135,12 +135,12 @@ public class Craft {
         int j2;
         if (conto.y < 207) {
             if (u.up) {
-                conto.zy -= (int) (5.0F * conto.m.cs.cos(conto.xy));
-                conto.xz += (int) ((float) (b * 3) * conto.m.cs.sin(conto.xy));
+                conto.zy -= (int) (5.0F * SinCos.cos(conto.xy));
+                conto.xz += (int) (b * 3 * SinCos.sin(conto.xy));
             }
             if (u.down) {
-                conto.zy += (int) (5.0F * conto.m.cs.cos(conto.xy));
-                conto.xz -= (int) ((float) (b * 3) * conto.m.cs.sin(conto.xy));
+                conto.zy += (int) (5.0F * SinCos.cos(conto.xy));
+                conto.xz -= (int) (b * 3 * SinCos.sin(conto.xy));
             }
         } else {
             for (i1 = Math.abs(conto.zy); i1 > 90; i1 -= 180) {
@@ -155,8 +155,8 @@ public class Craft {
             for (l2 = Math.abs(conto.xy); l2 > 270; l2 -= 360) {
                 ;
             }
-            boolean flag = Math.abs(k1) < 90 && Math.abs(l2) < 90 || Math.abs(k1) > 90 && Math.abs(l2) > 90;
-            boolean flag2 = Math.abs(i1) > 30 || Math.abs(j1) > 30;
+            final boolean flag = Math.abs(k1) < 90 && Math.abs(l2) < 90 || Math.abs(k1) > 90 && Math.abs(l2) > 90;
+            final boolean flag2 = Math.abs(i1) > 30 || Math.abs(j1) > 30;
             if ((!flag || flag2) && !conto.exp) {
                 conto.exp = true;
                 conto.y = 170;
@@ -186,7 +186,7 @@ public class Craft {
                 smoke = true;
             }
             if (speed > 10.0F && u.down) {
-                conto.zy += (int) (5.0F * conto.m.cs.cos(conto.xy));
+                conto.zy += (int) (5.0F * SinCos.cos(conto.xy));
             }
         }
         if (u.left) {
@@ -207,29 +207,29 @@ public class Craft {
                 conto.xz -= 2;
             }
         }
-        i1 = (int) ((float) (b * 4) * conto.m.cs.sin(conto.xy));
+        i1 = (int) (b * 4 * SinCos.sin(conto.xy));
         conto.xz -= i1;
         if (conto.nhits > conto.maxhits - conto.maxhits / 6 && !conto.exp) {
             if (rspeed > 60) {
                 rspeed = 60;
                 speed = 60.0F;
             }
-            conto.xz += (int) (Math.random() * (double) (speed / 10.0F) - (double) (speed / 20.0F));
-            conto.zy += (int) (Math.random() * (double) (speed / 10.0F) - (double) (speed / 20.0F));
+            conto.xz += (int) (Math.random() * (speed / 10.0F) - speed / 20.0F);
+            conto.zy += (int) (Math.random() * (speed / 10.0F) - speed / 20.0F);
         }
-        rlift = (int) (speed * conto.m.cs.cos(conto.zy) * conto.m.cs.cos(conto.xy)) - 40;
-        if (lift < (double) rlift) {
+        rlift = (int) (speed * SinCos.cos(conto.zy) * SinCos.cos(conto.xy)) - 40;
+        if (lift < rlift) {
             lift += 0.5D;
         }
-        if (lift > (double) rlift) {
+        if (lift > rlift) {
             lift -= 0.5D;
         }
-        if (lift < (double) (-(50.0F - speed / 2.0F))) {
-            lift = (double) (-(50.0F - speed / 2.0F));
+        if (lift < -(50.0F - speed / 2.0F)) {
+            lift = -(50.0F - speed / 2.0F);
         }
-        j1 = (int) (5.0F * conto.m.cs.cos(conto.zy) * conto.m.cs.cos(conto.xy));
-        if (lift > (double) j1) {
-            lift = (double) j1;
+        j1 = (int) (5.0F * SinCos.cos(conto.zy) * SinCos.cos(conto.xy));
+        if (lift > j1) {
+            lift = j1;
         }
         conto.y -= (int) lift;
         if (conto.x < -40000) {
@@ -272,21 +272,21 @@ public class Craft {
                 pexp = true;
             } else {
                 conto.exp = false;
-                speed = -(((float) rspeed + speed) / 2.0F);
+                speed = -((rspeed + speed) / 2.0F);
             }
         }
         if (pexp) {
             if (speed > 0.0F) {
-                speed = (float) ((double) speed - 0.3D);
+                speed = (float) (speed - 0.3D);
             }
             if (speed < 0.0F) {
-                speed = (float) ((double) speed + 0.3D);
+                speed = (float) (speed + 0.3D);
             }
         } else {
-            if (speed > (float) rspeed) {
-                speed = (float) ((double) speed - 0.5D);
+            if (speed > rspeed) {
+                speed = (float) (speed - 0.5D);
             }
-            if (speed < (float) rspeed) {
+            if (speed < rspeed) {
                 ++speed;
             }
         }
@@ -301,7 +301,7 @@ public class Craft {
                 if (ly[nl] > 215) {
                     ly[nl] = 215;
                 }
-                lspeed[nl] = (int) ((float) lsr.speed[ltyp] + speed);
+                lspeed[nl] = (int) (lsr.speed[ltyp] + speed);
                 lstage[nl] = 1;
                 lhit[nl] = 0;
                 nf[nl] = 0;
@@ -355,19 +355,19 @@ public class Craft {
                             if (i2 - lx[l2] > 0) {
                                 s = 180;
                             }
-                            lxz[l2] = (int) ((double) (90 + s) + Math.atan((double) (j2 - lz[l2]) / (double) (i2 - lx[l2])) / 0.017453292519943295D);
+                            lxz[l2] = (int) (90 + s + Math.atan((double) (j2 - lz[l2]) / (double) (i2 - lx[l2])) / 0.017453292519943295D);
                             short s2 = 0;
                             if (k2 - ly[l2] < 0) {
                                 s2 = -180;
                             }
-                            int j3 = (int) Math.sqrt((double) ((j2 - lz[l2]) * (j2 - lz[l2]) + (i2 - lx[l2]) * (i2 - lx[l2])));
-                            lzy[l2] = -((int) ((double) (90 + s2) - Math.atan((double) j3 / (double) (k2 - ly[l2])) / 0.017453292519943295D));
+                            final int j3 = (int) Math.sqrt((j2 - lz[l2]) * (j2 - lz[l2]) + (i2 - lx[l2]) * (i2 - lx[l2]));
+                            lzy[l2] = -((int) (90 + s2 - Math.atan((double) j3 / (double) (k2 - ly[l2])) / 0.017453292519943295D));
                             ++nf[l2];
                         }
                     }
-                    lx[l2] -= (int) ((float) lspeed[l2] * conto.m.cs.sin(lxz[l2]) * conto.m.cs.cos(lzy[l2]));
-                    lz[l2] += (int) ((float) lspeed[l2] * conto.m.cs.cos(lxz[l2]) * conto.m.cs.cos(lzy[l2]));
-                    ly[l2] -= (int) ((float) lspeed[l2] * conto.m.cs.sin(lzy[l2]));
+                    lx[l2] -= (int) (lspeed[l2] * SinCos.sin(lxz[l2]) * SinCos.cos(lzy[l2]));
+                    lz[l2] += (int) (lspeed[l2] * SinCos.cos(lxz[l2]) * SinCos.cos(lzy[l2]));
+                    ly[l2] -= (int) (lspeed[l2] * SinCos.sin(lzy[l2]));
                     ++lstage[l2];
                     if (lstage[l2] > 80) {
                         lstage[l2] = 0;
@@ -383,9 +383,9 @@ public class Craft {
         } else if (conto.fire) {
             conto.fire = false;
         }
-        conto.x -= (int) (speed * conto.m.cs.sin(conto.xz) * conto.m.cs.cos(conto.zy));
-        conto.z += (int) (speed * conto.m.cs.cos(conto.xz) * conto.m.cs.cos(conto.zy));
-        conto.y -= (int) (speed * conto.m.cs.sin(conto.zy));
+        conto.x -= (int) (speed * SinCos.sin(conto.xz) * SinCos.cos(conto.zy));
+        conto.z += (int) (speed * SinCos.cos(conto.xz) * SinCos.cos(conto.zy));
+        conto.y -= (int) (speed * SinCos.sin(conto.zy));
         if (conto.y > 215) {
             conto.y = 215;
         }
@@ -404,13 +404,13 @@ public class Craft {
                     if (contos[k + ens].x - conto.x > 0) {
                         s3 = 180;
                     }
-                    gxz = (int) ((double) (90 + s3) + Math.atan((double) (contos[k + ens].z - conto.z) / (double) (contos[k + ens].x - conto.x)) / 0.017453292519943295D);
+                    gxz = (int) (90 + s3 + Math.atan((double) (contos[k + ens].z - conto.z) / (double) (contos[k + ens].x - conto.x)) / 0.017453292519943295D);
                     s4 = 0;
                     if (contos[k + ens].y - conto.y < 0) {
                         s4 = -180;
                     }
-                    i3 = (int) Math.sqrt((double) ((contos[k + ens].z - conto.z) * (contos[k + ens].z - conto.z) + (contos[k + ens].x - conto.x) * (contos[k + ens].x - conto.x)));
-                    gzy = -((int) ((double) (90 + s4) - Math.atan((double) i3 / (double) (contos[k + ens].y - conto.y)) / 0.017453292519943295D));
+                    i3 = (int) Math.sqrt((contos[k + ens].z - conto.z) * (contos[k + ens].z - conto.z) + (contos[k + ens].x - conto.x) * (contos[k + ens].x - conto.x));
+                    gzy = -((int) (90 + s4 - Math.atan((double) i3 / (double) (contos[k + ens].y - conto.y)) / 0.017453292519943295D));
                     l2 = getcpy(conto, contos[k + ens]);
                     if (l2 > 0 && l2 < 15000) {
                         targeting = true;
@@ -439,13 +439,13 @@ public class Craft {
                     if (enx - conto.x > 0) {
                         s3 = 180;
                     }
-                    gxz = (int) ((double) (90 + s3) + Math.atan((double) (enz - conto.z) / (double) (enx - conto.x)) / 0.017453292519943295D);
+                    gxz = (int) (90 + s3 + Math.atan((double) (enz - conto.z) / (double) (enx - conto.x)) / 0.017453292519943295D);
                     s4 = 0;
                     if (eny - conto.y < 0) {
                         s4 = -180;
                     }
-                    i3 = (int) Math.sqrt((double) ((enz - conto.z) * (enz - conto.z) + (enx - conto.x) * (enx - conto.x)));
-                    gzy = -((int) ((double) (90 + s4) - Math.atan((double) i3 / (double) (eny - conto.y)) / 0.017453292519943295D));
+                    i3 = (int) Math.sqrt((enz - conto.z) * (enz - conto.z) + (enx - conto.x) * (enx - conto.x));
+                    gzy = -((int) (90 + s4 - Math.atan((double) i3 / (double) (eny - conto.y)) / 0.017453292519943295D));
                     l2 = getepy(conto);
                     if (l2 > 0 && l2 < 500) {
                         ens = 4 + (int) (Math.random() * 5.0D);
@@ -474,13 +474,13 @@ public class Craft {
                 if (contos[j].x - conto.x > 0) {
                     s3 = 180;
                 }
-                gxz = (int) ((double) (90 + s3) + Math.atan((double) (contos[j].z - conto.z) / (double) (contos[j].x - conto.x)) / 0.017453292519943295D);
+                gxz = (int) (90 + s3 + Math.atan((double) (contos[j].z - conto.z) / (double) (contos[j].x - conto.x)) / 0.017453292519943295D);
                 s4 = 0;
                 if (contos[j].y - conto.y < 0) {
                     s4 = -180;
                 }
-                i3 = (int) Math.sqrt((double) ((contos[j].z - conto.z) * (contos[j].z - conto.z) + (contos[j].x - conto.x) * (contos[j].x - conto.x)));
-                gzy = -((int) ((double) (90 + s4) - Math.atan((double) i3 / (double) (contos[j].y - conto.y)) / 0.017453292519943295D));
+                i3 = (int) Math.sqrt((contos[j].z - conto.z) * (contos[j].z - conto.z) + (contos[j].x - conto.x) * (contos[j].x - conto.x));
+                gzy = -((int) (90 + s4 - Math.atan((double) i3 / (double) (contos[j].y - conto.y)) / 0.017453292519943295D));
                 turnat = (int) (Math.random() * 3.0D);
                 if (l2 < 7000) {
                     targeting = true;
@@ -495,13 +495,13 @@ public class Craft {
                 if (contos[m3o].x - conto.x > 0) {
                     s3 = 180;
                 }
-                gxz = (int) ((double) (90 + s3) + Math.atan((double) (contos[m3o].z - conto.z) / (double) (contos[m3o].x - conto.x)) / 0.017453292519943295D);
+                gxz = (int) (90 + s3 + Math.atan((double) (contos[m3o].z - conto.z) / (double) (contos[m3o].x - conto.x)) / 0.017453292519943295D);
                 s4 = 0;
                 if (contos[m3o].y - conto.y < 0) {
                     s4 = -180;
                 }
-                i3 = (int) Math.sqrt((double) ((contos[m3o].z - conto.z) * (contos[m3o].z - conto.z) + (contos[m3o].x - conto.x) * (contos[m3o].x - conto.x)));
-                gzy = -((int) ((double) (90 + s4) - Math.atan((double) i3 / (double) (contos[m3o].y - conto.y)) / 0.017453292519943295D));
+                i3 = (int) Math.sqrt((contos[m3o].z - conto.z) * (contos[m3o].z - conto.z) + (contos[m3o].x - conto.x) * (contos[m3o].x - conto.x));
+                gzy = -((int) (90 + s4 - Math.atan((double) i3 / (double) (contos[m3o].y - conto.y)) / 0.017453292519943295D));
                 turnat = (int) (Math.random() * 10.0D);
                 ++m3cnt;
                 if (m3cnt == runn) {
@@ -535,13 +535,13 @@ public class Craft {
             }
         }
         byte b2 = 0;
-        if ((float) conto.y > 100.0F + (float) liftup * conto.m.cs.sin(conto.zy)) {
+        if (conto.y > 100.0F + liftup * SinCos.sin(conto.zy)) {
             b2 = 1;
         }
-        l3 = conto.y + (int) ((float) (-(conto.z + 1000 - conto.z)) * conto.m.cs.sin(conto.zy));
-        i3 = conto.z + (int) ((float) (conto.z + 1000 - conto.z) * conto.m.cs.cos(conto.zy));
-        i2 = conto.x + (int) ((float) (-(i3 - conto.z)) * conto.m.cs.sin(conto.xz));
-        j2 = conto.z + (int) ((float) (i3 - conto.z) * conto.m.cs.cos(conto.xz));
+        l3 = conto.y + (int) (-(conto.z + 1000 - conto.z) * SinCos.sin(conto.zy));
+        i3 = conto.z + (int) ((conto.z + 1000 - conto.z) * SinCos.cos(conto.zy));
+        i2 = conto.x + (int) (-(i3 - conto.z) * SinCos.sin(conto.xz));
+        j2 = conto.z + (int) ((i3 - conto.z) * SinCos.cos(conto.xz));
         if (myway(contos, ints, i, j, i2, l3, j2)) {
             b2 = 2;
         }
@@ -636,7 +636,7 @@ public class Craft {
         }
     }
 
-    public void dosmokes(Graphics graphics, ContO conto) {
+    public void dosmokes(final Graphics graphics, final ContO conto) {
         if (!conto.exp) {
             int i;
             if (conto.nhits > conto.maxhits - conto.maxhits / 3) {
@@ -699,12 +699,12 @@ public class Craft {
         }
     }
 
-    public int nearst(ContO[] contos, int[] ints, int i, int j, ContO conto) {
+    public int nearst(final ContO[] contos, final int[] ints, final int i, final int j, final ContO conto) {
         int k = getcpy(contos[ints[0]], conto);
         int l = ints[0];
         for (int i1 = 0; i1 < i; ++i1) {
             if (ints[i1] != j) {
-                int j1 = getcpy(contos[ints[i1]], conto);
+                final int j1 = getcpy(contos[ints[i1]], conto);
                 if (j1 > 0 && j1 < k && !contos[ints[i1]].exp || k < 0) {
                     k = j1;
                     l = ints[i1];
@@ -714,9 +714,9 @@ public class Craft {
         return l;
     }
 
-    public void reset(int i, int j, int k, int l, int i1, int j1) {
+    public void reset(final int i, final int j, final int k, final int l, final int i1, final int j1) {
         rspeed = i;
-        speed = (float) i;
+        speed = i;
         rlift = 0;
         lift = 0.0D;
         pexp = false;
@@ -737,7 +737,7 @@ public class Craft {
         } while (k1 < 20);
     }
 
-    public  Craft(Medium m) {
+    public Craft(final Medium m) {
         lsr = new Lasers(m);
         for (int i = 0; i < 4; i++) {
             sms[i] = -1;
@@ -745,12 +745,12 @@ public class Craft {
         }
     }
 
-    public void lasercolid(ContO conto) {
+    public void lasercolid(final ContO conto) {
         if (!conto.exp && !conto.out) {
             int i = 0;
             do {
                 if (lstage[i] != 0 && lhit[i] == 0) {
-                    int j = getpy(conto.x, conto.y, conto.z, i);
+                    final int j = getpy(conto.x, conto.y, conto.z, i);
                     if (j < conto.maxR / 10 * (conto.maxR / 10) && j > 0) {
                         if (conto.rcol != 0 && j < conto.maxR / (10 * conto.rcol) * (conto.maxR / (10 * conto.rcol)) + lsr.rads[ltyp] / 10 * (lsr.rads[ltyp] / 10)) {
                             lhit[i] = 1;
@@ -779,31 +779,30 @@ public class Craft {
         }
     }
 
-    public int getpy(int i, int j, int k, int l) {
+    public int getpy(final int i, final int j, final int k, final int l) {
         return (i - lx[l]) / 10 * ((i - lx[l]) / 10) + (j - ly[l]) / 10 * ((j - ly[l]) / 10) + (k - lz[l]) / 10 * ((k - lz[l]) / 10);
     }
 
-    public int getcpy(ContO conto, ContO conto2) {
+    public int getcpy(final ContO conto, final ContO conto2) {
         return (conto.x - conto2.x) / 100 * ((conto.x - conto2.x) / 100) + (conto.y - conto2.y) / 100 * ((conto.y - conto2.y) / 100) + (conto.z - conto2.z) / 100 * ((conto.z - conto2.z) / 100);
     }
 
-    public boolean myway(ContO[] contos, int[] ints, int i, int j, int k, int l, int i1) {
+    public boolean myway(final ContO[] contos, final int[] ints, final int i, final int j, final int k, final int l, final int i1) {
         for (int j1 = 0; j1 < i; ++j1) {
             if (ints[j1] != j) {
                 int k1 = contos[ints[j1]].maxR / 20 * (contos[ints[j1]].maxR / 20);
                 if (k1 < 5000) {
                     k1 = 5000;
                 }
-                int l2 = (contos[ints[j1]].x - k) / 10 * ((contos[ints[j1]].x - k) / 10) + (contos[ints[j1]].y - l) / 10 * ((contos[ints[j1]].y - l) / 10) + (contos[ints[j1]].z - i1) / 10 * ((contos[ints[j1]].z - i1) / 10);
-                if (l2 > 0 && l2 < k1 && !contos[ints[j1]].exp && contos[ints[j1]].maxR > 75) {
+                final int l2 = (contos[ints[j1]].x - k) / 10 * ((contos[ints[j1]].x - k) / 10) + (contos[ints[j1]].y - l) / 10 * ((contos[ints[j1]].y - l) / 10) + (contos[ints[j1]].z - i1) / 10 * ((contos[ints[j1]].z - i1) / 10);
+                if (l2 > 0 && l2 < k1 && !contos[ints[j1]].exp && contos[ints[j1]].maxR > 75)
                     return true;
-                }
             }
         }
         return false;
     }
 
-    public void dl(Graphics graphics) {
+    public void dl(final Graphics graphics) {
         int i = 0;
         do {
             if (lstage[i] != 0) {
@@ -819,7 +818,7 @@ public class Craft {
         } while (i < 20);
     }
 
-    public int getepy(ContO conto) {
+    public int getepy(final ContO conto) {
         return (conto.x - enx) / 100 * ((conto.x - enx) / 100) + (conto.y - eny) / 100 * ((conto.y - eny) / 100) + (conto.z - enz) / 100 * ((conto.z - enz) / 100);
     }
 }

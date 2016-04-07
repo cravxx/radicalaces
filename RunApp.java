@@ -1,9 +1,18 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class RunApp extends Panel {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2824314018556470097L;
 
     static Frame frame;
 
@@ -12,26 +21,28 @@ public class RunApp extends Panel {
     public static ArrayList<Image> icons;
 
     /**
-    * Fetches icons of 16, 32 and 48 pixels from the 'data' folder.
-    */
+     * Fetches icons of 16, 32 and 48 pixels from the 'data' folder.
+     */
     public static ArrayList<Image> getIcons() {
         if (icons == null) {
             icons = new ArrayList<Image>();
-            int[] resols = { 16, 32, 48 };
-            for (int res : resols) {
+            final int[] resols = {
+                    16, 32, 48
+            };
+            for (final int res : resols) {
                 icons.add(Toolkit.getDefaultToolkit().createImage("data/ico_" + res + ".gif"));
             }
         }
         return icons;
     }
 
-    public static void main(String[] strings) {
+    public static void main(final String[] strings) {
         System.runFinalizersOnExit(true);
         //Change this to the messgae of your preference
         System.out.println("Nfm2-Mod Console");
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             System.out.println("Could not setup System Look&Feel: " + ex.toString());
         }
         startup();
@@ -48,7 +59,7 @@ public class RunApp extends Panel {
         frame.addWindowListener(new WindowAdapter() {
 
             @Override
-            public void windowClosing(WindowEvent windowevent) {
+            public void windowClosing(final WindowEvent windowevent) {
                 exitsequance();
             }
         });
@@ -70,7 +81,7 @@ public class RunApp extends Panel {
         frame.removeAll();
         try {
             Thread.sleep(200L);
-        } catch (Exception exception) {
+        } catch (final Exception exception) {
         }
         applet.destroy();
         applet = null;

@@ -1,7 +1,6 @@
 public class SinCos {
     private static float[] tcos = new float[360];
     private static float[] tsin = new float[360];
-
     static {
         int i = 0;
         do {
@@ -14,7 +13,6 @@ public class SinCos {
             ++i;
         } while (i < 360);
     }
-
     public static float sin(int i) {
         while (i >= 360) {
             i -= 360;
@@ -24,7 +22,6 @@ public class SinCos {
         }
         return tsin[i];
     }
-
     public static float cos(int i) {
         while (i >= 360) {
             i -= 360;

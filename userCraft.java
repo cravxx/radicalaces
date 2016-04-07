@@ -52,7 +52,6 @@ public class userCraft {
     int[] dxz = new int[4];
     int[] dzy = new int[4];
     int nd = 0;
-
     public void preform(final Control control, final ContO conto, final ContO[] contos, final int[] ints, final int i) {
         int j;
         for (j = Math.abs(conto.zy); j > 360; j -= 360) {
@@ -397,7 +396,6 @@ public class userCraft {
             }
         }
     }
-
     public void dosmokes(final Graphics graphics, final ContO conto) {
         if (!conto.exp) {
             int i;
@@ -458,7 +456,6 @@ public class userCraft {
             } while (i < 4);
         }
     }
-
     public void reset(final int i) {
         rspeed = 0;
         speed = 0.0F;
@@ -473,7 +470,6 @@ public class userCraft {
             ++j;
         } while (j < 20);
     }
-
     public userCraft(final Medium var1) {
         lsr = new Lasers(var1);
         int var2 = 0;
@@ -487,7 +483,6 @@ public class userCraft {
             ++var2;
         } while (var2 < 4);
     }
-
     public void lasercolid(final ContO conto) {
         if (!conto.exp && !conto.out) {
             int i = 0;
@@ -529,11 +524,9 @@ public class userCraft {
             } while (i < 20);
         }
     }
-
     public int getpy(final int i, final int j, final int k, final int l) {
         return (i - lx[l]) / 10 * ((i - lx[l]) / 10) + (j - ly[l]) / 10 * ((j - ly[l]) / 10) + (k - lz[l]) / 10 * ((k - lz[l]) / 10);
     }
-
     public void dl(final Graphics graphics) {
         int i = 0;
         do {

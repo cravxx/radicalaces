@@ -28,14 +28,12 @@ public class Medium {
     int vxz = 0;
     int adv = -500;
     boolean vert = false;
-
     public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - focus_point) * (cy - i) / j + i;
     }
-
     public void infront(final ContO conto) {
         int i = conto.zy;
         int j;
@@ -59,17 +57,16 @@ public class Medium {
         if (i < -90) {
             i = -180 - i;
         }
-        final int k = conto.y + (int) ((conto.y + yart - conto.y) * SinCos.cos(conto.zy) - (conto.z + 800 - conto.z) * SinCos.sin(conto.zy));
-        final int l = conto.z + (int) ((conto.y + yart - conto.y) * SinCos.sin(conto.zy) + (conto.z + 800 - conto.z) * SinCos.cos(conto.zy));
-        final int i1 = conto.x + (int) (-(l - conto.z) * SinCos.sin(conto.xz));
-        final int j1 = conto.z + (int) ((l - conto.z) * SinCos.cos(conto.xz));
+        final int k = conto.y + (int) ((conto.y + yart - conto.y) * cs.cos(conto.zy) - (conto.z + 800 - conto.z) * cs.sin(conto.zy));
+        final int l = conto.z + (int) ((conto.y + yart - conto.y) * cs.sin(conto.zy) + (conto.z + 800 - conto.z) * cs.cos(conto.zy));
+        final int i1 = conto.x + (int) (-(l - conto.z) * cs.sin(conto.xz));
+        final int j1 = conto.z + (int) ((l - conto.z) * cs.cos(conto.xz));
         zy = i;
         xz = -(j + 180);
         x += (i1 - cx - x) / 3;
         z = (int) (z + (j1 - cz - z) / 1.5D);
         y = (int) (y + (k - cy - y) / 1.5D);
     }
-
     public void d(final Graphics graphics) {
         if (zy > 90) {
             zy = 90;
@@ -84,8 +81,8 @@ public class Medium {
         int i = 70000;
         int j = 250;
         if (zy != 0) {
-            j = cy + (int) ((250 - cy) * SinCos.cos(zy) - (70000 - cz) * SinCos.sin(zy));
-            i = cz + (int) ((250 - cy) * SinCos.sin(zy) + (70000 - cz) * SinCos.cos(zy));
+            j = cy + (int) ((250 - cy) * cs.cos(zy) - (70000 - cz) * cs.sin(zy));
+            i = cz + (int) ((250 - cy) * cs.sin(zy) + (70000 - cz) * cs.cos(zy));
         }
         final int[] ints = new int[4];
         final int[] ints2 = new int[4];
@@ -154,13 +151,12 @@ public class Medium {
             jumping += -1;
         }
     }
-
     public void watch(final ContO conto) {
         if (!td) {
-            y = conto.y + (int) ((conto.y - 300 - conto.y) * SinCos.cos(conto.zy) - (conto.z + 3000 - conto.z) * SinCos.sin(conto.zy));
-            final int i = conto.z + (int) ((conto.y - 300 - conto.y) * SinCos.sin(conto.zy) + (conto.z + 3000 - conto.z) * SinCos.cos(conto.zy));
-            x = conto.x + (int) ((conto.x + 400 - conto.x) * SinCos.cos(conto.xz) - (i - conto.z) * SinCos.sin(conto.xz));
-            z = conto.z + (int) ((conto.x + 400 - conto.x) * SinCos.sin(conto.xz) + (i - conto.z) * SinCos.cos(conto.xz));
+            y = conto.y + (int) ((conto.y - 300 - conto.y) * cs.cos(conto.zy) - (conto.z + 3000 - conto.z) * cs.sin(conto.zy));
+            final int i = conto.z + (int) ((conto.y - 300 - conto.y) * cs.sin(conto.zy) + (conto.z + 3000 - conto.z) * cs.cos(conto.zy));
+            x = conto.x + (int) ((conto.x + 400 - conto.x) * cs.cos(conto.xz) - (i - conto.z) * cs.sin(conto.xz));
+            z = conto.z + (int) ((conto.x + 400 - conto.x) * cs.sin(conto.xz) + (i - conto.z) * cs.cos(conto.xz));
             td = true;
         }
         short s = 0;
@@ -180,15 +176,14 @@ public class Medium {
             td = false;
         }
     }
-
     public void around(final ContO conto, final int i) {
         byte b = 1;
         if (i == 6000) {
             b = 2;
         }
         y = conto.y + adv;
-        x = conto.x + (int) ((conto.x - i + adv * b - conto.x) * SinCos.cos(vxz));
-        z = conto.z + (int) ((conto.x - i + adv * b - conto.x) * SinCos.sin(vxz));
+        x = conto.x + (int) ((conto.x - i + adv * b - conto.x) * cs.cos(vxz));
+        z = conto.z + (int) ((conto.x - i + adv * b - conto.x) * cs.sin(vxz));
         if (i == 6000) {
             if (!vert) {
                 adv -= 10;
@@ -234,29 +229,26 @@ public class Medium {
         xz = -vxz + 90;
         zy += (l - zy) / 10;
     }
-
     public void left(final ContO conto) {
         final int i = conto.y;
-        final int j = conto.x + (int) ((conto.x + 600 - conto.x) * SinCos.cos(conto.xz));
-        final int k = conto.z + (int) ((conto.x + 600 - conto.x) * SinCos.sin(conto.xz));
+        final int j = conto.x + (int) ((conto.x + 600 - conto.x) * cs.cos(conto.xz));
+        final int k = conto.z + (int) ((conto.x + 600 - conto.x) * cs.sin(conto.xz));
         zy = 0;
         xz = -(conto.xz + 90);
         x = (int) (x + (j - cx - x) / 1.5D);
         z = (int) (z + (k - cz - z) / 1.5D);
         y = (int) (y + (i - cy - y) / 1.5D);
     }
-
     public void right(final ContO conto) {
         final int i = conto.y;
-        final int j = conto.x + (int) ((conto.x - 600 - conto.x) * SinCos.cos(conto.xz));
-        final int k = conto.z + (int) ((conto.x - 600 - conto.x) * SinCos.sin(conto.xz));
+        final int j = conto.x + (int) ((conto.x - 600 - conto.x) * cs.cos(conto.xz));
+        final int k = conto.z + (int) ((conto.x - 600 - conto.x) * cs.sin(conto.xz));
         zy = 0;
         xz = -(conto.xz - 90);
         x += (j - cx - x) / 3;
         z = (int) (z + (k - cz - z) / 1.5D);
         y = (int) (y + (i - cy - y) / 1.5D);
     }
-
     public void behinde(final ContO conto) {
         int i = conto.zy;
         int j;
@@ -280,10 +272,10 @@ public class Medium {
         if (i < -90) {
             i = -180 - i;
         }
-        final int k = conto.y + (int) ((conto.y + yart - conto.y) * SinCos.cos(conto.zy) - (conto.z - 600 - conto.z) * SinCos.sin(conto.zy));
-        final int l = conto.z + (int) ((conto.y + yart - conto.y) * SinCos.sin(conto.zy) + (conto.z - 600 - conto.z) * SinCos.cos(conto.zy));
-        final int i1 = conto.x + (int) (-(l - conto.z) * SinCos.sin(conto.xz));
-        final int j1 = conto.z + (int) ((l - conto.z) * SinCos.cos(conto.xz));
+        final int k = conto.y + (int) ((conto.y + yart - conto.y) * cs.cos(conto.zy) - (conto.z - 600 - conto.z) * cs.sin(conto.zy));
+        final int l = conto.z + (int) ((conto.y + yart - conto.y) * cs.sin(conto.zy) + (conto.z - 600 - conto.z) * cs.cos(conto.zy));
+        final int i1 = conto.x + (int) (-(l - conto.z) * cs.sin(conto.xz));
+        final int j1 = conto.z + (int) ((l - conto.z) * cs.cos(conto.xz));
         zy = -i;
         xz = -j;
         x += (i1 - cx - x) / 3;

@@ -32,7 +32,6 @@ public class RunApp extends Panel {
         }
         return icons;
     }
-
     public static void main(final String[] strings) {
         System.runFinalizersOnExit(true);
         //Change this to the messgae of your preference
@@ -44,7 +43,6 @@ public class RunApp extends Panel {
         }
         startup();
     }
-
     static void startup() {
         //Change this to the name of your preference
         frame = new Frame("Radical Aces");
@@ -72,7 +70,6 @@ public class RunApp extends Panel {
         applet.init();
         applet.start();
     }
-
     public static void exitsequance() {
         applet.stop();
         frame.removeAll();

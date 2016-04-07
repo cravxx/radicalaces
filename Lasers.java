@@ -7,14 +7,12 @@ public class Lasers {
     int[] rads = new int[12];
     int[] srate = new int[12];
     int[] damg = new int[12];
-
     public int ys(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cy - i) / j + i;
     }
-
     public Lasers(final Medium var1) {
         m = var1;
         speed[0] = 200;
@@ -66,7 +64,6 @@ public class Lasers {
         srate[11] = 10;
         damg[11] = 7;
     }
-
     public void dt(final Graphics graphics, final int[] ints, final int[] ints2, final int[] ints3, final int i, final int j, final int k, final int l, final int i1, final int j1, final int k1, final int l2, int i2, int j2, int k2) {
         for (int l3 = 0; l3 < k1; ++l3) {
             if (l2 == 0) {
@@ -110,7 +107,6 @@ public class Lasers {
             graphics.fillPolygon(ints4, ints5, k1);
         }
     }
-
     public void d(final Graphics graphics, final int i, final int j, final int k, final int l, final int i1, final int j1, final int k1, final int l2) {
         byte b = 4;
         final int[] ints = new int[b];
@@ -940,7 +936,6 @@ public class Lasers {
             dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
         }
     }
-
     public void rot(final int[] ints, final int[] ints2, final int i, final int j, final int k, final int l) {
         if (k != 0) {
             for (int i1 = 0; i1 < l; ++i1) {
@@ -951,7 +946,6 @@ public class Lasers {
             }
         }
     }
-
     public void gsmoke(final Graphics graphics, final int i, final int j, final int k, final int l, final int i1, int j1) {
         final int[] ints = new int[8];
         final int[] ints2 = new int[8];
@@ -985,14 +979,12 @@ public class Lasers {
         }
         dt(graphics, ints, ints2, ints3, i, j, k, l, i1, 0, 8, 0, 249 - j1 * 25, 251 - j1 * 25, 240 - j1 * 25);
     }
-
     public int xs(final int i, int j) {
         if (j < 10) {
             j = 10;
         }
         return (j - m.focus_point) * (m.cx - i) / j + i;
     }
-
     public void hsmoke(final Graphics graphics, final int i, final int j, final int k, final int l, final int i1, int j1) {
         final int[] ints = new int[8];
         final int[] ints2 = new int[8];

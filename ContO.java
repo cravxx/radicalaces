@@ -188,22 +188,22 @@ public class ContO {
             if (fire) {
                 dist = 1;
             }
-            j = m.cx + (int) ((float) (x - m.x - m.cx) * m.cs.cos(m.xz) - (float) (z - m.z - m.cz) * m.cs.sin(m.xz));
-            int k = m.cz + (int) ((float) (x - m.x - m.cx) * m.cs.sin(m.xz) + (float) (z - m.z - m.cz) * m.cs.cos(m.xz));
-            int l = m.cz + (int) ((float) (y - m.y - m.cy) * m.cs.sin(m.zy) + (float) (k - m.cz) * m.cs.cos(m.zy));
+            j = m.cx + (int) ((float) (x - m.x - m.cx) * m.cs.getcos(m.xz) - (float) (z - m.z - m.cz) * m.cs.getsin(m.xz));
+            int k = m.cz + (int) ((float) (x - m.x - m.cx) * m.cs.getsin(m.xz) + (float) (z - m.z - m.cz) * m.cs.getcos(m.xz));
+            int l = m.cz + (int) ((float) (y - m.y - m.cy) * m.cs.getsin(m.zy) + (float) (k - m.cz) * m.cs.getcos(m.zy));
             if (xs(j + maxR, l) > 0 && xs(j - maxR, l) < m.w && l > -maxR && l < 32 && xs(j + maxR, l) - xs(j - maxR, l) > disp || exp) {
                 int i1;
                 int j1;
                 if (shadow || exp) {
-                    i1 = m.cy + (int) ((float) (m.ground - m.cy) * m.cs.cos(m.zy) - (float) (k - m.cz) * m.cs.sin(m.zy));
-                    int k1 = m.cz + (int) ((float) (m.ground - m.cy) * m.cs.sin(m.zy) + (float) (k - m.cz) * m.cs.cos(m.zy));
+                    i1 = m.cy + (int) ((float) (m.ground - m.cy) * m.cs.getcos(m.zy) - (float) (k - m.cz) * m.cs.getsin(m.zy));
+                    int k1 = m.cz + (int) ((float) (m.ground - m.cy) * m.cs.getsin(m.zy) + (float) (k - m.cz) * m.cs.getcos(m.zy));
                     if (ys(i1 + maxR, k1) > 0 && ys(i1 - maxR, k1) < m.h || exp) {
                         for (j1 = 0; j1 < npl; ++j1) {
                             p[j1].s(graphics, x - m.x, y - m.y, z - m.z, xz, xy, zy, loom);
                         }
                     }
                 }
-                i1 = m.cy + (int) ((float) (y - m.y - m.cy) * m.cs.cos(m.zy) - (float) (k - m.cz) * m.cs.sin(m.zy));
+                i1 = m.cy + (int) ((float) (y - m.y - m.cy) * m.cs.getcos(m.zy) - (float) (k - m.cz) * m.cs.getsin(m.zy));
                 if (ys(i1 + maxR, l) > 0 && ys(i1 - maxR, l) < m.h || exp) {
                     if (m.jumping != 0 && m.jumping < 4) {
                         hit = true;

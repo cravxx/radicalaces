@@ -259,9 +259,9 @@ public class Tank {
                             ++this.nf[j1];
                         }
                     }
-                    this.lx[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.sin(this.lxz[j1]) * conto.m.cs.cos(this.lzy[j1]));
-                    this.lz[j1] += (int) ((float) this.lspeed[j1] * conto.m.cs.cos(this.lxz[j1]) * conto.m.cs.cos(this.lzy[j1]));
-                    this.ly[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.sin(this.lzy[j1]));
+                    this.lx[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.getsin(this.lxz[j1]) * conto.m.cs.getcos(this.lzy[j1]));
+                    this.lz[j1] += (int) ((float) this.lspeed[j1] * conto.m.cs.getcos(this.lxz[j1]) * conto.m.cs.getcos(this.lzy[j1]));
+                    this.ly[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.getsin(this.lzy[j1]));
                     ++this.lstage[j1];
                     if (this.lstage[j1] > 80) {
                         this.lstage[j1] = 0;
@@ -277,9 +277,9 @@ public class Tank {
         } else if (conto.fire) {
             conto.fire = false;
         }
-        conto.x -= (int) (this.speed * conto.m.cs.sin(conto.xz) * conto.m.cs.cos(conto.zy));
-        conto.z += (int) (this.speed * conto.m.cs.cos(conto.xz) * conto.m.cs.cos(conto.zy));
-        conto.y -= (int) (this.speed * conto.m.cs.sin(conto.zy));
+        conto.x -= (int) (this.speed * conto.m.cs.getsin(conto.xz) * conto.m.cs.getcos(conto.zy));
+        conto.z += (int) (this.speed * conto.m.cs.getcos(conto.xz) * conto.m.cs.getcos(conto.zy));
+        conto.y -= (int) (this.speed * conto.m.cs.getsin(conto.zy));
         if (this.tcnt > this.turnat) {
             if (this.trgt != 0) {
                 this.trgt = 0;

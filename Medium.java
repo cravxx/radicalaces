@@ -85,10 +85,10 @@ public class Medium {
         if (i < -90) {
             i = -180 - i;
         }
-        int k = conto.y + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.cos(conto.zy) - (float) (conto.z + 800 - conto.z) * this.cs.sin(conto.zy));
-        int l = conto.z + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.sin(conto.zy) + (float) (conto.z + 800 - conto.z) * this.cs.cos(conto.zy));
-        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * this.cs.sin(conto.xz));
-        int j1 = conto.z + (int) ((float) (l - conto.z) * this.cs.cos(conto.xz));
+        int k = conto.y + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.getcos(conto.zy) - (float) (conto.z + 800 - conto.z) * this.cs.getsin(conto.zy));
+        int l = conto.z + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.getsin(conto.zy) + (float) (conto.z + 800 - conto.z) * this.cs.getcos(conto.zy));
+        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * this.cs.getsin(conto.xz));
+        int j1 = conto.z + (int) ((float) (l - conto.z) * this.cs.getcos(conto.xz));
         this.zy = i;
         this.xz = -(j + 180);
         this.x += (i1 - this.cx - this.x) / 3;
@@ -110,8 +110,8 @@ public class Medium {
         int i = 70000;
         int j = 250;
         if (this.zy != 0) {
-            j = this.cy + (int) ((float) (250 - this.cy) * this.cs.cos(this.zy) - (float) (70000 - this.cz) * this.cs.sin(this.zy));
-            i = this.cz + (int) ((float) (250 - this.cy) * this.cs.sin(this.zy) + (float) (70000 - this.cz) * this.cs.cos(this.zy));
+            j = this.cy + (int) ((float) (250 - this.cy) * this.cs.getcos(this.zy) - (float) (70000 - this.cz) * this.cs.getsin(this.zy));
+            i = this.cz + (int) ((float) (250 - this.cy) * this.cs.getsin(this.zy) + (float) (70000 - this.cz) * this.cs.getcos(this.zy));
         }
         int[] ints = new int[4];
         int[] ints2 = new int[4];
@@ -183,10 +183,10 @@ public class Medium {
 
     public void watch(ContO conto) {
         if (!this.td) {
-            this.y = conto.y + (int) ((float) (conto.y - 300 - conto.y) * this.cs.cos(conto.zy) - (float) (conto.z + 3000 - conto.z) * this.cs.sin(conto.zy));
-            int i = conto.z + (int) ((float) (conto.y - 300 - conto.y) * this.cs.sin(conto.zy) + (float) (conto.z + 3000 - conto.z) * this.cs.cos(conto.zy));
-            this.x = conto.x + (int) ((float) (conto.x + 400 - conto.x) * this.cs.cos(conto.xz) - (float) (i - conto.z) * this.cs.sin(conto.xz));
-            this.z = conto.z + (int) ((float) (conto.x + 400 - conto.x) * this.cs.sin(conto.xz) + (float) (i - conto.z) * this.cs.cos(conto.xz));
+            this.y = conto.y + (int) ((float) (conto.y - 300 - conto.y) * this.cs.getcos(conto.zy) - (float) (conto.z + 3000 - conto.z) * this.cs.getsin(conto.zy));
+            int i = conto.z + (int) ((float) (conto.y - 300 - conto.y) * this.cs.getsin(conto.zy) + (float) (conto.z + 3000 - conto.z) * this.cs.getcos(conto.zy));
+            this.x = conto.x + (int) ((float) (conto.x + 400 - conto.x) * this.cs.getcos(conto.xz) - (float) (i - conto.z) * this.cs.getsin(conto.xz));
+            this.z = conto.z + (int) ((float) (conto.x + 400 - conto.x) * this.cs.getsin(conto.xz) + (float) (i - conto.z) * this.cs.getcos(conto.xz));
             this.td = true;
         }
         short s = 0;
@@ -213,8 +213,8 @@ public class Medium {
             b = 2;
         }
         this.y = conto.y + this.adv;
-        this.x = conto.x + (int) ((float) (conto.x - i + this.adv * b - conto.x) * this.cs.cos(this.vxz));
-        this.z = conto.z + (int) ((float) (conto.x - i + this.adv * b - conto.x) * this.cs.sin(this.vxz));
+        this.x = conto.x + (int) ((float) (conto.x - i + this.adv * b - conto.x) * this.cs.getcos(this.vxz));
+        this.z = conto.z + (int) ((float) (conto.x - i + this.adv * b - conto.x) * this.cs.getsin(this.vxz));
         if (i == 6000) {
             if (!this.vert) {
                 this.adv -= 10;
@@ -263,8 +263,8 @@ public class Medium {
 
     public void left(ContO conto) {
         int i = conto.y;
-        int j = conto.x + (int) ((float) (conto.x + 600 - conto.x) * this.cs.cos(conto.xz));
-        int k = conto.z + (int) ((float) (conto.x + 600 - conto.x) * this.cs.sin(conto.xz));
+        int j = conto.x + (int) ((float) (conto.x + 600 - conto.x) * this.cs.getcos(conto.xz));
+        int k = conto.z + (int) ((float) (conto.x + 600 - conto.x) * this.cs.getsin(conto.xz));
         this.zy = 0;
         this.xz = -(conto.xz + 90);
         this.x = (int) ((double) this.x + (double) (j - this.cx - this.x) / 1.5D);
@@ -274,8 +274,8 @@ public class Medium {
 
     public void right(ContO conto) {
         int i = conto.y;
-        int j = conto.x + (int) ((float) (conto.x - 600 - conto.x) * this.cs.cos(conto.xz));
-        int k = conto.z + (int) ((float) (conto.x - 600 - conto.x) * this.cs.sin(conto.xz));
+        int j = conto.x + (int) ((float) (conto.x - 600 - conto.x) * this.cs.getcos(conto.xz));
+        int k = conto.z + (int) ((float) (conto.x - 600 - conto.x) * this.cs.getsin(conto.xz));
         this.zy = 0;
         this.xz = -(conto.xz - 90);
         this.x += (j - this.cx - this.x) / 3;
@@ -306,10 +306,10 @@ public class Medium {
         if (i < -90) {
             i = -180 - i;
         }
-        int k = conto.y + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.cos(conto.zy) - (float) (conto.z - 600 - conto.z) * this.cs.sin(conto.zy));
-        int l = conto.z + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.sin(conto.zy) + (float) (conto.z - 600 - conto.z) * this.cs.cos(conto.zy));
-        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * this.cs.sin(conto.xz));
-        int j1 = conto.z + (int) ((float) (l - conto.z) * this.cs.cos(conto.xz));
+        int k = conto.y + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.getcos(conto.zy) - (float) (conto.z - 600 - conto.z) * this.cs.getsin(conto.zy));
+        int l = conto.z + (int) ((float) (conto.y + this.yart - conto.y) * this.cs.getsin(conto.zy) + (float) (conto.z - 600 - conto.z) * this.cs.getcos(conto.zy));
+        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * this.cs.getsin(conto.xz));
+        int j1 = conto.z + (int) ((float) (l - conto.z) * this.cs.getcos(conto.xz));
         this.zy = -i;
         this.xz = -j;
         this.x += (i1 - this.cx - this.x) / 3;

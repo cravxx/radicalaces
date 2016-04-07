@@ -1059,11 +1059,11 @@ public class xtGraphics extends Panel {
             }
             j = this.getcpy(contos[ints2[0]], contos[ints2[j1]]);
             if (j > s && !contos[ints2[j1]].exp) {
-                k1 = this.m.cx + (int) ((float) (contos[ints2[j1]].x - this.m.x - this.m.cx) * this.m.cs.cos(this.m.xz) - (float) (contos[ints2[j1]].z - this.m.z - this.m.cz) * this.m.cs.sin(this.m.xz));
-                l2 = this.m.cz + (int) ((float) (contos[ints2[j1]].x - this.m.x - this.m.cx) * this.m.cs.sin(this.m.xz) + (float) (contos[ints2[j1]].z - this.m.z - this.m.cz) * this.m.cs.cos(this.m.xz));
-                i2 = this.m.cz + (int) ((float) (contos[ints2[j1]].y - this.m.y - this.m.cy) * this.m.cs.sin(this.m.zy) + (float) (l2 - this.m.cz) * this.m.cs.cos(this.m.zy));
+                k1 = this.m.cx + (int) ((float) (contos[ints2[j1]].x - this.m.x - this.m.cx) * this.m.cs.getcos(this.m.xz) - (float) (contos[ints2[j1]].z - this.m.z - this.m.cz) * this.m.cs.getsin(this.m.xz));
+                l2 = this.m.cz + (int) ((float) (contos[ints2[j1]].x - this.m.x - this.m.cx) * this.m.cs.getsin(this.m.xz) + (float) (contos[ints2[j1]].z - this.m.z - this.m.cz) * this.m.cs.getcos(this.m.xz));
+                i2 = this.m.cz + (int) ((float) (contos[ints2[j1]].y - this.m.y - this.m.cy) * this.m.cs.getsin(this.m.zy) + (float) (l2 - this.m.cz) * this.m.cs.getcos(this.m.zy));
                 if (i2 > 100) {
-                    j2 = this.m.cy + (int) ((float) (contos[ints2[j1]].y - this.m.y - this.m.cy) * this.m.cs.cos(this.m.zy) - (float) (l2 - this.m.cz) * this.m.cs.sin(this.m.zy));
+                    j2 = this.m.cy + (int) ((float) (contos[ints2[j1]].y - this.m.y - this.m.cy) * this.m.cs.getcos(this.m.zy) - (float) (l2 - this.m.cz) * this.m.cs.getsin(this.m.zy));
                     k2 = this.xs(k1, i2);
                     int l3 = this.ys(j2, i2);
                     if (k2 > 0 && k2 < this.m.w && l3 > 0 && l3 < this.m.h) {
@@ -1136,10 +1136,10 @@ public class xtGraphics extends Panel {
         int i3;
         if (!flag && !contos[ints2[this.cl]].exp) {
             boolean flag3 = false;
-            i3 = this.m.cx + (int) ((float) (contos[ints2[this.cl]].x - this.m.x - this.m.cx) * this.m.cs.cos(this.m.xz) - (float) (contos[ints2[this.cl]].z - this.m.z - this.m.cz) * this.m.cs.sin(this.m.xz));
-            k1 = this.m.cz + (int) ((float) (contos[ints2[this.cl]].x - this.m.x - this.m.cx) * this.m.cs.sin(this.m.xz) + (float) (contos[ints2[this.cl]].z - this.m.z - this.m.cz) * this.m.cs.cos(this.m.xz));
-            l2 = this.m.cz + (int) ((float) (contos[ints2[this.cl]].y - this.m.y - this.m.cy) * this.m.cs.sin(this.m.zy) + (float) (k1 - this.m.cz) * this.m.cs.cos(this.m.zy));
-            i2 = this.m.cy + (int) ((float) (contos[ints2[this.cl]].y - this.m.y - this.m.cy) * this.m.cs.cos(this.m.zy) - (float) (k1 - this.m.cz) * this.m.cs.sin(this.m.zy));
+            i3 = this.m.cx + (int) ((float) (contos[ints2[this.cl]].x - this.m.x - this.m.cx) * this.m.cs.getcos(this.m.xz) - (float) (contos[ints2[this.cl]].z - this.m.z - this.m.cz) * this.m.cs.getsin(this.m.xz));
+            k1 = this.m.cz + (int) ((float) (contos[ints2[this.cl]].x - this.m.x - this.m.cx) * this.m.cs.getsin(this.m.xz) + (float) (contos[ints2[this.cl]].z - this.m.z - this.m.cz) * this.m.cs.getcos(this.m.xz));
+            l2 = this.m.cz + (int) ((float) (contos[ints2[this.cl]].y - this.m.y - this.m.cy) * this.m.cs.getsin(this.m.zy) + (float) (k1 - this.m.cz) * this.m.cs.getcos(this.m.zy));
+            i2 = this.m.cy + (int) ((float) (contos[ints2[this.cl]].y - this.m.y - this.m.cy) * this.m.cs.getcos(this.m.zy) - (float) (k1 - this.m.cz) * this.m.cs.getsin(this.m.zy));
             j2 = this.ys(i2, l2);
             k2 = this.xs(i3, l2);
             if (k2 < this.m.w && k2 > 0) {
@@ -1243,8 +1243,8 @@ public class xtGraphics extends Panel {
             }
             for (k1 = 1; k1 < i; ++k1) {
                 if (!contos[ints2[k1]].exp) {
-                    l2 = this.m.cx + (int) ((float) (contos[ints2[k1]].x - this.m.x - this.m.cx) * this.m.cs.cos(i3) - (float) (contos[ints2[k1]].z - this.m.z - this.m.cz) * this.m.cs.sin(i3));
-                    i2 = this.m.cz + (int) ((float) (contos[ints2[k1]].x - this.m.x - this.m.cx) * this.m.cs.sin(i3) + (float) (contos[ints2[k1]].z - this.m.z - this.m.cz) * this.m.cs.cos(i3));
+                    l2 = this.m.cx + (int) ((float) (contos[ints2[k1]].x - this.m.x - this.m.cx) * this.m.cs.getcos(i3) - (float) (contos[ints2[k1]].z - this.m.z - this.m.cz) * this.m.cs.getsin(i3));
+                    i2 = this.m.cz + (int) ((float) (contos[ints2[k1]].x - this.m.x - this.m.cx) * this.m.cs.getsin(i3) + (float) (contos[ints2[k1]].z - this.m.z - this.m.cz) * this.m.cs.getcos(i3));
                     graphics.setColor(new Color(0, 255, 128));
                     l2 = l2 / 400 + 249;
                     i2 = -i2 / 400 + 109;

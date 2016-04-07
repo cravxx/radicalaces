@@ -135,12 +135,12 @@ public class Craft {
         int j2;
         if (conto.y < 207) {
             if (u.up) {
-                conto.zy -= (int) (5.0F * conto.m.cs.cos(conto.xy));
-                conto.xz += (int) ((float) (b * 3) * conto.m.cs.sin(conto.xy));
+                conto.zy -= (int) (5.0F * conto.m.cs.getcos(conto.xy));
+                conto.xz += (int) ((float) (b * 3) * conto.m.cs.getsin(conto.xy));
             }
             if (u.down) {
-                conto.zy += (int) (5.0F * conto.m.cs.cos(conto.xy));
-                conto.xz -= (int) ((float) (b * 3) * conto.m.cs.sin(conto.xy));
+                conto.zy += (int) (5.0F * conto.m.cs.getcos(conto.xy));
+                conto.xz -= (int) ((float) (b * 3) * conto.m.cs.getsin(conto.xy));
             }
         } else {
             for (i1 = Math.abs(conto.zy); i1 > 90; i1 -= 180) {
@@ -186,7 +186,7 @@ public class Craft {
                 smoke = true;
             }
             if (speed > 10.0F && u.down) {
-                conto.zy += (int) (5.0F * conto.m.cs.cos(conto.xy));
+                conto.zy += (int) (5.0F * conto.m.cs.getcos(conto.xy));
             }
         }
         if (u.left) {
@@ -207,7 +207,7 @@ public class Craft {
                 conto.xz -= 2;
             }
         }
-        i1 = (int) ((float) (b * 4) * conto.m.cs.sin(conto.xy));
+        i1 = (int) ((float) (b * 4) * conto.m.cs.getsin(conto.xy));
         conto.xz -= i1;
         if (conto.nhits > conto.maxhits - conto.maxhits / 6 && !conto.exp) {
             if (rspeed > 60) {
@@ -217,7 +217,7 @@ public class Craft {
             conto.xz += (int) (Math.random() * (double) (speed / 10.0F) - (double) (speed / 20.0F));
             conto.zy += (int) (Math.random() * (double) (speed / 10.0F) - (double) (speed / 20.0F));
         }
-        rlift = (int) (speed * conto.m.cs.cos(conto.zy) * conto.m.cs.cos(conto.xy)) - 40;
+        rlift = (int) (speed * conto.m.cs.getcos(conto.zy) * conto.m.cs.getcos(conto.xy)) - 40;
         if (lift < (double) rlift) {
             lift += 0.5D;
         }
@@ -227,7 +227,7 @@ public class Craft {
         if (lift < (double) (-(50.0F - speed / 2.0F))) {
             lift = (double) (-(50.0F - speed / 2.0F));
         }
-        j1 = (int) (5.0F * conto.m.cs.cos(conto.zy) * conto.m.cs.cos(conto.xy));
+        j1 = (int) (5.0F * conto.m.cs.getcos(conto.zy) * conto.m.cs.getcos(conto.xy));
         if (lift > (double) j1) {
             lift = (double) j1;
         }
@@ -365,9 +365,9 @@ public class Craft {
                             ++nf[l2];
                         }
                     }
-                    lx[l2] -= (int) ((float) lspeed[l2] * conto.m.cs.sin(lxz[l2]) * conto.m.cs.cos(lzy[l2]));
-                    lz[l2] += (int) ((float) lspeed[l2] * conto.m.cs.cos(lxz[l2]) * conto.m.cs.cos(lzy[l2]));
-                    ly[l2] -= (int) ((float) lspeed[l2] * conto.m.cs.sin(lzy[l2]));
+                    lx[l2] -= (int) ((float) lspeed[l2] * conto.m.cs.getsin(lxz[l2]) * conto.m.cs.getcos(lzy[l2]));
+                    lz[l2] += (int) ((float) lspeed[l2] * conto.m.cs.getcos(lxz[l2]) * conto.m.cs.getcos(lzy[l2]));
+                    ly[l2] -= (int) ((float) lspeed[l2] * conto.m.cs.getsin(lzy[l2]));
                     ++lstage[l2];
                     if (lstage[l2] > 80) {
                         lstage[l2] = 0;
@@ -383,9 +383,9 @@ public class Craft {
         } else if (conto.fire) {
             conto.fire = false;
         }
-        conto.x -= (int) (speed * conto.m.cs.sin(conto.xz) * conto.m.cs.cos(conto.zy));
-        conto.z += (int) (speed * conto.m.cs.cos(conto.xz) * conto.m.cs.cos(conto.zy));
-        conto.y -= (int) (speed * conto.m.cs.sin(conto.zy));
+        conto.x -= (int) (speed * conto.m.cs.getsin(conto.xz) * conto.m.cs.getcos(conto.zy));
+        conto.z += (int) (speed * conto.m.cs.getcos(conto.xz) * conto.m.cs.getcos(conto.zy));
+        conto.y -= (int) (speed * conto.m.cs.getsin(conto.zy));
         if (conto.y > 215) {
             conto.y = 215;
         }
@@ -535,13 +535,13 @@ public class Craft {
             }
         }
         byte b2 = 0;
-        if ((float) conto.y > 100.0F + (float) liftup * conto.m.cs.sin(conto.zy)) {
+        if ((float) conto.y > 100.0F + (float) liftup * conto.m.cs.getsin(conto.zy)) {
             b2 = 1;
         }
-        l3 = conto.y + (int) ((float) (-(conto.z + 1000 - conto.z)) * conto.m.cs.sin(conto.zy));
-        i3 = conto.z + (int) ((float) (conto.z + 1000 - conto.z) * conto.m.cs.cos(conto.zy));
-        i2 = conto.x + (int) ((float) (-(i3 - conto.z)) * conto.m.cs.sin(conto.xz));
-        j2 = conto.z + (int) ((float) (i3 - conto.z) * conto.m.cs.cos(conto.xz));
+        l3 = conto.y + (int) ((float) (-(conto.z + 1000 - conto.z)) * conto.m.cs.getsin(conto.zy));
+        i3 = conto.z + (int) ((float) (conto.z + 1000 - conto.z) * conto.m.cs.getcos(conto.zy));
+        i2 = conto.x + (int) ((float) (-(i3 - conto.z)) * conto.m.cs.getsin(conto.xz));
+        j2 = conto.z + (int) ((float) (i3 - conto.z) * conto.m.cs.getcos(conto.xz));
         if (myway(contos, ints, i, j, i2, l3, j2)) {
             b2 = 2;
         }

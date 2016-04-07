@@ -2,627 +2,582 @@ import java.awt.Graphics;
 
 public class userCraft {
 
-   int rspeed = 0;
-   float speed = 0.0F;
-   int rlift = 0;
-   double lift = 0.0D;
-   boolean pexp = false;
-   int ltyp = 0;
-   int[] maxspeed = new int[]{120, 100, 90, 80, 76};
-   int[] elev = new int[]{1, 2, 1, 1, 1};
-   int[] trnn = new int[]{0, 0, 1, 2, 1};
-   int[] dnjm = new int[]{7, 5, 4, 3, 4};
-   String[] name = new String[]{"E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend"};
-   int njumps = 0;
-   int ester = 0;
-   int[] lx = new int[20];
-   int[] ly = new int[20];
-   int[] lz = new int[20];
-   int[] lxz = new int[20];
-   int[] lzy = new int[20];
-   int[] lxy = new int[20];
-   int[] lstage = new int[20];
-   int[] lspeed = new int[20];
-   int[] lhit = new int[20];
-   int nl = 0;
-   Lasers lsr;
-   boolean skip = false;
-   int bulkc = 0;
-   int[] sms = new int[4];
-   int[] sx = new int[4];
-   int[] sy = new int[4];
-   int[] sz = new int[4];
-   int[] sxz = new int[4];
-   int[] szy = new int[4];
-   int ns = 0;
-   boolean smoke = false;
-   int[] dms = new int[4];
-   int[] dx = new int[4];
-   int[] dy = new int[4];
-   int[] dz = new int[4];
-   int[] dxz = new int[4];
-   int[] dzy = new int[4];
-   int nd = 0;
+    int rspeed = 0;
 
+    float speed = 0.0F;
 
-   public void preform(Control var1, ContO var2, ContO[] var3, int[] var4, int var5) {
-      int var6;
-      for(var6 = Math.abs(var2.zy); var6 > 360; var6 -= 360) {
-         ;
-      }
+    int rlift = 0;
 
-      byte var7 = 1;
-      if(var6 > 90 && var6 < 270) {
-         var7 = -1;
-      }
+    double lift = 0.0D;
 
-      int var8;
-      int var9;
-      int var10;
-      int var11;
-      int var14;
-      int var15;
-      if(var2.y < 207) {
-         if(var1.up) {
-            var2.zy -= (int)((float)(4 + this.elev[this.ltyp]) * var2.m.cs.getcos(var2.xy));
-            var2.xz += (int)((float)(var7 * (2 + this.elev[this.ltyp])) * var2.m.cs.getsin(var2.xy));
-         }
+    boolean pexp = false;
 
-         if(var1.down) {
-            var2.zy += (int)((float)(4 + this.elev[this.ltyp]) * var2.m.cs.getcos(var2.xy));
-            var2.xz -= (int)((float)(var7 * (2 + this.elev[this.ltyp])) * var2.m.cs.getsin(var2.xy));
-         }
-      } else {
-         for(var8 = Math.abs(var2.zy); var8 > 90; var8 -= 180) {
+    int ltyp = 0;
+
+    int[] maxspeed = new int[] { 120, 100, 90, 80, 76 };
+
+    int[] elev = new int[] { 1, 2, 1, 1, 1 };
+
+    int[] trnn = new int[] { 0, 0, 1, 2, 1 };
+
+    int[] dnjm = new int[] { 7, 5, 4, 3, 4 };
+
+    String[] name = new String[] { "E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend" };
+
+    int njumps = 0;
+
+    int ester = 0;
+
+    int[] lx = new int[20];
+
+    int[] ly = new int[20];
+
+    int[] lz = new int[20];
+
+    int[] lxz = new int[20];
+
+    int[] lzy = new int[20];
+
+    int[] lxy = new int[20];
+
+    int[] lstage = new int[20];
+
+    int[] lspeed = new int[20];
+
+    int[] lhit = new int[20];
+
+    int nl = 0;
+
+    Lasers lsr;
+
+    boolean skip = false;
+
+    int bulkc = 0;
+
+    int[] sms = new int[4];
+
+    int[] sx = new int[4];
+
+    int[] sy = new int[4];
+
+    int[] sz = new int[4];
+
+    int[] sxz = new int[4];
+
+    int[] szy = new int[4];
+
+    int ns = 0;
+
+    boolean smoke = false;
+
+    int[] dms = new int[4];
+
+    int[] dx = new int[4];
+
+    int[] dy = new int[4];
+
+    int[] dz = new int[4];
+
+    int[] dxz = new int[4];
+
+    int[] dzy = new int[4];
+
+    int nd = 0;
+
+    public void preform(Control control, ContO conto, ContO[] contos, int[] ints, int i) {
+        int j;
+        for (j = Math.abs(conto.zy); j > 360; j -= 360) {
             ;
-         }
-
-         for(var9 = Math.abs(var2.xy); var9 > 90; var9 -= 180) {
-            ;
-         }
-
-         for(var10 = Math.abs(var2.zy); var10 > 270; var10 -= 360) {
-            ;
-         }
-
-         for(var11 = Math.abs(var2.xy); var11 > 270; var11 -= 360) {
-            ;
-         }
-
-         boolean var12 = Math.abs(var10) < 90 && Math.abs(var11) < 90 || Math.abs(var10) > 90 && Math.abs(var11) > 90;
-         boolean var13 = Math.abs(var8) > 30 || Math.abs(var9) > 30;
-         if((!var12 || var13) && !var2.exp) {
-            var2.exp = true;
-            var2.y = 170;
-            this.speed = 30.0F;
-            this.pexp = true;
-         }
-
-         for(var14 = Math.abs(var2.zy); var14 > 270; var14 -= 360) {
-            ;
-         }
-
-         if(var14 > 90) {
-            var2.xy = 180;
-         } else {
-            var2.xy = 0;
-         }
-
-         for(var15 = var2.zy; var15 > 90; var15 -= 180) {
-            ;
-         }
-
-         while(var15 < -90) {
-            var15 += 180;
-         }
-
-         if(var15 > 0) {
-            var2.zy += -1;
-            this.smoke = true;
-         }
-
-         if(var15 < 0) {
-            ++var2.zy;
-            this.smoke = true;
-         }
-
-         if(this.speed > 10.0F && var1.down) {
-            var2.zy += (int)(5.0F * var2.m.cs.getcos(var2.xy));
-         }
-      }
-
-      if(var1.left) {
-         if(var2.y < 207) {
-            var2.xy -= 10;
-         } else {
-            var2.xz += 2;
-         }
-      }
-
-      if(var1.right) {
-         if(var2.y < 207) {
-            var2.xy += 10;
-         } else {
-            var2.xz -= 2;
-         }
-      }
-
-      var8 = (int)((float)(var7 * (3 + this.trnn[this.ltyp])) * var2.m.cs.getsin(var2.xy));
-      var2.xz -= var8;
-      this.rlift = (int)(this.speed * var2.m.cs.getcos(var2.zy) * var2.m.cs.getcos(var2.xy)) - 40;
-      if(this.lift < (double)this.rlift) {
-         this.lift += 0.5D;
-      }
-
-      if(this.lift > (double)this.rlift) {
-         this.lift -= 0.5D;
-      }
-
-      if(this.lift < (double)(-(50.0F - this.speed / 2.0F))) {
-         this.lift = (double)(-(50.0F - this.speed / 2.0F));
-      }
-
-      var9 = (int)(5.0F * var2.m.cs.getcos(var2.zy) * var2.m.cs.getcos(var2.xy));
-      if(this.lift > (double)var9) {
-         this.lift = (double)var9;
-      }
-
-      var2.y -= (int)this.lift;
-      if(var2.x < -40000) {
-         var2.x = -40000;
-         if(var8 <= 0) {
-            var2.xz += 5;
-         } else {
-            var2.xz -= 5;
-         }
-      }
-
-      if(var2.x > '\u9c40') {
-         var2.x = '\u9c40';
-         if(var8 <= 0) {
-            var2.xz += 5;
-         } else {
-            var2.xz -= 5;
-         }
-      }
-
-      if(var2.z > '\u9c40') {
-         var2.z = '\u9c40';
-         if(var8 <= 0) {
-            var2.xz += 5;
-         } else {
-            var2.xz -= 5;
-         }
-      }
-
-      if(var2.z < -40000) {
-         var2.z = -40000;
-         if(var8 <= 0) {
-            var2.xz += 5;
-         } else {
-            var2.xz -= 5;
-         }
-      }
-
-      if(!this.pexp && var2.exp) {
-         if(this.speed > 40.0F) {
-            this.speed = -15.0F;
-            this.pexp = true;
-         } else if(var2.nhits > var2.maxhits) {
-            this.pexp = true;
-         } else {
-            var2.exp = false;
-            this.speed = -(((float)this.rspeed + this.speed) / 2.0F);
-         }
-      }
-
-      if(this.pexp) {
-         if(this.speed > 0.0F) {
-            this.speed = (float)((double)this.speed - 0.3D);
-         }
-
-         if(this.speed < 0.0F) {
-            this.speed = (float)((double)this.speed + 0.3D);
-         }
-      } else {
-         if(this.speed > (float)this.rspeed) {
-            if(this.speed > (float)this.maxspeed[this.ltyp]) {
-               this.speed -= (this.speed - (float)this.rspeed) / 20.0F;
+        }
+        byte b = 1;
+        if (j > 90 && j < 270) {
+            b = -1;
+        }
+        int k;
+        int l;
+        int i1;
+        int j1;
+        int k1;
+        int l2;
+        if (conto.y < 207) {
+            if (control.up) {
+                conto.zy -= (int) ((float) (4 + this.elev[this.ltyp]) * conto.m.cs.getcos(conto.xy));
+                conto.xz += (int) ((float) (b * (2 + this.elev[this.ltyp])) * conto.m.cs.getsin(conto.xy));
+            }
+            if (control.down) {
+                conto.zy += (int) ((float) (4 + this.elev[this.ltyp]) * conto.m.cs.getcos(conto.xy));
+                conto.xz -= (int) ((float) (b * (2 + this.elev[this.ltyp])) * conto.m.cs.getsin(conto.xy));
+            }
+        } else {
+            for (k = Math.abs(conto.zy); k > 90; k -= 180) {
+                ;
+            }
+            for (l = Math.abs(conto.xy); l > 90; l -= 180) {
+                ;
+            }
+            for (i1 = Math.abs(conto.zy); i1 > 270; i1 -= 360) {
+                ;
+            }
+            for (j1 = Math.abs(conto.xy); j1 > 270; j1 -= 360) {
+                ;
+            }
+            boolean flag = Math.abs(i1) < 90 && Math.abs(j1) < 90 || Math.abs(i1) > 90 && Math.abs(j1) > 90;
+            boolean flag2 = Math.abs(k) > 30 || Math.abs(l) > 30;
+            if ((!flag || flag2) && !conto.exp) {
+                conto.exp = true;
+                conto.y = 170;
+                this.speed = 30.0F;
+                this.pexp = true;
+            }
+            for (k1 = Math.abs(conto.zy); k1 > 270; k1 -= 360) {
+                ;
+            }
+            if (k1 > 90) {
+                conto.xy = 180;
             } else {
-               this.speed = (float)((double)this.speed - 0.5D);
+                conto.xy = 0;
             }
-         }
-
-         if(this.speed < (float)this.rspeed) {
-            ++this.speed;
-         }
-      }
-
-      if(var2.nhits > var2.maxhits - var2.maxhits / 6 && !var2.exp) {
-         if(this.speed > 60.0F) {
-            this.speed = 60.0F;
-         }
-
-         var2.xz += (int)(Math.random() * (double)(this.speed / 10.0F) - (double)(this.speed / 20.0F));
-         var2.zy += (int)(Math.random() * (double)(this.speed / 10.0F) - (double)(this.speed / 20.0F));
-      }
-
-      if(var1.plus && this.rspeed < this.maxspeed[this.ltyp]) {
-         this.rspeed += 2;
-      }
-
-      if(var1.mins && this.rspeed > 0) {
-         this.rspeed -= 2;
-      }
-
-      if(var1.jump != 0 && this.njumps != 0) {
-         if(var1.jump == 1) {
-            this.speed = 400.0F;
-            var1.jump = 2;
-            var2.m.jumping = 5;
-         }
-
-         if(var2.m.jumping == 0) {
-            this.speed = 800.0F;
-            var1.jump = 0;
-            this.njumps += -1;
-         }
-      }
-
-      if(var1.fire && !var2.exp) {
-         if(this.skip && this.bulkc < this.lsr.srate[this.ltyp]) {
-            this.lx[this.nl] = var2.x;
-            this.ly[this.nl] = var2.y;
-            this.lz[this.nl] = var2.z;
-            this.lxz[this.nl] = var2.xz;
-            this.lzy[this.nl] = var2.zy;
-            this.lxy[this.nl] = var2.xy;
-            if(this.ly[this.nl] > 215) {
-               this.ly[this.nl] = 215;
+            for (l2 = conto.zy; l2 > 90; l2 -= 180) {
+                ;
             }
-
-            this.lspeed[this.nl] = (int)((float)this.lsr.speed[this.ltyp] + this.speed);
-            this.lstage[this.nl] = 1;
-            this.lhit[this.nl] = 0;
-            ++this.nl;
-            if(this.nl == 20) {
-               this.nl = 0;
+            while (l2 < -90) {
+                l2 += 180;
             }
-
-            this.skip = false;
-         } else if(!this.skip) {
-            this.skip = true;
-         }
-
-         ++this.bulkc;
-         if(this.bulkc > 12) {
+            if (l2 > 0) {
+                conto.zy += -1;
+                this.smoke = true;
+            }
+            if (l2 < 0) {
+                ++conto.zy;
+                this.smoke = true;
+            }
+            if (this.speed > 10.0F && control.down) {
+                conto.zy += (int) (5.0F * conto.m.cs.getcos(conto.xy));
+            }
+        }
+        if (control.left) {
+            if (conto.y < 207) {
+                conto.xy -= 10;
+            } else {
+                conto.xz += 2;
+            }
+        }
+        if (control.right) {
+            if (conto.y < 207) {
+                conto.xy += 10;
+            } else {
+                conto.xz -= 2;
+            }
+        }
+        k = (int) ((float) (b * (3 + this.trnn[this.ltyp])) * conto.m.cs.getsin(conto.xy));
+        conto.xz -= k;
+        this.rlift = (int) (this.speed * conto.m.cs.getcos(conto.zy) * conto.m.cs.getcos(conto.xy)) - 40;
+        if (this.lift < (double) this.rlift) {
+            this.lift += 0.5D;
+        }
+        if (this.lift > (double) this.rlift) {
+            this.lift -= 0.5D;
+        }
+        if (this.lift < (double) (-(50.0F - this.speed / 2.0F))) {
+            this.lift = (double) (-(50.0F - this.speed / 2.0F));
+        }
+        l = (int) (5.0F * conto.m.cs.getcos(conto.zy) * conto.m.cs.getcos(conto.xy));
+        if (this.lift > (double) l) {
+            this.lift = (double) l;
+        }
+        conto.y -= (int) this.lift;
+        if (conto.x < -40000) {
+            conto.x = -40000;
+            if (k <= 0) {
+                conto.xz += 5;
+            } else {
+                conto.xz -= 5;
+            }
+        }
+        if (conto.x > '鱀') {
+            conto.x = '鱀';
+            if (k <= 0) {
+                conto.xz += 5;
+            } else {
+                conto.xz -= 5;
+            }
+        }
+        if (conto.z > '鱀') {
+            conto.z = '鱀';
+            if (k <= 0) {
+                conto.xz += 5;
+            } else {
+                conto.xz -= 5;
+            }
+        }
+        if (conto.z < -40000) {
+            conto.z = -40000;
+            if (k <= 0) {
+                conto.xz += 5;
+            } else {
+                conto.xz -= 5;
+            }
+        }
+        if (!this.pexp && conto.exp) {
+            if (this.speed > 40.0F) {
+                this.speed = -15.0F;
+                this.pexp = true;
+            } else if (conto.nhits > conto.maxhits) {
+                this.pexp = true;
+            } else {
+                conto.exp = false;
+                this.speed = -(((float) this.rspeed + this.speed) / 2.0F);
+            }
+        }
+        if (this.pexp) {
+            if (this.speed > 0.0F) {
+                this.speed = (float) ((double) this.speed - 0.3D);
+            }
+            if (this.speed < 0.0F) {
+                this.speed = (float) ((double) this.speed + 0.3D);
+            }
+        } else {
+            if (this.speed > (float) this.rspeed) {
+                if (this.speed > (float) this.maxspeed[this.ltyp]) {
+                    this.speed -= (this.speed - (float) this.rspeed) / 20.0F;
+                } else {
+                    this.speed = (float) ((double) this.speed - 0.5D);
+                }
+            }
+            if (this.speed < (float) this.rspeed) {
+                ++this.speed;
+            }
+        }
+        if (conto.nhits > conto.maxhits - conto.maxhits / 6 && !conto.exp) {
+            if (this.speed > 60.0F) {
+                this.speed = 60.0F;
+            }
+            conto.xz += (int) (Math.random() * (double) (this.speed / 10.0F) - (double) (this.speed / 20.0F));
+            conto.zy += (int) (Math.random() * (double) (this.speed / 10.0F) - (double) (this.speed / 20.0F));
+        }
+        if (control.plus && this.rspeed < this.maxspeed[this.ltyp]) {
+            this.rspeed += 2;
+        }
+        if (control.mins && this.rspeed > 0) {
+            this.rspeed -= 2;
+        }
+        if (control.jump != 0 && this.njumps != 0) {
+            if (control.jump == 1) {
+                this.speed = 400.0F;
+                control.jump = 2;
+                conto.m.jumping = 5;
+            }
+            if (conto.m.jumping == 0) {
+                this.speed = 800.0F;
+                control.jump = 0;
+                this.njumps += -1;
+            }
+        }
+        if (control.fire && !conto.exp) {
+            if (this.skip && this.bulkc < this.lsr.srate[this.ltyp]) {
+                this.lx[this.nl] = conto.x;
+                this.ly[this.nl] = conto.y;
+                this.lz[this.nl] = conto.z;
+                this.lxz[this.nl] = conto.xz;
+                this.lzy[this.nl] = conto.zy;
+                this.lxy[this.nl] = conto.xy;
+                if (this.ly[this.nl] > 215) {
+                    this.ly[this.nl] = 215;
+                }
+                this.lspeed[this.nl] = (int) ((float) this.lsr.speed[this.ltyp] + this.speed);
+                this.lstage[this.nl] = 1;
+                this.lhit[this.nl] = 0;
+                ++this.nl;
+                if (this.nl == 20) {
+                    this.nl = 0;
+                }
+                this.skip = false;
+            } else if (!this.skip) {
+                this.skip = true;
+            }
+            ++this.bulkc;
+            if (this.bulkc > 12) {
+                this.bulkc = 0;
+            }
+        }
+        i1 = 0;
+        j1 = 0;
+        do {
+            if (this.lstage[j1] != 0) {
+                ++i1;
+                if (this.ly[j1] > 240 && this.lhit[j1] == 0) {
+                    this.lhit[j1] = 1;
+                }
+                if (this.lhit[j1] == 0) {
+                    if (this.lstage[j1] > 10) {
+                        int i2 = 22500;
+                        int j2 = -1;
+                        for (k1 = 1; k1 < i; ++k1) {
+                            l2 = this.getpy(contos[ints[k1]].x, contos[ints[k1]].y, contos[ints[k1]].z, j1);
+                            if (l2 < i2 && l2 > 0 && !contos[ints[k1]].exp) {
+                                i2 = l2;
+                                j2 = k1;
+                            }
+                        }
+                        if (j2 != -1) {
+                            if (this.lspeed[j1] > 230) {
+                                this.lspeed[j1] = 230;
+                            }
+                            k1 = contos[ints[j2]].x;
+                            l2 = contos[ints[j2]].z;
+                            int k2 = contos[ints[j2]].y;
+                            short s = 0;
+                            if (k1 - this.lx[j1] > 0) {
+                                s = 180;
+                            }
+                            this.lxz[j1] = (int) ((double) (90 + s) + Math.atan((double) (l2 - this.lz[j1]) / (double) (k1 - this.lx[j1])) / 0.017453292519943295D);
+                            short s2 = 0;
+                            if (k2 - this.ly[j1] < 0) {
+                                s2 = -180;
+                            }
+                            int l3 = (int) Math.sqrt((double) ((l2 - this.lz[j1]) * (l2 - this.lz[j1]) + (k1 - this.lx[j1]) * (k1 - this.lx[j1])));
+                            this.lzy[j1] = -((int) ((double) (90 + s2) - Math.atan((double) l3 / (double) (k2 - this.ly[j1])) / 0.017453292519943295D));
+                        }
+                    }
+                    this.lx[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.getsin(this.lxz[j1]) * conto.m.cs.getcos(this.lzy[j1]));
+                    this.lz[j1] += (int) ((float) this.lspeed[j1] * conto.m.cs.getcos(this.lxz[j1]) * conto.m.cs.getcos(this.lzy[j1]));
+                    this.ly[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.getsin(this.lzy[j1]));
+                    ++this.lstage[j1];
+                    if (this.lstage[j1] > 80) {
+                        this.lstage[j1] = 0;
+                    }
+                }
+            }
+            ++j1;
+        } while (j1 < 20);
+        if (i1 != 0) {
+            if (!conto.fire) {
+                conto.fire = true;
+            }
+        } else if (conto.fire) {
+            conto.fire = false;
             this.bulkc = 0;
-         }
-      }
-
-      var10 = 0;
-      var11 = 0;
-
-      do {
-         if(this.lstage[var11] != 0) {
-            ++var10;
-            if(this.ly[var11] > 240 && this.lhit[var11] == 0) {
-               this.lhit[var11] = 1;
+        }
+        conto.x -= (int) (this.speed * conto.m.cs.getsin(conto.xz) * conto.m.cs.getcos(conto.zy));
+        conto.z += (int) (this.speed * conto.m.cs.getcos(conto.xz) * conto.m.cs.getcos(conto.zy));
+        conto.y -= (int) (this.speed * conto.m.cs.getsin(conto.zy));
+        if (conto.y > 215) {
+            conto.y = 215;
+        }
+        if (conto.y < -25000) {
+            conto.y = -25000;
+        }
+        if (this.ester == 0) {
+            if (conto.x > 2800 && conto.x < 3200 && conto.z > -2100 && conto.z < -1900 && conto.y > -30) {
+                this.ester = 1;
+                conto.nhits = 0;
+                control.jump = 0;
+                this.njumps = this.dnjm[this.ltyp];
             }
-
-            if(this.lhit[var11] == 0) {
-               if(this.lstage[var11] > 10) {
-                  int var19 = 22500;
-                  int var20 = -1;
-
-                  for(var14 = 1; var14 < var5; ++var14) {
-                     var15 = this.getpy(var3[var4[var14]].x, var3[var4[var14]].y, var3[var4[var14]].z, var11);
-                     if(var15 < var19 && var15 > 0 && !var3[var4[var14]].exp) {
-                        var19 = var15;
-                        var20 = var14;
-                     }
-                  }
-
-                  if(var20 != -1) {
-                     if(this.lspeed[var11] > 230) {
-                        this.lspeed[var11] = 230;
-                     }
-
-                     var14 = var3[var4[var20]].x;
-                     var15 = var3[var4[var20]].z;
-                     int var16 = var3[var4[var20]].y;
-                     short var17 = 0;
-                     if(var14 - this.lx[var11] > 0) {
-                        var17 = 180;
-                     }
-
-                     this.lxz[var11] = (int)((double)(90 + var17) + Math.atan((double)(var15 - this.lz[var11]) / (double)(var14 - this.lx[var11])) / 0.017453292519943295D);
-                     short var21 = 0;
-                     if(var16 - this.ly[var11] < 0) {
-                        var21 = -180;
-                     }
-
-                     int var18 = (int)Math.sqrt((double)((var15 - this.lz[var11]) * (var15 - this.lz[var11]) + (var14 - this.lx[var11]) * (var14 - this.lx[var11])));
-                     this.lzy[var11] = -((int)((double)(90 + var21) - Math.atan((double)var18 / (double)(var16 - this.ly[var11])) / 0.017453292519943295D));
-                  }
-               }
-
-               this.lx[var11] -= (int)((float)this.lspeed[var11] * var2.m.cs.getsin(this.lxz[var11]) * var2.m.cs.getcos(this.lzy[var11]));
-               this.lz[var11] += (int)((float)this.lspeed[var11] * var2.m.cs.getcos(this.lxz[var11]) * var2.m.cs.getcos(this.lzy[var11]));
-               this.ly[var11] -= (int)((float)this.lspeed[var11] * var2.m.cs.getsin(this.lzy[var11]));
-               ++this.lstage[var11];
-               if(this.lstage[var11] > 80) {
-                  this.lstage[var11] = 0;
-               }
+        } else {
+            if (this.ester < 13) {
+                if (this.ltyp == 0) {
+                    if (conto.m.er == 0) {
+                        conto.m.er = 1;
+                    } else {
+                        conto.m.er = 0;
+                    }
+                }
+                if (this.ltyp == 1) {
+                    if (conto.m.eg == 0) {
+                        conto.m.eg = 1;
+                    } else {
+                        conto.m.eg = 0;
+                    }
+                }
+                if (this.ltyp == 2) {
+                    if (conto.m.eb == 0) {
+                        conto.m.eb = 1;
+                    } else {
+                        conto.m.eb = 0;
+                    }
+                }
+                if (this.ltyp == 3) {
+                    if (conto.m.er == 0) {
+                        conto.m.er = 1;
+                        conto.m.eg = 1;
+                    } else {
+                        conto.m.er = 0;
+                        conto.m.eg = 0;
+                    }
+                }
+                if (this.ltyp == 4) {
+                    if (conto.m.eb == 0) {
+                        conto.m.eb = 1;
+                        conto.m.eg = 1;
+                    } else {
+                        conto.m.eb = 0;
+                        conto.m.eg = 0;
+                    }
+                }
             }
-         }
-
-         ++var11;
-      } while(var11 < 20);
-
-      if(var10 != 0) {
-         if(!var2.fire) {
-            var2.fire = true;
-         }
-      } else if(var2.fire) {
-         var2.fire = false;
-         this.bulkc = 0;
-      }
-
-      var2.x -= (int)(this.speed * var2.m.cs.getsin(var2.xz) * var2.m.cs.getcos(var2.zy));
-      var2.z += (int)(this.speed * var2.m.cs.getcos(var2.xz) * var2.m.cs.getcos(var2.zy));
-      var2.y -= (int)(this.speed * var2.m.cs.getsin(var2.zy));
-      if(var2.y > 215) {
-         var2.y = 215;
-      }
-
-      if(var2.y < -25000) {
-         var2.y = -25000;
-      }
-
-      if(this.ester == 0) {
-         if(var2.x > 2800 && var2.x < 3200 && var2.z > -2100 && var2.z < -1900 && var2.y > -30) {
-            this.ester = 1;
-            var2.nhits = 0;
-            var1.jump = 0;
-            this.njumps = this.dnjm[this.ltyp];
-         }
-      } else {
-         if(this.ester < 13) {
-            if(this.ltyp == 0) {
-               if(var2.m.er == 0) {
-                  var2.m.er = 1;
-               } else {
-                  var2.m.er = 0;
-               }
+            if (this.ester == 1) {
+                conto.wire = true;
             }
-
-            if(this.ltyp == 1) {
-               if(var2.m.eg == 0) {
-                  var2.m.eg = 1;
-               } else {
-                  var2.m.eg = 0;
-               }
+            if (this.ester == 3) {
+                conto.wire = false;
             }
-
-            if(this.ltyp == 2) {
-               if(var2.m.eb == 0) {
-                  var2.m.eb = 1;
-               } else {
-                  var2.m.eb = 0;
-               }
+            ++this.ester;
+            if (this.ester == 45) {
+                this.ester = 0;
             }
+        }
+    }
 
-            if(this.ltyp == 3) {
-               if(var2.m.er == 0) {
-                  var2.m.er = 1;
-                  var2.m.eg = 1;
-               } else {
-                  var2.m.er = 0;
-                  var2.m.eg = 0;
-               }
+    public void dosmokes(Graphics graphics, ContO conto) {
+        if (!conto.exp) {
+            int i;
+            if (conto.nhits > conto.maxhits - conto.maxhits / 3) {
+                if (this.dms[this.nd] == -1) {
+                    this.dx[this.nd] = conto.x + (int) (Math.random() * 60.0D - 30.0D);
+                    this.dy[this.nd] = conto.y;
+                    this.dz[this.nd] = conto.z;
+                    this.dxz[this.nd] = conto.xz;
+                    this.dzy[this.nd] = conto.zy;
+                    this.dms[this.nd] = 0;
+                    ++this.nd;
+                    if (this.nd == 4) {
+                        this.nd = 0;
+                    }
+                }
+                i = 0;
+                do {
+                    if (this.dms[i] != -1) {
+                        if (this.dms[i] < 4) {
+                            this.lsr.hsmoke(graphics, this.dx[i], this.dy[i], this.dz[i], this.dxz[i], this.dzy[i], this.dms[i]);
+                        }
+                        this.dy[i] -= 15;
+                        ++this.dms[i];
+                        if (this.dms[i] >= 7) {
+                            this.dms[i] = -1;
+                        }
+                    }
+                    ++i;
+                } while (i < 4);
             }
-
-            if(this.ltyp == 4) {
-               if(var2.m.eb == 0) {
-                  var2.m.eb = 1;
-                  var2.m.eg = 1;
-               } else {
-                  var2.m.eb = 0;
-                  var2.m.eg = 0;
-               }
+            if (this.smoke && conto.y > 200 && this.sms[this.ns] == -1) {
+                this.sx[this.ns] = conto.x + (int) (Math.random() * 80.0D - 40.0D);
+                this.sy[this.ns] = conto.y + 15;
+                this.sz[this.ns] = conto.z;
+                this.sxz[this.ns] = conto.xz;
+                this.szy[this.ns] = conto.zy;
+                this.sms[this.ns] = 0;
+                ++this.ns;
+                if (this.ns == 4) {
+                    this.ns = 0;
+                }
+                this.smoke = false;
             }
-         }
-
-         if(this.ester == 1) {
-            var2.wire = true;
-         }
-
-         if(this.ester == 3) {
-            var2.wire = false;
-         }
-
-         ++this.ester;
-         if(this.ester == 45) {
-            this.ester = 0;
-         }
-      }
-
-   }
-
-   public void dosmokes(Graphics var1, ContO var2) {
-      if(!var2.exp) {
-         int var3;
-         if(var2.nhits > var2.maxhits - var2.maxhits / 3) {
-            if(this.dms[this.nd] == -1) {
-               this.dx[this.nd] = var2.x + (int)(Math.random() * 60.0D - 30.0D);
-               this.dy[this.nd] = var2.y;
-               this.dz[this.nd] = var2.z;
-               this.dxz[this.nd] = var2.xz;
-               this.dzy[this.nd] = var2.zy;
-               this.dms[this.nd] = 0;
-               ++this.nd;
-               if(this.nd == 4) {
-                  this.nd = 0;
-               }
-            }
-
-            var3 = 0;
-
+            i = 0;
             do {
-               if(this.dms[var3] != -1) {
-                  if(this.dms[var3] < 4) {
-                     this.lsr.hsmoke(var1, this.dx[var3], this.dy[var3], this.dz[var3], this.dxz[var3], this.dzy[var3], this.dms[var3]);
-                  }
+                if (this.sms[i] != -1) {
+                    if (this.sms[i] < 4) {
+                        this.lsr.gsmoke(graphics, this.sx[i], this.sy[i], this.sz[i], this.sxz[i], this.szy[i], this.sms[i]);
+                    }
+                    this.sy[i] -= 15;
+                    ++this.sms[i];
+                    if (this.sms[i] == 10) {
+                        this.sms[i] = -1;
+                    }
+                }
+                ++i;
+            } while (i < 4);
+        }
+    }
 
-                  this.dy[var3] -= 15;
-                  ++this.dms[var3];
-                  if(this.dms[var3] >= 7) {
-                     this.dms[var3] = -1;
-                  }
-               }
+    public void reset(int i) {
+        this.rspeed = 0;
+        this.speed = 0.0F;
+        this.rlift = 0;
+        this.lift = 0.0D;
+        this.pexp = false;
+        this.ltyp = i;
+        this.njumps = this.dnjm[i];
+        int j = 0;
+        do {
+            this.lstage[j] = 0;
+            ++j;
+        } while (j < 20);
+    }
 
-               ++var3;
-            } while(var3 < 4);
-         }
-
-         if(this.smoke && var2.y > 200 && this.sms[this.ns] == -1) {
-            this.sx[this.ns] = var2.x + (int)(Math.random() * 80.0D - 40.0D);
-            this.sy[this.ns] = var2.y + 15;
-            this.sz[this.ns] = var2.z;
-            this.sxz[this.ns] = var2.xz;
-            this.szy[this.ns] = var2.zy;
-            this.sms[this.ns] = 0;
-            ++this.ns;
-            if(this.ns == 4) {
-               this.ns = 0;
-            }
-
-            this.smoke = false;
-         }
-
-         var3 = 0;
-
-         do {
-            if(this.sms[var3] != -1) {
-               if(this.sms[var3] < 4) {
-                  this.lsr.gsmoke(var1, this.sx[var3], this.sy[var3], this.sz[var3], this.sxz[var3], this.szy[var3], this.sms[var3]);
-               }
-
-               this.sy[var3] -= 15;
-               ++this.sms[var3];
-               if(this.sms[var3] == 10) {
-                  this.sms[var3] = -1;
-               }
-            }
-
-            ++var3;
-         } while(var3 < 4);
-      }
-
-   }
-
-   public void reset(int var1) {
-      this.rspeed = 0;
-      this.speed = 0.0F;
-      this.rlift = 0;
-      this.lift = 0.0D;
-      this.pexp = false;
-      this.ltyp = var1;
-      this.njumps = this.dnjm[var1];
-      int var2 = 0;
-
-      do {
-         this.lstage[var2] = 0;
-         ++var2;
-      } while(var2 < 20);
-
-   }
-
-   public userCraft(Medium var1) {
-      this.lsr = new Lasers(var1);
-      int var2 = 0;
-
-      do {
-         this.sms[var2] = -1;
-         ++var2;
-      } while(var2 < 4);
-
-      var2 = 0;
-
-      do {
-         this.dms[var2] = -1;
-         ++var2;
-      } while(var2 < 4);
-
-   }
-
-   public void lasercolid(ContO var1) {
-      if(!var1.exp && !var1.out) {
-         int var2 = 0;
-
-         do {
-            if(this.lstage[var2] != 0 && this.lhit[var2] == 0) {
-               int var3 = this.getpy(var1.x, var1.y, var1.z, var2);
-               if(var3 < var1.maxR / 10 * (var1.maxR / 10) && var3 > 0) {
-                  if(var1.rcol != 0 && var3 < var1.maxR / (10 * var1.rcol) * (var1.maxR / (10 * var1.rcol)) + this.lsr.rads[this.ltyp] / 10 * (this.lsr.rads[this.ltyp] / 10)) {
-                     this.lhit[var2] = 1;
-                     if(var1.maxhits != -1) {
-                        var1.hit = true;
-                        if(Math.random() > 0.5D) {
-                           var1.nhits += this.lsr.damg[this.ltyp];
-                        } else {
-                           var1.nhits += 2;
-                        }
-                     }
-                  }
-
-                  if(var1.pcol != 0) {
-                     for(int var4 = 0; var4 < var1.npl; ++var4) {
-                        for(int var5 = 0; var5 < var1.p[var4].n; ++var5) {
-                           if(!var1.hit && (this.lx[var2] - (var1.x + var1.p[var4].ox[var5])) * (this.lx[var2] - (var1.x + var1.p[var4].ox[var5])) + (this.ly[var2] - (var1.y + var1.p[var4].oy[var5])) * (this.ly[var2] - (var1.y + var1.p[var4].oy[var5])) + (this.lz[var2] - (var1.z + var1.p[var4].oz[var5])) * (this.lz[var2] - (var1.z + var1.p[var4].oz[var5])) < this.lsr.rads[this.ltyp] * 10 / var1.pcol * (this.lsr.rads[this.ltyp] * 10 / var1.pcol)) {
-                              this.lhit[var2] = 1;
-                              if(var1.maxhits != -1) {
-                                 var1.hit = true;
-                                 if(Math.random() > 0.5D) {
-                                    var1.nhits += this.lsr.damg[this.ltyp];
-                                 } else {
-                                    var1.nhits += 2;
-                                 }
-                              }
-                           }
-                        }
-                     }
-                  }
-               }
-            }
-
+    public userCraft(Medium var1) {
+        this.lsr = new Lasers(var1);
+        int var2 = 0;
+        do {
+            this.sms[var2] = -1;
             ++var2;
-         } while(var2 < 20);
-      }
+        } while (var2 < 4);
+        var2 = 0;
+        do {
+            this.dms[var2] = -1;
+            ++var2;
+        } while (var2 < 4);
+    }
 
-   }
+    public void lasercolid(ContO conto) {
+        if (!conto.exp && !conto.out) {
+            int i = 0;
+            do {
+                if (this.lstage[i] != 0 && this.lhit[i] == 0) {
+                    int j = this.getpy(conto.x, conto.y, conto.z, i);
+                    if (j < conto.maxR / 10 * (conto.maxR / 10) && j > 0) {
+                        if (conto.rcol != 0 && j < conto.maxR / (10 * conto.rcol) * (conto.maxR / (10 * conto.rcol)) + this.lsr.rads[this.ltyp] / 10 * (this.lsr.rads[this.ltyp] / 10)) {
+                            this.lhit[i] = 1;
+                            if (conto.maxhits != -1) {
+                                conto.hit = true;
+                                if (Math.random() > 0.5D) {
+                                    conto.nhits += this.lsr.damg[this.ltyp];
+                                } else {
+                                    conto.nhits += 2;
+                                }
+                            }
+                        }
+                        if (conto.pcol != 0) {
+                            for (int k = 0; k < conto.npl; ++k) {
+                                for (int l = 0; l < conto.p[k].n; ++l) {
+                                    if (!conto.hit && (this.lx[i] - (conto.x + conto.p[k].ox[l])) * (this.lx[i] - (conto.x + conto.p[k].ox[l])) + (this.ly[i] - (conto.y + conto.p[k].oy[l])) * (this.ly[i] - (conto.y + conto.p[k].oy[l])) + (this.lz[i] - (conto.z + conto.p[k].oz[l])) * (this.lz[i] - (conto.z + conto.p[k].oz[l])) < this.lsr.rads[this.ltyp] * 10 / conto.pcol * (this.lsr.rads[this.ltyp] * 10 / conto.pcol)) {
+                                        this.lhit[i] = 1;
+                                        if (conto.maxhits != -1) {
+                                            conto.hit = true;
+                                            if (Math.random() > 0.5D) {
+                                                conto.nhits += this.lsr.damg[this.ltyp];
+                                            } else {
+                                                conto.nhits += 2;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ++i;
+            } while (i < 20);
+        }
+    }
 
-   public int getpy(int var1, int var2, int var3, int var4) {
-      return (var1 - this.lx[var4]) / 10 * ((var1 - this.lx[var4]) / 10) + (var2 - this.ly[var4]) / 10 * ((var2 - this.ly[var4]) / 10) + (var3 - this.lz[var4]) / 10 * ((var3 - this.lz[var4]) / 10);
-   }
+    public int getpy(int i, int j, int k, int l) {
+        return (i - this.lx[l]) / 10 * ((i - this.lx[l]) / 10) + (j - this.ly[l]) / 10 * ((j - this.ly[l]) / 10) + (k - this.lz[l]) / 10 * ((k - this.lz[l]) / 10);
+    }
 
-   public void dl(Graphics var1) {
-      int var2 = 0;
-
-      do {
-         if(this.lstage[var2] != 0) {
-            this.lsr.d(var1, this.ltyp, this.lx[var2], this.ly[var2], this.lz[var2], this.lxz[var2], this.lzy[var2], this.lxy[var2], this.lhit[var2]);
-            if(this.lhit[var2] != 0) {
-               ++this.lhit[var2];
-               if(this.lhit[var2] > 2) {
-                  this.lstage[var2] = 0;
-               }
+    public void dl(Graphics graphics) {
+        int i = 0;
+        do {
+            if (this.lstage[i] != 0) {
+                this.lsr.d(graphics, this.ltyp, this.lx[i], this.ly[i], this.lz[i], this.lxz[i], this.lzy[i], this.lxy[i], this.lhit[i]);
+                if (this.lhit[i] != 0) {
+                    ++this.lhit[i];
+                    if (this.lhit[i] > 2) {
+                        this.lstage[i] = 0;
+                    }
+                }
             }
-         }
-
-         ++var2;
-      } while(var2 < 20);
-
-   }
+            ++i;
+        } while (i < 20);
+    }
 }

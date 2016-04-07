@@ -20,7 +20,10 @@ public class F51 extends Applet implements Runnable {
 	Thread gamer;
 	boolean mon = true;
 	String moner = "Click here to Start";
-	String[] obj = new String[53];
+	/**
+	 * names of the .rad's are loaded into this String array in loadbase()
+	 */
+	String[] modelNames = new String[53];
 	String sndfrm = "default";
 	boolean nounif = false;
 	Control u = new Control();
@@ -562,7 +565,7 @@ public class F51 extends Applet implements Runnable {
 				}
 
 				var1[var8] = new ContO(var13, var2, 0, 0, 0);
-				obj[var8] = var6.getName();
+				modelNames[var8] = var6.getName();
 				++var8;
 			}
 
@@ -890,7 +893,7 @@ public class F51 extends Applet implements Runnable {
 					int var14 = 0;
 
 					do {
-						if (obj[var14].equals(var10 + ".rad")) {
+						if (modelNames[var14].equals(var10 + ".rad")) {
 							var1[maxco] = new ContO(var3, var2[var14], var11, var12, var13);
 							++maxco;
 						}

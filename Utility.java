@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 public class Utility {
 	
 	private static long startTime;
+    private static String timerMsg;
 	    
     /**
      * Gets a value from a string in format:
@@ -199,16 +200,17 @@ public class Utility {
         };
     }
     
-    public static void startTimer(){
-    	System.out.println("Timer started!");    	
-    	startTime = System.nanoTime();	
+    public static void startTimer(String message) {
+    	System.out.println(message + " started!");  
+    	timerMsg = message;
+    	startTime = System.currentTimeMillis();	
     }
     
-    public static void stopTimer(){
-    	long endTime = System.nanoTime();
-    	long finalTime = (endTime - startTime) / 1000000;
+    public static void stopTimer() {
+    	long endTime = System.currentTimeMillis();
+    	long finalTime = (endTime - startTime);
     	startTime = 0;
     	
-    	System.out.println("Timer ended at " + finalTime + " ms");    	
+    	System.out.println(timerMsg + " ended at " + finalTime + " ms");    	
     }
 }

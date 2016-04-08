@@ -755,7 +755,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 
     public void runGame() {
     	
-    	Utility.startTimer();
+    	Utility.startTimer("Game loading");
         
         // JIT/hotspot warmup:
         // this compiles the method into native code
@@ -1253,7 +1253,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                 xtgraphics.select = 1;
             }*/
         } catch (FileNotFoundException e) {
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             failedLoad = true;

@@ -43,6 +43,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     private static final String modelsDir = "data/models.radq";
 
     private static final String imagesDir = "data/images.radq";
+    
+    private static final String saveDir = "data/";
 
     private Graphics2D rd;
 
@@ -382,7 +384,12 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
      */
     public void savegame(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
-            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("savedata/game.dat"))));
+        	
+        	File cookieDat = new File(saveDir + "game.dat");
+        	if (!cookieDat.exists()) {
+        		cookieDat.createNewFile();
+			}
+            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(cookieDat)));
             fout.println("radxv(" + xtgraphics.level + ")");
             
             //fout.println("radnhits(" + xtgraphics.level + ")");
@@ -532,7 +539,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
      */
     public void set0() {
         try {
-            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("savedata/game.dat"))));
+            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(saveDir + "game.dat"))));
             fout.println("radxv(0)");
             fout.close();
             
@@ -1232,28 +1239,23 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
      */
     public void getslevel(xtGraphics xtgraphics) {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
-            String radxv = reader.readLine();
-            if (radxv != null && Utility.getint("radxv", radxv, 0) == 0) {
-                xtgraphics.sgame = 0;
-            } else {
-                xtgraphics.sgame = 1;
-                xtgraphics.select = 1;
-            }
-            
-            reader.close();
-            
-            /*JSObject jsobject = JSObject.getWindow(this);
-            jsobject.eval("s=GetCookie(\'radxv\')");
-            String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
-            if (string.equals("0")) {
-                xtgraphics.sgame = 0;
-            } else {
-                xtgraphics.sgame = 1;
-                xtgraphics.select = 1;
-            }*/
+        	File cookieDat = new File(saveDir + "game.dat");
+        	if(cookieDat.exists()){
+        		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(cookieDat)));
+                String radxv = reader.readLine();
+                if (radxv != null && Utility.getint("radxv", radxv, 0) == 0) {
+                    xtgraphics.sgame = 0;
+                } else {
+                    xtgraphics.sgame = 1;
+                    xtgraphics.select = 1;
+                }
+                reader.close();
+                System.out.println(cookieDat + " loaded!");
+        	}else{
+        		System.out.println(cookieDat + " does not exist yet!");
+        	}
         } catch (FileNotFoundException e) {
-
+        	e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
             failedLoad = true;
@@ -1269,7 +1271,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
      */
     public void loadsaved(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(saveDir + "game.dat"))));
             
             String line = reader.readLine();
             if (line != null)

@@ -17,85 +17,85 @@ public class Lasers {
         if (j < 10) {
             j = 10;
         }
-        return (j - this.m.focus_point) * (this.m.cy - i) / j + i;
+        return (j - m.focus_point) * (m.cy - i) / j + i;
     }
 
     public Lasers(Medium var1) {
-        this.m = var1;
-        this.speed[0] = 200;
-        this.rads[0] = 200;
-        this.srate[0] = 8;
-        this.damg[0] = 3;
-        this.speed[1] = 150;
-        this.rads[1] = 200;
-        this.srate[1] = 8;
-        this.damg[1] = 2;
-        this.speed[2] = 120;
-        this.rads[2] = 300;
-        this.srate[2] = 10;
-        this.damg[2] = 2;
-        this.speed[3] = 120;
-        this.rads[3] = 300;
-        this.srate[3] = 10;
-        this.damg[3] = 3;
-        this.speed[4] = 100;
-        this.rads[4] = 200;
-        this.srate[4] = 8;
-        this.damg[4] = 2;
-        this.speed[5] = 100;
-        this.rads[5] = 150;
-        this.srate[5] = 6;
-        this.damg[5] = 1;
-        this.speed[6] = 140;
-        this.rads[6] = 160;
-        this.srate[6] = 8;
-        this.damg[6] = 1;
-        this.speed[7] = 100;
-        this.rads[7] = 160;
-        this.srate[7] = 6;
-        this.damg[7] = 2;
-        this.speed[8] = 150;
-        this.rads[8] = 160;
-        this.srate[8] = 10;
-        this.damg[8] = 2;
-        this.speed[9] = 120;
-        this.rads[9] = 200;
-        this.srate[9] = 10;
-        this.damg[9] = 2;
-        this.speed[10] = 150;
-        this.rads[10] = 200;
-        this.srate[10] = 10;
-        this.damg[10] = 3;
-        this.speed[11] = 150;
-        this.rads[11] = 300;
-        this.srate[11] = 10;
-        this.damg[11] = 7;
+        m = var1;
+        speed[0] = 200;
+        rads[0] = 200;
+        srate[0] = 8;
+        damg[0] = 3;
+        speed[1] = 150;
+        rads[1] = 200;
+        srate[1] = 8;
+        damg[1] = 2;
+        speed[2] = 120;
+        rads[2] = 300;
+        srate[2] = 10;
+        damg[2] = 2;
+        speed[3] = 120;
+        rads[3] = 300;
+        srate[3] = 10;
+        damg[3] = 3;
+        speed[4] = 100;
+        rads[4] = 200;
+        srate[4] = 8;
+        damg[4] = 2;
+        speed[5] = 100;
+        rads[5] = 150;
+        srate[5] = 6;
+        damg[5] = 1;
+        speed[6] = 140;
+        rads[6] = 160;
+        srate[6] = 8;
+        damg[6] = 1;
+        speed[7] = 100;
+        rads[7] = 160;
+        srate[7] = 6;
+        damg[7] = 2;
+        speed[8] = 150;
+        rads[8] = 160;
+        srate[8] = 10;
+        damg[8] = 2;
+        speed[9] = 120;
+        rads[9] = 200;
+        srate[9] = 10;
+        damg[9] = 2;
+        speed[10] = 150;
+        rads[10] = 200;
+        srate[10] = 10;
+        damg[10] = 3;
+        speed[11] = 150;
+        rads[11] = 300;
+        srate[11] = 10;
+        damg[11] = 7;
     }
 
     public void dt(Graphics graphics, int[] ints, int[] ints2, int[] ints3, int i, int j, int k, int l, int i1, int j1, int k1, int l2, int i2, int j2, int k2) {
         for (int l3 = 0; l3 < k1; ++l3) {
             if (l2 == 0) {
-                ints[l3] += i - this.m.x;
-                ints2[l3] += j - this.m.y;
-                ints3[l3] += k - this.m.z;
+                ints[l3] += i - m.x;
+                ints2[l3] += j - m.y;
+                ints3[l3] += k - m.z;
             } else {
-                ints[l3] = (int) ((double) ints[l3] + (double) (i - this.m.x) + (Math.random() * 50.0D - 25.0D));
-                ints2[l3] = (int) ((double) ints2[l3] + (double) (j - this.m.y) + (Math.random() * 50.0D - 25.0D));
-                ints3[l3] = (int) ((double) ints3[l3] + (double) (k - this.m.z) + (Math.random() * 50.0D - 25.0D));
+                ints[l3] = (int) ((double) ints[l3] + (double) (i - m.x) + (Math.random() * 50.0D - 25.0D));
+                ints2[l3] = (int) ((double) ints2[l3] + (double) (j - m.y) + (Math.random() * 50.0D - 25.0D));
+                ints3[l3] = (int) ((double) ints3[l3] + (double) (k - m.z) + (Math.random() * 50.0D - 25.0D));
             }
         }
-        this.rot(ints, ints2, i - this.m.x, j - this.m.y, j1, k1);
-        this.rot(ints2, ints3, j - this.m.y, k - this.m.z, i1, k1);
-        this.rot(ints, ints3, i - this.m.x, k - this.m.z, l, k1);
-        this.rot(ints, ints3, this.m.cx, this.m.cz, this.m.xz, k1);
-        this.rot(ints2, ints3, this.m.cy, this.m.cz, this.m.zy, k1);
+        rot(ints, ints2, i - m.x, j - m.y, j1, k1);
+        rot(ints2, ints3, j - m.y, k - m.z, i1, k1);
+        rot(ints, ints3, i - m.x, k - m.z, l, k1);
+        rot(ints, ints3, m.cx, m.cz, m.xz, k1);
+        rot(ints2, ints3, m.cy, m.cz, m.zy, k1);
         int[] ints4 = new int[k1];
         int[] ints5 = new int[k1];
         boolean flag = false;
         for (int i3 = 0; i3 < k1; ++i3) {
-            ints4[i3] = this.xs(ints[i3], ints3[i3]);
-            ints5[i3] = this.ys(ints2[i3], ints3[i3]);
-            if (ints5[i3] > 0 && ints5[i3] < this.m.h && ints4[i3] > 0 && ints4[i3] < this.m.w && ints3[i3] > 10) {
+            ints4[i3] = xs(ints[i3], ints3[i3]);
+            ints5[i3] = ys(ints2[i3], ints3[i3]);
+            if (ints5[i3] > 0 && ints5[i3] < m.h && ints4[i3] > 0 && ints4[i3] < m.w && ints3[i3] > 10) {
                 flag = true;
             }
         }
@@ -135,7 +135,7 @@ public class Lasers {
             ints[3] = 3;
             ints2[3] = 3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 200, 255, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 200, 255, 240);
             b = 4;
             ints[0] = 0;
             ints2[0] = -3;
@@ -149,7 +149,7 @@ public class Lasers {
             ints[3] = 0;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 200, 255, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 200, 255, 240);
             b = 4;
             ints[0] = -3;
             ints2[0] = -3;
@@ -163,7 +163,7 @@ public class Lasers {
             ints[3] = 3;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 200, 255, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 200, 255, 240);
         }
         if (i == 1) {
             b = 4;
@@ -179,7 +179,7 @@ public class Lasers {
             ints[3] = 30;
             ints2[3] = 0;
             ints3[3] = 30;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 149, 255, 205);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 149, 255, 205);
             b = 3;
             ints[0] = 0;
             ints2[0] = 0;
@@ -190,7 +190,7 @@ public class Lasers {
             ints[2] = 0;
             ints2[2] = 0;
             ints3[2] = -10;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 149, 255, 205);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 149, 255, 205);
             b = 4;
             ints[0] = -20;
             ints2[0] = 0;
@@ -204,7 +204,7 @@ public class Lasers {
             ints[3] = 20;
             ints2[3] = 0;
             ints3[3] = -10;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 0, 232, 215);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 0, 232, 215);
         }
         if (i == 2) {
             b = 4;
@@ -220,7 +220,7 @@ public class Lasers {
             ints[3] = -87 + (int) (Math.random() * 10.0D);
             ints2[3] = 2 + (int) (Math.random() * 20.0D - 10.0D);
             ints3[3] = -100 + (int) (Math.random() * 50.0D - 25.0D);
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 193, 224, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 193, 224, 255);
             b = 4;
             ints[0] = -90;
             ints2[0] = -2;
@@ -234,7 +234,7 @@ public class Lasers {
             ints[3] = -90;
             ints2[3] = -2;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
             b = 3;
             ints[0] = -90;
             ints2[0] = -2;
@@ -245,7 +245,7 @@ public class Lasers {
             ints[2] = -87;
             ints2[2] = 2;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
             b = 4;
             ints[0] = 87 - (int) (Math.random() * 10.0D);
             ints2[0] = 2 + (int) (Math.random() * 20.0D - 10.0D);
@@ -259,7 +259,7 @@ public class Lasers {
             ints[3] = 87 - (int) (Math.random() * 10.0D);
             ints2[3] = 2 + (int) (Math.random() * 20.0D - 10.0D);
             ints3[3] = -100 + (int) (Math.random() * 50.0D - 25.0D);
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 193, 224, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 193, 224, 255);
             b = 4;
             ints[0] = 90;
             ints2[0] = -2;
@@ -273,7 +273,7 @@ public class Lasers {
             ints[3] = 90;
             ints2[3] = -2;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
             b = 3;
             ints[0] = 90;
             ints2[0] = -2;
@@ -284,7 +284,7 @@ public class Lasers {
             ints[2] = 87;
             ints2[2] = 2;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 240);
         }
         if (i == 3) {
             int i2 = (int) (Math.random() * 100.0D);
@@ -301,7 +301,7 @@ public class Lasers {
             ints[3] = 80 + i2;
             ints2[3] = 0;
             ints3[3] = -30;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 200, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 200, 255);
             b = 3;
             ints[0] = 60;
             ints2[0] = 0;
@@ -312,7 +312,7 @@ public class Lasers {
             ints[2] = 60;
             ints2[2] = 0;
             ints3[2] = -60;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
             b = 4;
             ints[0] = 40;
             ints2[0] = 0;
@@ -326,7 +326,7 @@ public class Lasers {
             ints[3] = 80;
             ints2[3] = 0;
             ints3[3] = -75;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
             i2 = (int) (Math.random() * 100.0D);
             b = 4;
             ints[0] = -80;
@@ -341,7 +341,7 @@ public class Lasers {
             ints[3] = -80 - i2;
             ints2[3] = 0;
             ints3[3] = -30;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 200, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 200, 255);
             b = 3;
             ints[0] = -60;
             ints2[0] = 0;
@@ -352,7 +352,7 @@ public class Lasers {
             ints[2] = -60;
             ints2[2] = 0;
             ints3[2] = -60;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
             b = 4;
             ints[0] = -40;
             ints2[0] = 0;
@@ -366,7 +366,7 @@ public class Lasers {
             ints[3] = -80;
             ints2[3] = 0;
             ints3[3] = -75;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 221, 255);
         }
         if (i == 4) {
             b = 4;
@@ -382,7 +382,7 @@ public class Lasers {
             ints[3] = 3;
             ints2[3] = 3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 255, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 255, 255, 177);
             b = 4;
             ints[0] = 0;
             ints2[0] = -3;
@@ -396,7 +396,7 @@ public class Lasers {
             ints[3] = 0;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 255, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 255, 255, 177);
             b = 4;
             ints[0] = -3;
             ints2[0] = -3;
@@ -410,7 +410,7 @@ public class Lasers {
             ints[3] = 3;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 255, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, 0, b, l2, 255, 255, 177);
         }
         if (i == 5) {
             b = 4;
@@ -426,7 +426,7 @@ public class Lasers {
             ints[3] = 11;
             ints2[3] = 3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
             b = 4;
             ints[0] = 8;
             ints2[0] = -3;
@@ -440,7 +440,7 @@ public class Lasers {
             ints[3] = 8;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
             b = 3;
             ints[0] = 8;
             ints2[0] = -3;
@@ -451,7 +451,7 @@ public class Lasers {
             ints[2] = 11;
             ints2[2] = 3;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
             b = 4;
             ints[0] = -11;
             ints2[0] = 3;
@@ -465,7 +465,7 @@ public class Lasers {
             ints[3] = -11;
             ints2[3] = 3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
             b = 4;
             ints[0] = -8;
             ints2[0] = -3;
@@ -479,7 +479,7 @@ public class Lasers {
             ints[3] = -8;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
             b = 3;
             ints[0] = -8;
             ints2[0] = -3;
@@ -490,7 +490,7 @@ public class Lasers {
             ints[2] = -11;
             ints2[2] = 3;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
         }
         if (i == 6) {
             b = 4;
@@ -506,7 +506,7 @@ public class Lasers {
             ints[3] = 103;
             ints2[3] = 3;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
             b = 4;
             ints[0] = 100;
             ints2[0] = -3;
@@ -520,7 +520,7 @@ public class Lasers {
             ints[3] = 100;
             ints2[3] = -3;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
             b = 3;
             ints[0] = 100;
             ints2[0] = -3;
@@ -531,7 +531,7 @@ public class Lasers {
             ints[2] = 103;
             ints2[2] = 3;
             ints3[2] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
             b = 4;
             ints[0] = -103;
             ints2[0] = 3;
@@ -545,7 +545,7 @@ public class Lasers {
             ints[3] = -103;
             ints2[3] = 3;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
             b = 4;
             ints[0] = -100;
             ints2[0] = -3;
@@ -559,7 +559,7 @@ public class Lasers {
             ints[3] = -100;
             ints2[3] = -3;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
             b = 3;
             ints[0] = -100;
             ints2[0] = -3;
@@ -570,7 +570,7 @@ public class Lasers {
             ints[2] = -103;
             ints2[2] = 3;
             ints3[2] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 177, 255, 177);
         }
         if (i == 7) {
             b = 4;
@@ -586,7 +586,7 @@ public class Lasers {
             ints[3] = 10;
             ints2[3] = 0;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 255, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 255, 255);
             b = 3;
             ints[0] = 0;
             ints2[0] = -10;
@@ -597,7 +597,7 @@ public class Lasers {
             ints[2] = 0;
             ints2[2] = 0;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 175, 240, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 175, 240, 255);
             b = 3;
             ints[0] = 0;
             ints2[0] = -10;
@@ -608,7 +608,7 @@ public class Lasers {
             ints[2] = 10;
             ints2[2] = 0;
             ints3[2] = -50;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 175, 240, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 175, 240, 255);
         }
         if (i == 8) {
             b = 4;
@@ -624,7 +624,7 @@ public class Lasers {
             ints[3] = 10;
             ints2[3] = 0;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 255, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 255, 255);
             b = 3;
             ints[0] = 0;
             ints2[0] = -10;
@@ -635,7 +635,7 @@ public class Lasers {
             ints[2] = 0;
             ints2[2] = 0;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 200);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 200);
             b = 3;
             ints[0] = 0;
             ints2[0] = -10;
@@ -646,7 +646,7 @@ public class Lasers {
             ints[2] = 10;
             ints2[2] = 0;
             ints3[2] = 0;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 200);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 200);
         }
         if (i == 9) {
             b = 4;
@@ -662,7 +662,7 @@ public class Lasers {
             ints[3] = 69;
             ints2[3] = 3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
             b = 4;
             ints[0] = 66;
             ints2[0] = -3;
@@ -676,7 +676,7 @@ public class Lasers {
             ints[3] = 66;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
             b = 3;
             ints[0] = 66;
             ints2[0] = -3;
@@ -687,7 +687,7 @@ public class Lasers {
             ints[2] = 69 + (int) (Math.random() * 30.0D);
             ints2[2] = 3;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
             b = 4;
             ints[0] = -69;
             ints2[0] = 3;
@@ -701,7 +701,7 @@ public class Lasers {
             ints[3] = -69;
             ints2[3] = 3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
             b = 4;
             ints[0] = -66;
             ints2[0] = -3;
@@ -715,7 +715,7 @@ public class Lasers {
             ints[3] = -66;
             ints2[3] = -3;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 240, 255);
             b = 3;
             ints[0] = -66;
             ints2[0] = -3;
@@ -726,7 +726,7 @@ public class Lasers {
             ints[2] = -69 - (int) (Math.random() * 30.0D);
             ints2[2] = 3;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 255, 240, 177);
         }
         if (i == 10) {
             b = 4;
@@ -742,7 +742,7 @@ public class Lasers {
             ints[3] = -8;
             ints2[3] = 0;
             ints3[3] = 14;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 255);
             b = 4;
             ints[0] = -8;
             ints2[0] = 0;
@@ -756,7 +756,7 @@ public class Lasers {
             ints[3] = -8;
             ints2[3] = 0;
             ints3[3] = -33;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 230, 230, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 230, 230, 255);
             b = 4;
             ints[0] = 8;
             ints2[0] = 0;
@@ -770,7 +770,7 @@ public class Lasers {
             ints[3] = 8;
             ints2[3] = 0;
             ints3[3] = 14;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 200, 255);
             b = 4;
             ints[0] = 8;
             ints2[0] = 0;
@@ -784,7 +784,7 @@ public class Lasers {
             ints[3] = 8;
             ints2[3] = 0;
             ints3[3] = -33;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 230, 230, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 230, 230, 255);
         }
         if (i == 11) {
             b = 4;
@@ -800,7 +800,7 @@ public class Lasers {
             ints[3] = -87 + (int) (Math.random() * 10.0D);
             ints2[3] = 2 + (int) (Math.random() * 20.0D - 10.0D);
             ints3[3] = -100 + (int) (Math.random() * 50.0D - 25.0D);
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 190, 190, 190);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 190, 190, 190);
             b = 4;
             ints[0] = -90;
             ints2[0] = -2;
@@ -814,7 +814,7 @@ public class Lasers {
             ints[3] = -90;
             ints2[3] = -2;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
             b = 3;
             ints[0] = -90;
             ints2[0] = -2;
@@ -825,7 +825,7 @@ public class Lasers {
             ints[2] = -87;
             ints2[2] = 2;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
             b = 4;
             ints[0] = 87 - (int) (Math.random() * 10.0D);
             ints2[0] = 2 + (int) (Math.random() * 20.0D - 10.0D);
@@ -839,7 +839,7 @@ public class Lasers {
             ints[3] = 87 - (int) (Math.random() * 10.0D);
             ints2[3] = 2 + (int) (Math.random() * 20.0D - 10.0D);
             ints3[3] = -100 + (int) (Math.random() * 50.0D - 25.0D);
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 190, 190, 190);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 190, 190, 190);
             b = 4;
             ints[0] = 90;
             ints2[0] = -2;
@@ -853,7 +853,7 @@ public class Lasers {
             ints[3] = 90;
             ints2[3] = -2;
             ints3[3] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
             b = 3;
             ints[0] = 90;
             ints2[0] = -2;
@@ -864,7 +864,7 @@ public class Lasers {
             ints[2] = 87;
             ints2[2] = 2;
             ints3[2] = -100;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 200, 230, 255);
             b = 4;
             ints[0] = 143;
             ints2[0] = 20;
@@ -878,7 +878,7 @@ public class Lasers {
             ints[3] = 143;
             ints2[3] = 20;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
             b = 4;
             ints[0] = 140;
             ints2[0] = 17;
@@ -892,7 +892,7 @@ public class Lasers {
             ints[3] = 140;
             ints2[3] = 17;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
             b = 3;
             ints[0] = 140;
             ints2[0] = 17;
@@ -903,7 +903,7 @@ public class Lasers {
             ints[2] = 143;
             ints2[2] = 20;
             ints3[2] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
             b = 4;
             ints[0] = -143;
             ints2[0] = 20;
@@ -917,7 +917,7 @@ public class Lasers {
             ints[3] = -143;
             ints2[3] = 20;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
             b = 4;
             ints[0] = -140;
             ints2[0] = 17;
@@ -931,7 +931,7 @@ public class Lasers {
             ints[3] = -140;
             ints2[3] = 17;
             ints3[3] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
             b = 3;
             ints[0] = -140;
             ints2[0] = 17;
@@ -942,7 +942,7 @@ public class Lasers {
             ints[2] = -143;
             ints2[2] = 20;
             ints3[2] = -200;
-            this.dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
+            dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
         }
     }
 
@@ -988,14 +988,14 @@ public class Lasers {
         if (j1 > 3) {
             j1 = 3;
         }
-        this.dt(graphics, ints, ints2, ints3, i, j, k, l, i1, 0, 8, 0, 249 - j1 * 25, 251 - j1 * 25, 240 - j1 * 25);
+        dt(graphics, ints, ints2, ints3, i, j, k, l, i1, 0, 8, 0, 249 - j1 * 25, 251 - j1 * 25, 240 - j1 * 25);
     }
 
     public int xs(int i, int j) {
         if (j < 10) {
             j = 10;
         }
-        return (j - this.m.focus_point) * (this.m.cx - i) / j + i;
+        return (j - m.focus_point) * (m.cx - i) / j + i;
     }
 
     public void hsmoke(Graphics graphics, int i, int j, int k, int l, int i1, int j1) {
@@ -1029,6 +1029,6 @@ public class Lasers {
         if (j1 > 3) {
             j1 = 3;
         }
-        this.dt(graphics, ints, ints2, ints3, i, j, k, l, i1, 0, 8, 0, 89 + j1 * 20, 91 + j1 * 20, 80 + j1 * 20);
+        dt(graphics, ints, ints2, ints3, i, j, k, l, i1, 0, 8, 0, 89 + j1 * 20, 91 + j1 * 20, 80 + j1 * 20);
     }
 }

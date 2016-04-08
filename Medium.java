@@ -57,7 +57,7 @@ public class Medium {
         if (j < 10) {
             j = 10;
         }
-        return (j - this.focus_point) * (this.cy - i) / j + i;
+        return (j - focus_point) * (cy - i) / j + i;
     }
 
     public void infront(ContO conto) {
@@ -70,138 +70,138 @@ public class Medium {
             i += 360;
         }
         if (i > 90 && i < 270) {
-            this.tart += (180 - this.tart) / 3;
-            this.yart += (100 - this.yart) / 3;
+            tart += (180 - tart) / 3;
+            yart += (100 - yart) / 3;
         } else {
-            this.tart -= this.tart / 3;
-            this.yart += (-100 - this.yart) / 3;
+            tart -= tart / 3;
+            yart += (-100 - yart) / 3;
         }
-        j += this.tart;
+        j += tart;
         if (i > 90) {
             i = 180 - i;
         }
         if (i < -90) {
             i = -180 - i;
         }
-        int k = conto.y + (int) ((float) (conto.y + this.yart - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z + 800 - conto.z) * SinCos.getsin(conto.zy));
-        int l = conto.z + (int) ((float) (conto.y + this.yart - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z + 800 - conto.z) * SinCos.getcos(conto.zy));
+        int k = conto.y + (int) ((float) (conto.y + yart - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z + 800 - conto.z) * SinCos.getsin(conto.zy));
+        int l = conto.z + (int) ((float) (conto.y + yart - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z + 800 - conto.z) * SinCos.getcos(conto.zy));
         int i1 = conto.x + (int) ((float) (-(l - conto.z)) * SinCos.getsin(conto.xz));
         int j1 = conto.z + (int) ((float) (l - conto.z) * SinCos.getcos(conto.xz));
-        this.zy = i;
-        this.xz = -(j + 180);
-        this.x += (i1 - this.cx - this.x) / 3;
-        this.z = (int) ((double) this.z + (double) (j1 - this.cz - this.z) / 1.5D);
-        this.y = (int) ((double) this.y + (double) (k - this.cy - this.y) / 1.5D);
+        zy = i;
+        xz = -(j + 180);
+        x += (i1 - cx - x) / 3;
+        z = (int) ((double) z + (double) (j1 - cz - z) / 1.5D);
+        y = (int) ((double) y + (double) (k - cy - y) / 1.5D);
     }
 
     public void d(Graphics graphics) {
-        if (this.zy > 90) {
-            this.zy = 90;
+        if (zy > 90) {
+            zy = 90;
         }
-        if (this.zy < -90) {
-            this.zy = -90;
+        if (zy < -90) {
+            zy = -90;
         }
-        if (this.y > 0) {
-            this.y = 0;
+        if (y > 0) {
+            y = 0;
         }
-        this.ground = 250 - this.y;
+        ground = 250 - y;
         int i = 70000;
         int j = 250;
-        if (this.zy != 0) {
-            j = this.cy + (int) ((float) (250 - this.cy) * SinCos.getcos(this.zy) - (float) (70000 - this.cz) * SinCos.getsin(this.zy));
-            i = this.cz + (int) ((float) (250 - this.cy) * SinCos.getsin(this.zy) + (float) (70000 - this.cz) * SinCos.getcos(this.zy));
+        if (zy != 0) {
+            j = cy + (int) ((float) (250 - cy) * SinCos.getcos(zy) - (float) (70000 - cz) * SinCos.getsin(zy));
+            i = cz + (int) ((float) (250 - cy) * SinCos.getsin(zy) + (float) (70000 - cz) * SinCos.getcos(zy));
         }
         int[] ints = new int[4];
         int[] ints2 = new int[4];
         ints[0] = 0;
         ints2[0] = 0;
-        ints[1] = this.w;
+        ints[1] = w;
         ints2[1] = 0;
-        ints[2] = this.w;
-        ints2[2] = this.ys(j, i);
-        if (ints2[2] > this.h) {
-            ints2[2] = this.h;
+        ints[2] = w;
+        ints2[2] = ys(j, i);
+        if (ints2[2] > h) {
+            ints2[2] = h;
         }
         ints[3] = 0;
         ints2[3] = ints2[2];
         if (ints2[2] > 0) {
-            if (this.jumping != 0) {
-                if (this.jumping == 3) {
-                    ints2[2] = this.h;
-                    ints2[3] = this.h;
+            if (jumping != 0) {
+                if (jumping == 3) {
+                    ints2[2] = h;
+                    ints2[3] = h;
                     graphics.setColor(new Color(240, 240, 240));
                     graphics.fillPolygon(ints, ints2, 4);
                 }
             } else {
-                if (!this.isun) {
-                    graphics.setColor(new Color(159 + 52 * this.er, 180 + 56 * this.eg, 189 + 58 * this.eb));
+                if (!isun) {
+                    graphics.setColor(new Color(159 + 52 * er, 180 + 56 * eg, 189 + 58 * eb));
                 } else {
-                    graphics.setColor(new Color(159 + 52 * this.er, 176 + 56 * this.eg, 191 + 58 * this.eb));
+                    graphics.setColor(new Color(159 + 52 * er, 176 + 56 * eg, 191 + 58 * eb));
                 }
                 graphics.fillPolygon(ints, ints2, 4);
             }
         }
         ints[0] = -1;
-        ints2[0] = this.ys(j, i);
+        ints2[0] = ys(j, i);
         if (ints2[0] < 0) {
             ints2[0] = -1;
         }
         ints[1] = -1;
-        ints2[1] = this.h;
-        ints[2] = this.w;
-        ints2[2] = this.h;
-        ints[3] = this.w;
+        ints2[1] = h;
+        ints[2] = w;
+        ints2[2] = h;
+        ints[3] = w;
         ints2[3] = ints2[0];
-        if (ints2[0] < this.h && this.jumping == 0) {
-            if (!this.isun) {
-                graphics.setColor(new Color(177 + 55 * this.er, 154 + 50 * this.eg, 120 + 44 * this.eb));
+        if (ints2[0] < h && jumping == 0) {
+            if (!isun) {
+                graphics.setColor(new Color(177 + 55 * er, 154 + 50 * eg, 120 + 44 * eb));
             } else {
-                graphics.setColor(new Color(175 + 55 * this.er, 151 + 50 * this.eg, 112 + 44 * this.eb));
+                graphics.setColor(new Color(175 + 55 * er, 151 + 50 * eg, 112 + 44 * eb));
             }
             graphics.fillPolygon(ints, ints2, 4);
             ints[1] = -1;
             ints2[1] = ints2[0];
             ints[0] = -1;
             ints2[0] -= 3;
-            ints[2] = this.w;
+            ints[2] = w;
             ints2[2] = ints2[1];
-            ints[3] = this.w;
+            ints[3] = w;
             ints2[3] = ints2[0];
-            if (!this.isun) {
-                graphics.setColor(new Color(169 + 55 * this.er, 171 + 50 * this.eg, 160 + 44 * this.eb));
+            if (!isun) {
+                graphics.setColor(new Color(169 + 55 * er, 171 + 50 * eg, 160 + 44 * eb));
             } else {
-                graphics.setColor(new Color(167 + 55 * this.er, 164 + 50 * this.eg, 151 + 44 * this.eb));
+                graphics.setColor(new Color(167 + 55 * er, 164 + 50 * eg, 151 + 44 * eb));
             }
             graphics.fillPolygon(ints, ints2, 4);
         }
-        if (this.jumping != 0) {
-            this.jumping += -1;
+        if (jumping != 0) {
+            jumping += -1;
         }
     }
 
     public void watch(ContO conto) {
-        if (!this.td) {
-            this.y = conto.y + (int) ((float) (conto.y - 300 - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z + 3000 - conto.z) * SinCos.getsin(conto.zy));
+        if (!td) {
+            y = conto.y + (int) ((float) (conto.y - 300 - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z + 3000 - conto.z) * SinCos.getsin(conto.zy));
             int i = conto.z + (int) ((float) (conto.y - 300 - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z + 3000 - conto.z) * SinCos.getcos(conto.zy));
-            this.x = conto.x + (int) ((float) (conto.x + 400 - conto.x) * SinCos.getcos(conto.xz) - (float) (i - conto.z) * SinCos.getsin(conto.xz));
-            this.z = conto.z + (int) ((float) (conto.x + 400 - conto.x) * SinCos.getsin(conto.xz) + (float) (i - conto.z) * SinCos.getcos(conto.xz));
-            this.td = true;
+            x = conto.x + (int) ((float) (conto.x + 400 - conto.x) * SinCos.getcos(conto.xz) - (float) (i - conto.z) * SinCos.getsin(conto.xz));
+            z = conto.z + (int) ((float) (conto.x + 400 - conto.x) * SinCos.getsin(conto.xz) + (float) (i - conto.z) * SinCos.getcos(conto.xz));
+            td = true;
         }
         short s = 0;
-        if (conto.x - this.x - this.cx > 0) {
+        if (conto.x - x - cx > 0) {
             s = 180;
         }
-        int j = -((int) ((double) (90 + s) + Math.atan((double) (conto.z - this.z) / (double) (conto.x - this.x - this.cx)) / 0.017453292519943295D));
+        int j = -((int) ((double) (90 + s) + Math.atan((double) (conto.z - z) / (double) (conto.x - x - cx)) / 0.017453292519943295D));
         short s2 = 0;
-        if (conto.y - this.y - this.cy < 0) {
+        if (conto.y - y - cy < 0) {
             s2 = -180;
         }
-        int k = (int) Math.sqrt((double) ((conto.z - this.z) * (conto.z - this.z) + (conto.x - this.x - this.cx) * (conto.x - this.x - this.cx)));
-        int l = (int) ((double) (90 + s2) - Math.atan((double) k / (double) (conto.y - this.y - this.cy)) / 0.017453292519943295D);
-        this.xz = j;
-        this.zy += (l - this.zy) / 5;
-        if ((int) Math.sqrt((double) ((conto.z - this.z) * (conto.z - this.z) + (conto.x - this.x - this.cx) * (conto.x - this.x - this.cx) + (conto.y - this.y - this.cy) * (conto.y - this.y - this.cy))) > 3500) {
-            this.td = false;
+        int k = (int) Math.sqrt((double) ((conto.z - z) * (conto.z - z) + (conto.x - x - cx) * (conto.x - x - cx)));
+        int l = (int) ((double) (90 + s2) - Math.atan((double) k / (double) (conto.y - y - cy)) / 0.017453292519943295D);
+        xz = j;
+        zy += (l - zy) / 5;
+        if ((int) Math.sqrt((double) ((conto.z - z) * (conto.z - z) + (conto.x - x - cx) * (conto.x - x - cx) + (conto.y - y - cy) * (conto.y - y - cy))) > 3500) {
+            td = false;
         }
     }
 
@@ -210,75 +210,75 @@ public class Medium {
         if (i == 6000) {
             b = 2;
         }
-        this.y = conto.y + this.adv;
-        this.x = conto.x + (int) ((float) (conto.x - i + this.adv * b - conto.x) * SinCos.getcos(this.vxz));
-        this.z = conto.z + (int) ((float) (conto.x - i + this.adv * b - conto.x) * SinCos.getsin(this.vxz));
+        y = conto.y + adv;
+        x = conto.x + (int) ((float) (conto.x - i + adv * b - conto.x) * SinCos.getcos(vxz));
+        z = conto.z + (int) ((float) (conto.x - i + adv * b - conto.x) * SinCos.getsin(vxz));
         if (i == 6000) {
-            if (!this.vert) {
-                this.adv -= 10;
+            if (!vert) {
+                adv -= 10;
             } else {
-                this.adv += 10;
+                adv += 10;
             }
-            if (this.adv < -900) {
-                this.vert = true;
+            if (adv < -900) {
+                vert = true;
             }
-            if (this.adv > 1200) {
-                this.vert = false;
+            if (adv > 1200) {
+                vert = false;
             }
         } else {
-            if (!this.vert) {
-                this.adv -= 2;
+            if (!vert) {
+                adv -= 2;
             } else {
-                this.adv += 2;
+                adv += 2;
             }
-            if (this.adv < -500) {
-                this.vert = true;
+            if (adv < -500) {
+                vert = true;
             }
-            if (this.adv > 150) {
-                this.vert = false;
+            if (adv > 150) {
+                vert = false;
             }
-            if (this.adv > 300) {
-                this.adv = 300;
+            if (adv > 300) {
+                adv = 300;
             }
         }
-        this.vxz += 2;
-        if (this.vxz > 360) {
-            this.vxz -= 360;
+        vxz += 2;
+        if (vxz > 360) {
+            vxz -= 360;
         }
         short s = 0;
-        int j = this.y;
+        int j = y;
         if (j > 0) {
             j = 0;
         }
-        if (conto.y - j - this.cy < 0) {
+        if (conto.y - j - cy < 0) {
             s = -180;
         }
-        int k = (int) Math.sqrt((double) ((conto.z - this.z) * (conto.z - this.z) + (conto.x - this.x - this.cx) * (conto.x - this.x - this.cx)));
-        int l = (int) ((double) (90 + s) - Math.atan((double) k / (double) (conto.y - j - this.cy)) / 0.017453292519943295D);
-        this.xz = -this.vxz + 90;
-        this.zy += (l - this.zy) / 10;
+        int k = (int) Math.sqrt((double) ((conto.z - z) * (conto.z - z) + (conto.x - x - cx) * (conto.x - x - cx)));
+        int l = (int) ((double) (90 + s) - Math.atan((double) k / (double) (conto.y - j - cy)) / 0.017453292519943295D);
+        xz = -vxz + 90;
+        zy += (l - zy) / 10;
     }
 
     public void left(ContO conto) {
         int i = conto.y;
         int j = conto.x + (int) ((float) (conto.x + 600 - conto.x) * SinCos.getcos(conto.xz));
         int k = conto.z + (int) ((float) (conto.x + 600 - conto.x) * SinCos.getsin(conto.xz));
-        this.zy = 0;
-        this.xz = -(conto.xz + 90);
-        this.x = (int) ((double) this.x + (double) (j - this.cx - this.x) / 1.5D);
-        this.z = (int) ((double) this.z + (double) (k - this.cz - this.z) / 1.5D);
-        this.y = (int) ((double) this.y + (double) (i - this.cy - this.y) / 1.5D);
+        zy = 0;
+        xz = -(conto.xz + 90);
+        x = (int) ((double) x + (double) (j - cx - x) / 1.5D);
+        z = (int) ((double) z + (double) (k - cz - z) / 1.5D);
+        y = (int) ((double) y + (double) (i - cy - y) / 1.5D);
     }
 
     public void right(ContO conto) {
         int i = conto.y;
         int j = conto.x + (int) ((float) (conto.x - 600 - conto.x) * SinCos.getcos(conto.xz));
         int k = conto.z + (int) ((float) (conto.x - 600 - conto.x) * SinCos.getsin(conto.xz));
-        this.zy = 0;
-        this.xz = -(conto.xz - 90);
-        this.x += (j - this.cx - this.x) / 3;
-        this.z = (int) ((double) this.z + (double) (k - this.cz - this.z) / 1.5D);
-        this.y = (int) ((double) this.y + (double) (i - this.cy - this.y) / 1.5D);
+        zy = 0;
+        xz = -(conto.xz - 90);
+        x += (j - cx - x) / 3;
+        z = (int) ((double) z + (double) (k - cz - z) / 1.5D);
+        y = (int) ((double) y + (double) (i - cy - y) / 1.5D);
     }
 
     public void behinde(ContO conto) {
@@ -291,27 +291,27 @@ public class Medium {
             i += 360;
         }
         if (i > 90 && i < 270) {
-            this.tart += (180 - this.tart) / 3;
-            this.yart += (100 - this.yart) / 4;
+            tart += (180 - tart) / 3;
+            yart += (100 - yart) / 4;
         } else {
-            this.tart -= this.tart / 3;
-            this.yart += (-100 - this.yart) / 4;
+            tart -= tart / 3;
+            yart += (-100 - yart) / 4;
         }
-        j += this.tart;
+        j += tart;
         if (i > 90) {
             i = 180 - i;
         }
         if (i < -90) {
             i = -180 - i;
         }
-        int k = conto.y + (int) ((float) (conto.y + this.yart - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z - 600 - conto.z) * SinCos.getsin(conto.zy));
-        int l = conto.z + (int) ((float) (conto.y + this.yart - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z - 600 - conto.z) * SinCos.getcos(conto.zy));
+        int k = conto.y + (int) ((float) (conto.y + yart - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z - 600 - conto.z) * SinCos.getsin(conto.zy));
+        int l = conto.z + (int) ((float) (conto.y + yart - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z - 600 - conto.z) * SinCos.getcos(conto.zy));
         int i1 = conto.x + (int) ((float) (-(l - conto.z)) * SinCos.getsin(conto.xz));
         int j1 = conto.z + (int) ((float) (l - conto.z) * SinCos.getcos(conto.xz));
-        this.zy = -i;
-        this.xz = -j;
-        this.x += (i1 - this.cx - this.x) / 3;
-        this.z = (int) ((double) this.z + (double) (j1 - this.cz - this.z) / 1.5D);
-        this.y = (int) ((double) this.y + (double) (k - this.cy - this.y) / 1.5D);
+        zy = -i;
+        xz = -j;
+        x += (i1 - cx - x) / 3;
+        z = (int) ((double) z + (double) (j1 - cz - z) / 1.5D);
+        y = (int) ((double) y + (double) (k - cy - y) / 1.5D);
     }
 }

@@ -16,8 +16,6 @@ public class xtGraphics extends Panel {
 
     Medium m;
 
-    FontMetrics ftm;
-
     boolean goodsun = false;
 
     int cl = 1;
@@ -869,7 +867,7 @@ public class xtGraphics extends Panel {
 
     public xtGraphics(Medium var1, Graphics var2) {
         m = var1;
-        ftm = var2.getFontMetrics();
+        FontHandler.fMetrics = var2.getFontMetrics();
     }
 
     public void saveit(Image image, int[] ints) {
@@ -1304,9 +1302,9 @@ public class xtGraphics extends Panel {
     public void drawcs(Graphics graphics, int i, String string, int j, int k, int l, boolean flag) {
         if (flag) {
             graphics.setColor(new Color(0, 0, 0));
-            graphics.drawString(string, 250 - ftm.stringWidth(string) / 2 + 1, i + 1);
+            graphics.drawString(string, 250 - FontHandler.fMetrics.stringWidth(string) / 2 + 1, i + 1);
         }
         graphics.setColor(new Color(j, k, l));
-        graphics.drawString(string, 250 - ftm.stringWidth(string) / 2, i);
+        graphics.drawString(string, 250 - FontHandler.fMetrics.stringWidth(string) / 2, i);
     }
 }

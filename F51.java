@@ -1251,6 +1251,11 @@ public class F51 extends Applet implements Runnable {
     }
 
     public void init() {
+    	/*
+         * load some fonts
+         */
+        new FontHandler();
+    	
         offImage = createImage(500, 360);
         if (offImage != null) {
             rd = offImage.getGraphics();

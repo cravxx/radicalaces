@@ -35,7 +35,7 @@ public class DesktopContext implements AppletContext, Runnable {
     }
 
     /**
-    * @inheritdoc
+    * @inheritDoc
     */
     @Override
     public AudioClip getAudioClip(URL url) {
@@ -62,7 +62,7 @@ public class DesktopContext implements AppletContext, Runnable {
     }
 
     /**
-    * @inheritdoc
+    * @inheritDoc
     */
     @Override
     public Image getImage(URL url) {
@@ -86,7 +86,7 @@ public class DesktopContext implements AppletContext, Runnable {
     }
 
     /**
-    * @inheritdoc
+    * @inheritDoc
     */
     @Override
     public void showDocument(URL url) {
@@ -99,7 +99,7 @@ public class DesktopContext implements AppletContext, Runnable {
     }
 
     /**
-    * @inheritdoc
+    * @inheritDoc
     */
     @Override
     public void showDocument(URL url, String target) {

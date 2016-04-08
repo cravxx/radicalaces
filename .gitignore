@@ -2,3 +2,4 @@
 *.class
 /.settings/
 /java.policy.applet
+/savedata/

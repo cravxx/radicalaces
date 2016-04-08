@@ -13,12 +13,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.zip.ZipEntry;
@@ -26,6 +30,7 @@ import java.util.zip.ZipInputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class F51 extends JComponent implements KeyListener, MouseListener, FocusListener {
@@ -138,7 +143,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 
     int dnload = 0;
 
-    private long lastTime;
     private ContO[] levelContos;
     private Craft[] crafts;
     private Tank[] tanks;
@@ -160,6 +164,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     private int __j;
 
     private int __i;
+
+    private boolean failedLoad = false;
 
     public void playsounds(userCraft usercraft, ContO conto, boolean flag, xtGraphics xtgraphics) {
         if (!flag) {
@@ -396,8 +402,36 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     }
 
     public void savegame(ContO[] contos, xtGraphics xtgraphics, int i) {
-        try {
-            // TODO
+        try {//TODO
+            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("savedata/game.dat"))));
+            fout.println("radxv(" + xtgraphics.level + ")");
+            
+            //fout.println("radnhits(" + xtgraphics.level + ")");
+            StringBuilder sb = new StringBuilder();
+            sb.append("radnhits(");
+            sb.append(contos[i].nhits);
+            
+            for (int j = i + 1; j < i + 13; ++j) {
+                sb.append(",");
+                sb.append(contos[j].nhits);
+            }
+            sb.append(")");
+            fout.println(sb.toString());
+            
+            sb = new StringBuilder();
+            sb.append("raddest(");
+            sb.append(xtgraphics.dest[0] ? 1 : 0);
+            
+            for (int j = 1; j < 5; ++j) {
+                sb.append(",");
+                sb.append(xtgraphics.dest[j] ? 1 : 0);
+            }
+            sb.append(")");
+            fout.println(sb.toString());
+            
+            fout.close();
+            
+            
             /*JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("SetCookie(\'radxv\',\'" + xtgraphics.level + "\')");
             int j;
@@ -410,8 +444,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                 ++j;
             } while (j < 5);*/
             xtgraphics.sgame = 1;
-        } catch (Exception var6) {
-            ;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -518,10 +552,14 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     public void set0() {
         // TODO
         try {
+            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("savedata/game.dat"))));
+            fout.println("radxv(0)");
+            fout.close();
+            
             /*JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("SetCookie(\'radxv\',\'0\')");*/
-        } catch (Exception var2) {
-            ;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -754,9 +792,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         __flag2 = true;
         maxmo = 0;
 
-        
-        lastTime = System.currentTimeMillis();
-
         new Timer(35, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -948,6 +983,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                         } else {
                             xt.fase = 1;
                             xt.drawefimg(offImage);
+                            savegame(levelContos, xt, __i);
                         }
                     }
                     if (u.space) {
@@ -1092,7 +1128,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                     u.space = false;
                 }
                 if (xt.fase == -8) {
-                    if (xt.sgame == -1) {
+                    if (xt.sgame == -1 && !failedLoad) {
                         getslevel(xt);
                     }
                     if (xt.cnty == 351) {
@@ -1112,11 +1148,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         if (!mon) {
             playsounds(usercraft, levelContos[__ints2s[0]], __flag2, xt);
         }
-        
-        long currentTime = System.currentTimeMillis();
-        //System.out.println("Delay per frame: " + (currentTime - lastTime));
-        lastTime = currentTime;
-        
+                
     }
 
     public void lstat(String string, int i) {
@@ -1164,6 +1196,17 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 
     public void getslevel(xtGraphics xtgraphics) { //TODO
         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
+            String radxv = reader.readLine();
+            if (radxv != null && getint("radxv", radxv, 0) == 0) {
+                xtgraphics.sgame = 0;
+            } else {
+                xtgraphics.sgame = 1;
+                xtgraphics.select = 1;
+            }
+            
+            reader.close();
+            
             /*JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("s=GetCookie(\'radxv\')");
             String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
@@ -1173,13 +1216,49 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                 xtgraphics.sgame = 1;
                 xtgraphics.select = 1;
             }*/
-        } catch (Exception var4) {
-            ;
+        } catch (FileNotFoundException e) {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            failedLoad = true;
+            JOptionPane.showMessageDialog(this, "Failed to load game!\nYour saved data may be corrupted.", "Radical Aces", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void loadsaved(ContO[] contos, xtGraphics xtgraphics, int i) { //TODO
         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
+            
+            String line = reader.readLine();
+            if (line != null)
+                xtgraphics.level = getint("radxv", line, 0);
+            else {
+                reader.close();
+                return;
+            }
+            
+            //
+            line = reader.readLine();
+            for (int j = i; j < i + 13; ++j) {
+                contos[j].nhits = getint("radnhits", line, j);
+                if (contos[j].nhits >= contos[j].maxhits) {
+                    contos[j].exp = true;
+                    contos[j].out = true;
+                } else {
+                    contos[j].out = false;
+                }
+            }
+
+            //
+            line = reader.readLine();
+            for (int j = 0; j < 5; ++j) {
+                xtgraphics.dest[j] = getint("raddest", line, j) == 1;
+            }
+            
+            //radxv, radhits then raddest
+            
+            reader.close();
+            
             /*JSObject jsobject = JSObject.getWindow(this);
             jsobject.eval("s=GetCookie(\'radxv\')");
             String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
@@ -1208,8 +1287,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                 }
                 ++j;
             } while (j < 5);*/
-        } catch (Exception var8) {
-            ;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1383,8 +1462,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 
     @Override
     public void focusGained(FocusEvent e) {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override

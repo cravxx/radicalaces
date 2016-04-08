@@ -392,7 +392,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(cookieDat)));
             fout.println("radxv(" + xtgraphics.level + ")");
             
-            //fout.println("radnhits(" + xtgraphics.level + ")");
             StringBuilder sb = new StringBuilder();
             sb.append("radnhits(");
             sb.append(contos[i].nhits);
@@ -415,20 +414,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             sb.append(")");
             fout.println(sb.toString());
             
-            fout.close();
+            fout.close();            
             
-            
-            /*JSObject jsobject = JSObject.getWindow(this);
-            jsobject.eval("SetCookie(\'radxv\',\'" + xtgraphics.level + "\')");
-            int j;
-            for (j = i; j < i + 13; ++j) {
-                jsobject.eval("SetCookie(\'radnhits" + j + "\',\'" + contos[j].nhits + "\')");
-            }
-            j = 0;
-            do {
-                jsobject.eval("SetCookie(\'raddest" + j + "\',\'" + xtgraphics.dest[j] + "\')");
-                ++j;
-            } while (j < 5);*/
             xtgraphics.sgame = 1;
         } catch (Exception e) {
             e.printStackTrace();

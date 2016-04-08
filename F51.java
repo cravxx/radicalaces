@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -20,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -37,7 +40,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 
     public static final String modelsDir = "data/models.radq";
 
-    public static final String imagesDir = "data/images/";
+    public static final String imagesDir = "data/images.radq";
 
     Graphics2D rd;
 
@@ -421,16 +424,14 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         }
     }
 
-    public Image returnImg(String string) {
-        Image image = null;
-        try {
-            image = ImageIO.read(new FileInputStream(string));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
+    /**
+     * byte array to image
+     * @param b byte input
+     * @param toolkit toolkit
+     * @return image
+     */
+    public Image returnImg(byte b[], Toolkit toolkit) {
+        return toolkit.createImage(b);
     }
 
     public void loadbase(ContO[] contos, Medium medium) {
@@ -524,9 +525,99 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             ;
         }
     }
+    
+    /**Loads images from images.radq
+	 * 
+	 * @author Omar Wally
+	 */
+	public void loadimages(xtGraphics xtgraphics) {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		dnload += 12;
+		int howManyImages = 0;
+		
+		try {
+			ZipInputStream zipinputstream = new ZipInputStream(new FileInputStream(imagesDir));
+			for (ZipEntry zipentry = zipinputstream.getNextEntry(); zipentry != null; zipentry = zipinputstream
+					.getNextEntry()) {
+				int i = (int) zipentry.getSize();
+				String s = zipentry.getName();
+				byte abyte0[] = new byte[i];
+				int j = 0;
+				int k;
+				for (; i > 0; i -= k) {
+					k = zipinputstream.read(abyte0, j, i);
+					j += k;
+				}
+
+				if ("radar.gif".equals(s)) {
+					xtgraphics.radar = returnImg(abyte0, toolkit);
+				}
+				if ("stube.gif".equals(s)) {
+					xtgraphics.stube = returnImg(abyte0, toolkit);
+				}
+				if ("select.jpg".equals(s)) {
+					xtgraphics.sback = returnImg(abyte0, toolkit);
+				}
+				if ("destroyed.gif".equals(s)) {
+					xtgraphics.destr = returnImg(abyte0, toolkit);
+				}
+				if ("layout.gif".equals(s)) {
+					xtgraphics.lay = returnImg(abyte0, toolkit);
+				}
+				if ("comp.gif".equals(s)) {
+					xtgraphics.complete = returnImg(abyte0, toolkit);
+				}
+				if ("main.gif".equals(s)) {
+					xtgraphics.main = returnImg(abyte0, toolkit);
+				}
+				if ("radicalplay.gif".equals(s)) {
+					xtgraphics.rad = returnImg(abyte0, toolkit);
+				}
+				
+				for(int asInc = 0; asInc < 5; asInc++){
+					if (("a" + asInc + ".gif").equals(s)) {
+						xtgraphics.as[asInc] = returnImg(abyte0, toolkit);
+					}
+				}
+				
+				if ("inst1.gif".equals(s)) {
+					xtgraphics.inst1 = returnImg(abyte0, toolkit);
+				}
+				if ("inst2.gif".equals(s)) {
+					xtgraphics.inst2 = returnImg(abyte0, toolkit);
+				}
+				if ("inst3.gif".equals(s)) {
+					xtgraphics.inst3 = returnImg(abyte0, toolkit);
+				}
+				
+				if ("mars.jpg".equals(s)) {
+					xtgraphics.mars = returnImg(abyte0, toolkit);
+				}
+				
+				if ("failed.jpg".equals(s)) {
+					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.bpix);
+				}
+				if ("mission.jpg".equals(s)) {
+					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.mpix);
+				}
+				if ("over.jpg".equals(s)) {
+					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.opix);
+				}
+				
+				howManyImages++;
+				dnload += 3;
+			}			
+			zipinputstream.close();
+			System.out.println("Images loaded: " + howManyImages);
+		} catch (IOException e) {
+			System.out.println("Error Reading Images: " + e);
+			e.printStackTrace();
+		}
+		System.gc();
+	}
 
     public void downloadall(xtGraphics xtgraphics) throws IOException {
-        xtgraphics.radar = returnImg("data/images/radar.gif");
+        /*xtgraphics.radar = returnImg("data/images/radar.gif", toolkit);
         lstat("Loading Images...", 1);
         xtgraphics.stube = returnImg("data/images/stube.gif");
         lstat("Loading Images...", 2);
@@ -540,7 +631,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Images...", 22);
         xtgraphics.saveit(returnImg("data/images/over.jpg"), xtgraphics.opix);
         lstat("Loading Images...", 21);
-        /*var1.saveit(returnImg("data/images/paused.jpg"), var1.ppix);*/
+        var1.saveit(returnImg("data/images/paused.jpg"), var1.ppix);
         lstat("Loading Images...", 10);
         xtgraphics.lay = returnImg("data/images/layout.gif");
         lstat("Loading Images...", 1);
@@ -562,10 +653,10 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Images...", 11);
         xtgraphics.inst3 = returnImg("data/images/inst3.gif");
         lstat("Loading Images...", 4);
-        /*var1.text = returnImg("data/images/text.gif");*/
+        var1.text = returnImg("data/images/text.gif");
         lstat("Loading Images...", 6);
         xtgraphics.mars = returnImg("data/images/mars.jpg");
-        lstat("Loading Images...", 15);
+        lstat("Loading Images...", 15);*/
         into = makeSound("data/music/intro.wav");
         lstat("Loading Music...", 24);
         miso = makeSound("data/music/mission.wav");
@@ -594,7 +685,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Sound Effects...", 12);
         hit = makeSound("data/sounds/hit.wav");
         lstat("Loading Sound Effects...", 25);
-        i = 0;
+        int i = 0;
         do {
             las[i] = makeSound("data/sounds/l" + i + ".wav");
             lstat("Loading Sound Effects...", 9);
@@ -744,6 +835,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             ++l;
         } while (l < 7);
         try {
+        	loadimages(xt);
             downloadall(xt);
         } catch (IOException e1) {
             e1.printStackTrace();

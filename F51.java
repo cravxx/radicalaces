@@ -453,6 +453,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             }
             zipinputstream.close();
             datainputstream.close();
+            System.out.println("Contos loaded: " + modelNames.length);
         } catch (IOException e) {
             System.out.println("Error Reading Models: " + e);
         }
@@ -616,47 +617,11 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 		System.gc();
 	}
 
-    public void downloadall(xtGraphics xtgraphics) throws IOException {
-        /*xtgraphics.radar = returnImg("data/images/radar.gif", toolkit);
-        lstat("Loading Images...", 1);
-        xtgraphics.stube = returnImg("data/images/stube.gif");
-        lstat("Loading Images...", 2);
-        xtgraphics.sback = returnImg("data/images/select.jpg");
-        lstat("Loading Images...", 18);
-        xtgraphics.destr = returnImg("data/images/destroyed.gif");
-        lstat("Loading Images...", 2);
-        xtgraphics.saveit(returnImg("data/images/failed.jpg"), xtgraphics.bpix);
-        lstat("Loading Images...", 31);
-        xtgraphics.saveit(returnImg("data/images/mission.jpg"), xtgraphics.mpix);
-        lstat("Loading Images...", 22);
-        xtgraphics.saveit(returnImg("data/images/over.jpg"), xtgraphics.opix);
-        lstat("Loading Images...", 21);
-        var1.saveit(returnImg("data/images/paused.jpg"), var1.ppix);
-        lstat("Loading Images...", 10);
-        xtgraphics.lay = returnImg("data/images/layout.gif");
-        lstat("Loading Images...", 1);
-        xtgraphics.complete = returnImg("data/images/comp.gif");
-        lstat("Loading Images...", 2);
-        xtgraphics.main = returnImg("data/images/main.gif");
-        lstat("Loading Images...", 32);
-        xtgraphics.rad = returnImg("data/images/radicalplay.gif");
-        lstat("Loading Images...", 2);
-        int i = 0;
-        do {
-            xtgraphics.as[i] = returnImg("data/images/a" + i + ".gif");
-            lstat("Loading Images...", 1);
-            ++i;
-        } while (i < 5);
-        xtgraphics.inst1 = returnImg("data/images/inst1.gif");
-        lstat("Loading Images...", 10);
-        xtgraphics.inst2 = returnImg("data/images/inst2.gif");
-        lstat("Loading Images...", 11);
-        xtgraphics.inst3 = returnImg("data/images/inst3.gif");
-        lstat("Loading Images...", 4);
-        var1.text = returnImg("data/images/text.gif");
-        lstat("Loading Images...", 6);
-        xtgraphics.mars = returnImg("data/images/mars.jpg");
-        lstat("Loading Images...", 15);*/
+    public void loaddata(xtGraphics xtgraphics) throws IOException {
+    	
+    	loadimages(xt); 
+    	lstat("Loading Images...", 112);
+    	
         into = makeSound("data/music/intro.wav");
         lstat("Loading Music...", 24);
         miso = makeSound("data/music/mission.wav");
@@ -695,15 +660,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Sound Effects...", 12);
     }
 
-    /*public void shake() {
-		try {
-			JSObject var1 = JSObject.getWindow(this);
-			var1.eval("shake()");
-		} catch (Exception var2) {
-			;
-		}
-
-	}*/
     public void setmover(int[] ints, ContO[] contos, userCraft usercraft, xtGraphics xtgraphics) {
         int i = 0;
         do {
@@ -778,6 +734,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     }
 
     public void runGame() {
+    	
+    	Utility.startTimer();
         
         // JIT/hotspot warmup:
         // this compiles the method into native code
@@ -834,12 +792,12 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             loadet[l] = false;
             ++l;
         } while (l < 7);
-        try {
-        	loadimages(xt);
-            downloadall(xt);
+        try {        	
+            loaddata(xt);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+        Utility.stopTimer();
         Date date = new Date();
         date.getTime();
         __j1 = 0;

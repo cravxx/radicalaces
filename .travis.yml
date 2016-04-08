@@ -16,7 +16,7 @@ QW0aIAne/t5fHD4Jqg4vduXP9I+qSGw9PE1s85IMjeKEj72vaDpcWg4wI6l5dconZ4jc8uVkd9fNn0Dg
 rHWa9skERuFB/388rUSb6KTqxLkMu5BNgFxaIfbadQRdWNXSu6gC+k="
 
 script:
- - javac *.java -Xlint:deprecation
+ - javac -encoding ISO-8859-1 *.java -Xlint:deprecation
  
 after_success: 
  - sh update_docs.sh

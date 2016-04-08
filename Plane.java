@@ -87,13 +87,6 @@ public class Plane {
         projf /= 3.0F;
     }
 
-    public int ys(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - m.focus_point) * (m.cy - i) / j + i;
-    }
-
     public Plane(Medium var1, int[] var2, int[] var3, int[] var4, int var5, int[] var6) {
         m = var1;
         n = var5;
@@ -213,8 +206,8 @@ public class Plane {
                     boolean flag4 = false;
                     i2 = 0;
                     do {
-                        ints7[i2] = xs(ints6[i2], ints5[i2]);
-                        ints8[i2] = ys(ints4[i2], ints5[i2]);
+                        ints7[i2] = Utility.xs(ints6[i2], ints5[i2]);
+                        ints8[i2] = Utility.ys(ints4[i2], ints5[i2]);
                         if (ints8[i2] > 0 && ints8[i2] < m.h && ints7[i2] > 0 && ints7[i2] < m.w && ints5[i2] > 10 && ints4[i2] < m.ground) {
                             flag4 = true;
                         }
@@ -258,8 +251,8 @@ public class Plane {
             l2 = 500;
             int k2;
             for (k2 = 0; k2 < n; ++k2) {
-                ints4[k2] = xs(ints[k2], ints2[k2]);
-                ints5[k2] = ys(ints3[k2], ints2[k2]);
+                ints4[k2] = Utility.xs(ints[k2], ints2[k2]);
+                ints5[k2] = Utility.ys(ints3[k2], ints2[k2]);
             }
             k2 = 0;
             int l3 = 1;
@@ -278,7 +271,7 @@ public class Plane {
                 k2 = l3;
                 l3 = i2;
             }
-            if (spy(ints[k2], ints2[k2]) > spy(ints[l3], ints2[l3])) {
+            if (Utility.spy(ints[k2], ints2[k2]) > Utility.spy(ints[l3], ints2[l3])) {
                 flag5 = true;
                 i2 = 0;
                 for (i3 = 0; i3 < n; ++i3) {
@@ -304,8 +297,8 @@ public class Plane {
             int j4 = 0;
             int k4;
             for (k4 = 0; k4 < n; ++k4) {
-                ints9[k4] = xs(ints[k4], ints2[k4]);
-                ints10[k4] = ys(ints3[k4], ints2[k4]);
+                ints9[k4] = Utility.xs(ints[k4], ints2[k4]);
+                ints10[k4] = Utility.ys(ints3[k4], ints2[k4]);
                 if (ints10[k4] < 0 || ints2[k4] < 10) {
                     ++j3;
                 }
@@ -426,13 +419,6 @@ public class Plane {
         }
     }
 
-    public int xs(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - m.focus_point) * (m.cx - i) / j + i;
-    }
-
     public void s(Graphics graphics, int i, int j, int k, int l, int i1, int j1, boolean flag) {
         if (exp != 7) {
             int[] ints = new int[n];
@@ -493,8 +479,8 @@ public class Plane {
                 int[] ints4 = new int[n];
                 int[] ints5 = new int[n];
                 for (int i2 = 0; i2 < n; ++i2) {
-                    ints4[i2] = xs(ints[i2], ints2[i2]);
-                    ints5[i2] = ys(ints3[i2], ints2[i2]);
+                    ints4[i2] = Utility.xs(ints[i2], ints2[i2]);
+                    ints5[i2] = Utility.ys(ints3[i2], ints2[i2]);
                     if (ints5[i2] > 0 && ints5[i2] < m.h && ints4[i2] > 0 && ints4[i2] < m.w && ints2[i2] > 10 && ints2[i2] < 50000) {
                         flag2 = true;
                     }
@@ -510,8 +496,5 @@ public class Plane {
             }
         }
     }
-
-    public int spy(int i, int j) {
-        return (int) Math.sqrt((double) ((i - m.cx) * (i - m.cx) + j * j));
-    }
+    
 }

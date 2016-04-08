@@ -31,14 +31,7 @@ public class Lasers {
      */
     public static int[] damg = {
     		3, 2, 2, 3, 2, 1, 1, 2, 2, 2, 3, 7
-    };
-
-    public int ys(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - m.focus_point) * (m.cy - i) / j + i;
-    }
+    };    
 
     public Lasers(Medium medium) {
         m = medium;
@@ -56,17 +49,17 @@ public class Lasers {
                 ints3[l3] = (int) ((double) ints3[l3] + (double) (k - m.z) + (Math.random() * 50.0D - 25.0D));
             }
         }
-        rot(ints, ints2, i - m.x, j - m.y, j1, k1);
-        rot(ints2, ints3, j - m.y, k - m.z, i1, k1);
-        rot(ints, ints3, i - m.x, k - m.z, l, k1);
-        rot(ints, ints3, m.cx, m.cz, m.xz, k1);
-        rot(ints2, ints3, m.cy, m.cz, m.zy, k1);
+        Utility.rot(ints, ints2, i - m.x, j - m.y, j1, k1);
+        Utility.rot(ints2, ints3, j - m.y, k - m.z, i1, k1);
+        Utility.rot(ints, ints3, i - m.x, k - m.z, l, k1);
+        Utility.rot(ints, ints3, m.cx, m.cz, m.xz, k1);
+        Utility.rot(ints2, ints3, m.cy, m.cz, m.zy, k1);
         int[] ints4 = new int[k1];
         int[] ints5 = new int[k1];
         boolean flag = false;
         for (int i3 = 0; i3 < k1; ++i3) {
-            ints4[i3] = xs(ints[i3], ints3[i3]);
-            ints5[i3] = ys(ints2[i3], ints3[i3]);
+            ints4[i3] = Utility.xs(ints[i3], ints3[i3]);
+            ints5[i3] = Utility.ys(ints2[i3], ints3[i3]);
             if (ints5[i3] > 0 && ints5[i3] < m.h && ints4[i3] > 0 && ints4[i3] < m.w && ints3[i3] > 10) {
                 flag = true;
             }
@@ -916,18 +909,7 @@ public class Lasers {
             ints3[2] = -200;
             dt(graphics, ints, ints2, ints3, j, k, l, i1, j1, k1, b, l2, 180, 180, 180);
         }
-    }
-
-    public void rot(int[] ints, int[] ints2, int i, int j, int k, int l) {
-        if (k != 0) {
-            for (int i1 = 0; i1 < l; ++i1) {
-                int j1 = ints[i1];
-                int k1 = ints2[i1];
-                ints[i1] = i + (int) ((float) (j1 - i) * RadicalMath.cos(k) - (float) (k1 - j) * RadicalMath.sin(k));
-                ints2[i1] = j + (int) ((float) (j1 - i) * RadicalMath.sin(k) + (float) (k1 - j) * RadicalMath.cos(k));
-            }
-        }
-    }
+    }    
 
     public void gsmoke(Graphics graphics, int i, int j, int k, int l, int i1, int j1) {
         int[] ints = new int[8];
@@ -961,14 +943,7 @@ public class Lasers {
             j1 = 3;
         }
         dt(graphics, ints, ints2, ints3, i, j, k, l, i1, 0, 8, 0, 249 - j1 * 25, 251 - j1 * 25, 240 - j1 * 25);
-    }
-
-    public int xs(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - m.focus_point) * (m.cx - i) / j + i;
-    }
+    }    
 
     public void hsmoke(Graphics graphics, int i, int j, int k, int l, int i1, int j1) {
         int[] ints = new int[8];

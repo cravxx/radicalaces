@@ -185,7 +185,7 @@ public class Tank {
             }
         }
         if (u.fire && !conto.exp) {
-            if (skip && bulkc < lsr.srate[ltyp]) {
+            if (skip && bulkc < Lasers.srate[ltyp]) {
                 lx[nl] = conto.x;
                 ly[nl] = conto.y;
                 lz[nl] = conto.z;
@@ -195,7 +195,7 @@ public class Tank {
                 if (ly[nl] > 215) {
                     ly[nl] = 215;
                 }
-                lspeed[nl] = (int) ((float) lsr.speed[ltyp] + speed);
+                lspeed[nl] = (int) ((float) Lasers.speed[ltyp] + speed);
                 lstage[nl] = 1;
                 lhit[nl] = 0;
                 nf[nl] = 0;
@@ -440,21 +440,21 @@ public class Tank {
                 if (lstage[i] != 0 && lhit[i] == 0) {
                     int j = getpy(conto.x, conto.y, conto.z, i);
                     if (j < conto.maxR / 10 * (conto.maxR / 10) && j > 0) {
-                        if (conto.rcol != 0 && j < conto.maxR / (10 * conto.rcol) * (conto.maxR / (10 * conto.rcol)) + lsr.rads[ltyp] / 10 * (lsr.rads[ltyp] / 10)) {
+                        if (conto.rcol != 0 && j < conto.maxR / (10 * conto.rcol) * (conto.maxR / (10 * conto.rcol)) + Lasers.rads[ltyp] / 10 * (Lasers.rads[ltyp] / 10)) {
                             lhit[i] = 1;
                             if (conto.maxhits != -1) {
                                 conto.hit = true;
-                                conto.nhits += lsr.damg[ltyp];
+                                conto.nhits += Lasers.damg[ltyp];
                             }
                         }
                         if (conto.pcol != 0) {
                             for (int k = 0; k < conto.npl; ++k) {
                                 for (int l = 0; l < conto.p[k].n; ++l) {
-                                    if (!conto.hit && (lx[i] - (conto.x + conto.p[k].ox[l])) * (lx[i] - (conto.x + conto.p[k].ox[l])) + (ly[i] - (conto.y + conto.p[k].oy[l])) * (ly[i] - (conto.y + conto.p[k].oy[l])) + (lz[i] - (conto.z + conto.p[k].oz[l])) * (lz[i] - (conto.z + conto.p[k].oz[l])) < lsr.rads[ltyp] * 10 / conto.pcol * (lsr.rads[ltyp] * 10 / conto.pcol)) {
+                                    if (!conto.hit && (lx[i] - (conto.x + conto.p[k].ox[l])) * (lx[i] - (conto.x + conto.p[k].ox[l])) + (ly[i] - (conto.y + conto.p[k].oy[l])) * (ly[i] - (conto.y + conto.p[k].oy[l])) + (lz[i] - (conto.z + conto.p[k].oz[l])) * (lz[i] - (conto.z + conto.p[k].oz[l])) < Lasers.rads[ltyp] * 10 / conto.pcol * (Lasers.rads[ltyp] * 10 / conto.pcol)) {
                                         lhit[i] = 1;
                                         if (conto.maxhits != -1) {
                                             conto.hit = true;
-                                            conto.nhits += lsr.damg[ltyp];
+                                            conto.nhits += Lasers.damg[ltyp];
                                         }
                                     }
                                 }

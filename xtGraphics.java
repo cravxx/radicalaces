@@ -1,9 +1,7 @@
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Panel;
-import java.awt.image.ImageObserver;
 import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
 
@@ -489,7 +487,7 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString(" Fire Power", 57, 315);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(125, 310, (int) (100.0F * ((float) (usercraft.lsr.damg[selected] + 2) / 6.0F)), 4);
+            graphics.fillRect(125, 310, (int) (100.0F * ((float) (Lasers.damg[selected] + 2) / 6.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("  Tolerance", 57, 330);
             graphics.setColor(new Color(190, 200, 255));

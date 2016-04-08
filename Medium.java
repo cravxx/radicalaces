@@ -53,13 +53,6 @@ public class Medium {
 
     boolean vert = false;
 
-    public int ys(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - focus_point) * (cy - i) / j + i;
-    }
-
     public void infront(ContO conto) {
         int i = conto.zy;
         int j;
@@ -118,7 +111,7 @@ public class Medium {
         ints[1] = w;
         ints2[1] = 0;
         ints[2] = w;
-        ints2[2] = ys(j, i);
+        ints2[2] = Utility.ys(j, i);
         if (ints2[2] > h) {
             ints2[2] = h;
         }
@@ -142,7 +135,7 @@ public class Medium {
             }
         }
         ints[0] = -1;
-        ints2[0] = ys(j, i);
+        ints2[0] = Utility.ys(j, i);
         if (ints2[0] < 0) {
             ints2[0] = -1;
         }

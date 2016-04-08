@@ -52,8 +52,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 	 */
     String[] modelNames = new String[53];
 
-    String sndfrm = "default";
-
     boolean nounif = false;
 
     Control u = new Control();
@@ -568,41 +566,41 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Images...", 6);
         xtgraphics.mars = returnImg("data/images/mars.jpg");
         lstat("Loading Images...", 15);
-        into = makeSound("data/music/intro.au");
+        into = makeSound("data/music/intro.wav");
         lstat("Loading Music...", 24);
-        miso = makeSound("data/music/mission.au");
+        miso = makeSound("data/music/mission.wav");
         lstat("Loading Music...", 29);
-        selo = makeSound("data/music/select.au");
+        selo = makeSound("data/music/select.wav");
         lstat("Loading Music...", 52);
-        mano = makeSound("data/music/main.au");
+        mano = makeSound("data/music/main.wav");
         lstat("Loading Music...", 50);
-        upl = makeSound("data/sounds/" + sndfrm + "/up.au");
+        upl = makeSound("data/sounds/up.wav");
         lstat("Loading Sound Effects...", 11);
-        hitl = makeSound("data/sounds/" + sndfrm + "/hitl.au");
+        hitl = makeSound("data/sounds/hitl.wav");
         lstat("Loading Sound Effects...", 7);
-        downl = makeSound("data/sounds/" + sndfrm + "/down.au");
+        downl = makeSound("data/sounds/down.wav");
         lstat("Loading Sound Effects...", 10);
-        low = makeSound("data/sounds/" + sndfrm + "/low.au");
+        low = makeSound("data/sounds/low.wav");
         lstat("Loading Sound Effects...", 11);
-        med = makeSound("data/sounds/" + sndfrm + "/med.au");
+        med = makeSound("data/sounds/med.wav");
         lstat("Loading Sound Effects...", 6);
-        ljump = makeSound("data/sounds/" + sndfrm + "/jump.au");
+        ljump = makeSound("data/sounds/jump.wav");
         lstat("Loading Sound Effects...", 25);
-        grnd = makeSound("data/sounds/" + sndfrm + "/grnd.au");
+        grnd = makeSound("data/sounds/grnd.wav");
         lstat("Loading Sound Effects...", 5);
-        exp = makeSound("data/sounds/" + sndfrm + "/exp.au");
+        exp = makeSound("data/sounds/exp.wav");
         lstat("Loading Sound Effects...", 10);
-        exph = makeSound("data/sounds/" + sndfrm + "/exph.au");
+        exph = makeSound("data/sounds/exph.wav");
         lstat("Loading Sound Effects...", 12);
-        hit = makeSound("data/sounds/" + sndfrm + "/hit.au");
+        hit = makeSound("data/sounds/hit.wav");
         lstat("Loading Sound Effects...", 25);
         i = 0;
         do {
-            las[i] = makeSound("data/sounds/" + sndfrm + "/l" + i + ".au");
+            las[i] = makeSound("data/sounds/l" + i + ".wav");
             lstat("Loading Sound Effects...", 9);
             ++i;
         } while (i < 5);
-        charged = makeSound("data/sounds/" + sndfrm + "/charged.au");
+        charged = makeSound("data/sounds/charged.wav");
         lstat("Loading Sound Effects...", 12);
     }
 
@@ -701,11 +699,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         if (vendor.startsWith("Sun Microsystems Inc.")) {
             if (javaV.startsWith("1.3")) {
                 xt.goodsun = true;
-            } else if (javaV.startsWith("1.4")) {
-                sosun = true;
             } else {
                 sosun = true;
-                sndfrm = "newsun";
             }
         }
         lstat("Preparing for loading...", 0);
@@ -1060,7 +1055,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                             nounif = true;
                         }
                         try {
-                            mtrak[__j1] = makeSound("data/music/" + __j1 + ".au");
+                            mtrak[__j1] = makeSound("data/music/" + __j1 + ".wav");
                         } catch (IOException e) {
                             e.printStackTrace();
                             mtrak[__j1] = new SoundClip(false); // empty

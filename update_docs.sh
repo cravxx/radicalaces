@@ -2,7 +2,7 @@
 
 branchname=$(git describe --contains --all HEAD)
 
-if [ $branchname = "master" ] ;then
+if [ $branchname = "development" ] ;then
     echo "Publishing javadoc...\n"
 
     cp -R doc $HOME/javadoc-latest
@@ -10,7 +10,7 @@ if [ $branchname = "master" ] ;then
     cd $HOME
     git config --global user.email "travis@travis-ci.org"
     git config --global user.name "travis-ci"
-    git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/HulaSamsquanch/unfm2jg gh-pages > /dev/null
+    git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/HulaSamsquanch/radicalaces gh-pages > /dev/null
 
     cd gh-pages
     git rm -rf .
@@ -21,7 +21,7 @@ if [ $branchname = "master" ] ;then
 
     echo "Published Javadoc to gh-pages.\n"
 else
-    echo "Not on master, not updating.\n"
+    echo "Not on development, not updating.\n"
 fi
 
 

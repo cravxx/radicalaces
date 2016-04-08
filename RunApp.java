@@ -23,6 +23,7 @@ public class RunApp extends Panel {
 
     /**
     * Fetches icons of 16, 32 and 48 pixels from the 'data' folder.
+    * @return icons
     */
     public static ArrayList<Image> getIcons() {
         if (icons == null) {

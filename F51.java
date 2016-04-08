@@ -452,8 +452,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             }
             zipinputstream.close();
             datainputstream.close();
-        } catch (Exception var12) {
-            System.out.println("Error Reading Models: " + var12);
+        } catch (IOException e) {
+            System.out.println("Error Reading Models: " + e);
         }
         System.gc();
     }
@@ -1135,6 +1135,11 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     }
 
     public void init() {
+        /*
+         * load some fonts
+         */
+        new FontHandler();
+        
         offImage = new BufferedImage(500, 360, BufferedImage.TYPE_INT_RGB);
         if (offImage != null) {
             rd = offImage.createGraphics();

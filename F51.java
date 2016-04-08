@@ -482,7 +482,6 @@ public class F51 extends Applet implements Runnable {
             DataInputStream datainputstream = new DataInputStream(url.openStream());
             ZipInputStream zipinputstream = new ZipInputStream(datainputstream);
             ZipEntry zipentry = zipinputstream.getNextEntry();
-            Object object = null;
             for (int i = 0; zipentry != null; zipentry = zipinputstream.getNextEntry()) {
                 int j = (int) zipentry.getSize();
                 byte[] bytes = new byte[j];
@@ -1222,7 +1221,6 @@ public class F51 extends Applet implements Runnable {
                 rd.setColor(new Color(223, 223, 223));
                 rd.fillRect(0, 0, 500, 360);
                 xtgraphics.drawcs(rd, 170, moner, 0, 0, 0, false);
-                URL url;
                 if (moner.equals("Exiting game...")) {
                     repaint();
                     System.gc();

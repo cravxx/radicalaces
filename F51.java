@@ -1119,7 +1119,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         }
         
         long currentTime = System.currentTimeMillis();
-        System.out.println("Delay per frame: " + (currentTime - lastTime));
+        //System.out.println("Delay per frame: " + (currentTime - lastTime));
         lastTime = currentTime;
         
     }

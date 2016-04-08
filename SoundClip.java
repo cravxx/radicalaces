@@ -26,10 +26,8 @@ class SoundClip {
             sound.mark(is.length);
             clip = AudioSystem.getClip();
             loaded = true;
-            System.out.println("loaded: " + loaded);
         } catch (final Exception exception) {
-            System.err.println("Loading Clip error: " + exception);
-            exception.printStackTrace();
+            System.out.println("Loading Clip error: " + exception);
             loaded = false;
         }
     }
@@ -41,15 +39,13 @@ class SoundClip {
             clip = AudioSystem.getClip();
             loaded = true;
         } catch (final Exception exception) {
-            System.err.println("Loading Clip error: " + exception);
-            exception.printStackTrace();
+            System.out.println("Loading Clip error: " + exception);
             loaded = false;
         }
     }
     
     SoundClip(final boolean loaded) {
         this.loaded = loaded;
-        System.err.println("Loading empty Clip");
     }
 
     void checkopen() {
@@ -89,7 +85,6 @@ class SoundClip {
 
     void play() {
         if (loaded) {
-            System.out.println("play");
             if (!clip.isOpen()) {
                 try {
                     clip.open(sound);

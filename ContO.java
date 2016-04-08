@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.InputStreamReader;
 
 public class ContO {

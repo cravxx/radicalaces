@@ -21,7 +21,7 @@ if [ $branchname = "development" ] ;then
 
     echo "Published Javadoc to gh-pages.\n"
 else
-    echo "Not on master, not updating.\n"
+    echo "Not on development, not updating.\n"
 fi
 
 

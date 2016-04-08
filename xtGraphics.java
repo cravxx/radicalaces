@@ -12,107 +12,107 @@ public class xtGraphics extends Panel {
 	 */
     private static final long serialVersionUID = -7269675935604010359L;
 
-    Medium m;
+    private Medium m;
 
-    boolean goodsun = false;
+    public boolean goodsun = false;
 
-    int cl = 1;
+    public int cl = 1;
 
-    Image radar;
+    public Image radar;
 
-    Image stube;
+    public Image stube;
 
-    Image sback;
+    public Image sback;
 
-    Image destr;
+    public Image destr;
 
-    Image mback;
+    private Image mback;
 
-    Image lay;
+    public Image lay;
 
-    Image complete;
+    public Image complete;
 
-    Image main;
+    public Image main;
 
-    Image rad;
+    public Image rad;
 
-    Image inst1;
+    public Image inst1;
 
-    Image inst2;
+    public Image inst2;
 
-    Image inst3;
+    public Image inst3;
 
-    Image mars;
+    public Image mars;
 
-    Image text;
+    private Image text;
 
-    Image[] as = new Image[5];
+    public Image[] as = new Image[5];
 
-    int[] pix = new int[180000];
+    private int[] pix = new int[180000];
 
-    int[] bpix = new int[180000];
+    public int[] bpix = new int[180000];
 
-    int[] mpix = new int[180000];
+    public int[] mpix = new int[180000];
 
-    int[] opix = new int[180000];
+    public int[] opix = new int[180000];
 
-    int[] ppix = new int[180000];
+    private int[] ppix = new int[180000];
 
-    int cnt = 0;
+    private int cnt = 0;
 
-    boolean flik = false;
+    private boolean flik = false;
 
-    int cnts = 10;
+    private int cnts = 10;
 
-    String[] mname = new String[19];
+    public String[] mname = new String[19];
 
-    int[] cnte = new int[19];
+    public int[] cnte = new int[19];
 
-    int cntf = 0;
+    private int cntf = 0;
 
-    boolean left = false;
+    private boolean left = false;
 
-    int wcnt = 0;
+    private int wcnt = 0;
 
-    int rcnt = 0;
+    private int rcnt = 0;
 
-    int cnty = 0;
+    public int cnty = 0;
 
-    int fase = -8;
+    public int fase = -8;
 
-    int selected = 4;
+    public int selected = 4;
 
-    int select = 0;
+    public int select = 0;
 
-    int[] ws = new int[] { 62, 73, 59, 40, 50 };
+    private int[] ws = new int[] { 62, 73, 59, 40, 50 };
 
-    boolean frst = false;
+    public boolean frst = false;
 
-    int oldfase = -5;
+    public int oldfase = -5;
 
-    int nb = 0;
+    public int nb = 0;
 
-    int[] ob = new int[3];
+    public int[] ob = new int[3];
 
-    String[] nam = new String[3];
+    public String[] nam = new String[3];
 
-    boolean[] tnk = new boolean[3];
+    public boolean[] tnk = new boolean[3];
 
-    int[] obx = new int[3];
+    private int[] obx = new int[3];
 
-    int[] oby = new int[3];
+    private int[] oby = new int[3];
 
-    int[] obz = new int[3];
+    private int[] obz = new int[3];
 
-    int sgame = -1;
+    public int sgame = -1;
 
-    int level = 0;
+    public int level = 0;
 
-    boolean[] dest = new boolean[10];
+    public boolean[] dest = new boolean[10];
 
-    boolean mcomp = false;
+    public boolean mcomp = false;
 
-    int tcnt = 1;
+    private int tcnt = 1;
 
     public void denter(Graphics graphics, int i, ContO[] contos, userCraft usercraft, Control control) {
         int j;
@@ -452,7 +452,7 @@ public class xtGraphics extends Panel {
             }
             drawcs(graphics, 16, "Select your Ship", 255, 255, 255, false);
             drawcs(graphics, 354, "( use keyboard arrows to select )", 150, 150, 160, false);
-            drawcs(graphics, 265, usercraft.name[selected], 190, 200, 255, false);
+            drawcs(graphics, 265, userCraft.name[selected], 190, 200, 255, false);
             if (control.space && dest[selected]) {
                 drawcs(graphics, 80, "Cannot Select Ship!", 255, 230, 230, true);
             }
@@ -483,7 +483,7 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("Max Speed", 57, 300);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(125, 295, (int) (100.0F * ((float) usercraft.maxspeed[selected] / 120.0F)), 4);
+            graphics.fillRect(125, 295, (int) (100.0F * ((float) userCraft.maxspeed[selected] / 120.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString(" Fire Power", 57, 315);
             graphics.setColor(new Color(190, 200, 255));
@@ -495,13 +495,13 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("       Turning", 285, 300);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(355, 295, (int) (100.0F * ((float) (usercraft.trnn[selected] + 3) / 5.0F)), 4);
+            graphics.fillRect(355, 295, (int) (100.0F * ((float) (userCraft.trnn[selected] + 3) / 5.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("     Elevation", 285, 315);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(355, 310, (int) (100.0F * ((float) (usercraft.elev[selected] + 3) / 5.0F)), 4);
+            graphics.fillRect(355, 310, (int) (100.0F * ((float) (userCraft.elev[selected] + 3) / 5.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
-            graphics.drawString("Light Speed Jumps:  " + usercraft.dnjm[selected], 285, 330);
+            graphics.drawString("Light Speed Jumps:  " + userCraft.dnjm[selected], 285, 330);
         }
         if (fase == -1) {
             graphics.drawImage(mback, 0, 0, null);
@@ -1272,7 +1272,7 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(0, 0, 0));
             graphics.drawString("" + usercraft.rspeed + " zic/tes", 50, 55);
             graphics.drawImage(stube, 50, 60, null);
-            j1 = (int) (260.0F - (float) usercraft.rspeed * (200.0F / (float) usercraft.maxspeed[usercraft.ltyp]));
+            j1 = (int) (260.0F - (float) usercraft.rspeed * (200.0F / (float) userCraft.maxspeed[usercraft.ltyp]));
             graphics.setColor(new Color(255, j1 - 10, 0));
             graphics.fillRect(61, j1, 12, 260 - j1);
             if (!control.plus && !control.mins) {

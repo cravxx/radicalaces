@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -28,7 +29,6 @@ import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -40,115 +40,120 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 	 */
     private static final long serialVersionUID = -1399200686375699720L;
 
-    public static final String modelsDir = "data/models.radq";
+    private static final String modelsDir = "data/models.radq";
 
-    public static final String imagesDir = "data/images/";
+    private static final String imagesDir = "data/images.radq";
 
-    Graphics2D rd;
+    private Graphics2D rd;
 
-    BufferedImage offImage;
+    private BufferedImage offImage;
 
-    boolean mon = true;
+    private boolean mon = true;
 
-    String moner = "Click here to Start";
+    private String moner = "Click here to Start";
 
     /**
 	 * names of the .rad's are loaded into this String array in loadbase()
 	 */
-    String[] modelNames = new String[53];
+    private String[] modelNames = new String[53];
 
-    boolean nounif = false;
+    private boolean nounif = false;
 
-    Control u = new Control();
+    private Control u = new Control();
 
-    boolean tab = false;
+    private boolean tab = false;
 
-    int view = 0;
+    private int view = 0;
 
-    int maxco = 0;
+    private int maxco = 0;
 
-    int maxmo = -1;
+    private int maxmo = -1;
 
-    SoundClip upl;
+    private SoundClip upl;
 
-    SoundClip low;
+    private SoundClip low;
 
-    SoundClip med;
+    private SoundClip med;
 
-    SoundClip downl;
+    private SoundClip downl;
 
-    SoundClip ljump;
+    private SoundClip ljump;
 
-    SoundClip grnd;
+    private SoundClip grnd;
 
-    SoundClip exp;
+    private SoundClip exp;
 
-    SoundClip exph;
+    private SoundClip exph;
 
-    SoundClip hit;
+    private SoundClip hit;
 
-    SoundClip hitl;
+    private SoundClip hitl;
 
-    SoundClip charged;
+    private SoundClip charged;
 
-    SoundClip into;
+    private SoundClip into;
 
-    SoundClip miso;
+    private SoundClip miso;
 
-    SoundClip mano;
+    private SoundClip mano;
 
-    SoundClip selo;
+    private SoundClip selo;
 
-    SoundClip[] las = new SoundClip[5];
+    private SoundClip[] las = new SoundClip[5];
 
-    SoundClip[] mtrak = new SoundClip[7];
+    private SoundClip[] mtrak = new SoundClip[7];
 
-    boolean[] loadet = new boolean[7];
+    private boolean[] loadet = new boolean[7];
 
-    boolean plow = false;
+    private boolean plow = false;
 
-    boolean pmed = false;
+    private boolean pmed = false;
 
-    boolean pexph = false;
+    private boolean pexph = false;
 
-    boolean pint = false;
+    private boolean pint = false;
 
-    boolean pmis = false;
+    private boolean pmis = false;
 
-    boolean pman = false;
+    private boolean pman = false;
 
-    boolean psel = false;
+    private boolean psel = false;
 
-    boolean nomusic = false;
+    private boolean nomusic = false;
 
-    boolean nosound = false;
+    private boolean nosound = false;
 
-    boolean enterd = false;
+    private boolean enterd = false;
 
-    boolean sosun = false;
+    private boolean sosun = false;
 
-    int pgrnd = 0;
+    private int pgrnd = 0;
 
-    int pdownl = 0;
+    private int pdownl = 0;
 
-    int pupl = 0;
+    private int pupl = 0;
 
-    int lascnt = 0;
+    private int lascnt = 0;
 
-    int crntt = -1;
+    private int crntt = -1;
 
-    int plcnt = 0;
+    private int plcnt = 0;
 
-    int frags = 0;
+    private int frags = 0;
 
-    int dnload = 0;
+    private int dnload = 0;
 
     private ContO[] levelContos;
+    
     private Craft[] crafts;
+    
     private Tank[] tanks;
+    
     private userCraft usercraft;
+    
     private xtGraphics xt;
-    private Medium m;
+    
+    static Medium m;
 
     // runner fields
     private boolean __flag2;
@@ -365,38 +370,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         
     }
 
-    public String getstring(String string, String string2, int i) {
-        int j = 0;
-        String string3 = "";
-        for (int k = string.length() + 1; k < string2.length(); ++k) {
-            String string4 = "" + string2.charAt(k);
-            if (string4.equals(",") || string4.equals(")")) {
-                ++j;
-                ++k;
-            }
-            if (j == i) {
-                string3 = string3 + string2.charAt(k);
-            }
-        }
-        return string3;
-    }
-
-    public int getint(String string, String string2, int i) {
-        int j = 0;
-        String string3 = "";
-        for (int k = string.length() + 1; k < string2.length(); ++k) {
-            String string4 = "" + string2.charAt(k);
-            if (string4.equals(",") || string4.equals(")")) {
-                ++j;
-                ++k;
-            }
-            if (j == i) {
-                string3 = string3 + string2.charAt(k);
-            }
-        }
-        return Integer.valueOf(string3).intValue();
-    }
-
     public void paintComponent(Graphics graphics) {
         graphics.drawImage(offImage, 0, 0, this);
     }
@@ -455,16 +428,14 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         }
     }
 
-    public Image returnImg(String string) {
-        Image image = null;
-        try {
-            image = ImageIO.read(new FileInputStream(string));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
+    /**
+     * byte array to image
+     * @param b byte input
+     * @param toolkit toolkit
+     * @return image
+     */
+    public Image returnImg(byte b[], Toolkit toolkit) {
+        return toolkit.createImage(b);
     }
 
     public void loadbase(ContO[] contos, Medium medium) {
@@ -486,6 +457,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             }
             zipinputstream.close();
             datainputstream.close();
+            System.out.println("Contos loaded: " + modelNames.length);
         } catch (IOException e) {
             System.out.println("Error Reading Models: " + e);
         }
@@ -505,39 +477,39 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             while ((string = stageReader.readLine()) != null) {
                 String string2 = "" + string.trim();
                 if (string2.startsWith("craft")) {
-                    ints[maxmo] = getint("craft", string2, 0);
+                    ints[maxmo] = Utility.getint("craft", string2, 0);
                     ints2[maxmo] = 0;
                 }
                 if (string2.startsWith("tank")) {
-                    ints[maxmo] = getint("tank", string2, 0);
+                    ints[maxmo] = Utility.getint("tank", string2, 0);
                     ints2[maxmo] = 1;
                 }
                 if (string2.startsWith("name")) {
-                    xtgraphics.mname[maxmo - 1] = getstring("name", string2, 0);
+                    xtgraphics.mname[maxmo - 1] = Utility.getstring("name", string2, 0);
                     xtgraphics.cnte[maxmo - 1] = 0;
                 }
                 if (string2.startsWith("l")) {
-                    conto[ints[maxmo]].x = getint("l", string2, 0) * 10;
-                    conto[ints[maxmo]].y = getint("l", string2, 1) * 10;
-                    conto[ints[maxmo]].z = getint("l", string2, 2) * 10;
+                    conto[ints[maxmo]].x = Utility.getint("l", string2, 0) * 10;
+                    conto[ints[maxmo]].y = Utility.getint("l", string2, 1) * 10;
+                    conto[ints[maxmo]].z = Utility.getint("l", string2, 2) * 10;
                     conto[ints[maxmo]].out = false;
                     conto[ints[maxmo]].reset();
                 }
                 if (string2.startsWith("prompt")) {
-                    if (getstring("prompt", string2, 0).equals("tank")) {
+                    if (Utility.getstring("prompt", string2, 0).equals("tank")) {
                         xtgraphics.tnk[xtgraphics.nb] = true;
                     } else {
                         xtgraphics.tnk[xtgraphics.nb] = false;
                     }
-                    xtgraphics.ob[xtgraphics.nb] = getint("prompt", string2, 1);
-                    xtgraphics.nam[xtgraphics.nb] = getstring("prompt", string2, 2).replace('|', ',');
+                    xtgraphics.ob[xtgraphics.nb] = Utility.getint("prompt", string2, 1);
+                    xtgraphics.nam[xtgraphics.nb] = Utility.getstring("prompt", string2, 2).replace('|', ',');
                     ++xtgraphics.nb;
                 }
                 if (string2.startsWith("stat")) {
                     if (ints2[maxmo] == 0) {
-                        craft[maxmo].reset(getint("stat", string2, 0), getint("stat", string2, 1), getint("stat", string2, 2), getint("stat", string2, 3), getint("stat", string2, 4), getint("stat", string2, 5));
+                        craft[maxmo].reset(Utility.getint("stat", string2, 0), Utility.getint("stat", string2, 1), Utility.getint("stat", string2, 2), Utility.getint("stat", string2, 3), Utility.getint("stat", string2, 4), Utility.getint("stat", string2, 5));
                     } else {
-                        tank[maxmo].reset(getint("stat", string2, 0), getint("stat", string2, 1));
+                        tank[maxmo].reset(Utility.getint("stat", string2, 0), Utility.getint("stat", string2, 1));
                     }
                     ++maxmo;
                 }
@@ -562,48 +534,106 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Loads images
+     * @param xtgraphics xt instance 
+     */
+	public void loadimages(xtGraphics xtgraphics) {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		dnload += 12;
+		int howManyImages = 0;
+		
+		try {
+			ZipInputStream zipinputstream = new ZipInputStream(new FileInputStream(imagesDir));
+			for (ZipEntry zipentry = zipinputstream.getNextEntry(); zipentry != null; zipentry = zipinputstream
+					.getNextEntry()) {
+				int i = (int) zipentry.getSize();
+				String s = zipentry.getName();
+				byte abyte0[] = new byte[i];
+				int j = 0;
+				int k;
+				for (; i > 0; i -= k) {
+					k = zipinputstream.read(abyte0, j, i);
+					j += k;
+				}
 
-    public void downloadall(xtGraphics xtgraphics) throws IOException {
-        xtgraphics.radar = returnImg("data/images/radar.gif");
-        lstat("Loading Images...", 1);
-        xtgraphics.stube = returnImg("data/images/stube.gif");
-        lstat("Loading Images...", 2);
-        xtgraphics.sback = returnImg("data/images/select.jpg");
-        lstat("Loading Images...", 18);
-        xtgraphics.destr = returnImg("data/images/destroyed.gif");
-        lstat("Loading Images...", 2);
-        xtgraphics.saveit(returnImg("data/images/failed.jpg"), xtgraphics.bpix);
-        lstat("Loading Images...", 31);
-        xtgraphics.saveit(returnImg("data/images/mission.jpg"), xtgraphics.mpix);
-        lstat("Loading Images...", 22);
-        xtgraphics.saveit(returnImg("data/images/over.jpg"), xtgraphics.opix);
-        lstat("Loading Images...", 21);
-        /*var1.saveit(returnImg("data/images/paused.jpg"), var1.ppix);*/
-        lstat("Loading Images...", 10);
-        xtgraphics.lay = returnImg("data/images/layout.gif");
-        lstat("Loading Images...", 1);
-        xtgraphics.complete = returnImg("data/images/comp.gif");
-        lstat("Loading Images...", 2);
-        xtgraphics.main = returnImg("data/images/main.gif");
-        lstat("Loading Images...", 32);
-        xtgraphics.rad = returnImg("data/images/radicalplay.gif");
-        lstat("Loading Images...", 2);
-        int i = 0;
-        do {
-            xtgraphics.as[i] = returnImg("data/images/a" + i + ".gif");
-            lstat("Loading Images...", 1);
-            ++i;
-        } while (i < 5);
-        xtgraphics.inst1 = returnImg("data/images/inst1.gif");
-        lstat("Loading Images...", 10);
-        xtgraphics.inst2 = returnImg("data/images/inst2.gif");
-        lstat("Loading Images...", 11);
-        xtgraphics.inst3 = returnImg("data/images/inst3.gif");
-        lstat("Loading Images...", 4);
-        /*var1.text = returnImg("data/images/text.gif");*/
-        lstat("Loading Images...", 6);
-        xtgraphics.mars = returnImg("data/images/mars.jpg");
-        lstat("Loading Images...", 15);
+				if ("radar.gif".equals(s)) {
+					xtgraphics.radar = returnImg(abyte0, toolkit);
+				}
+				if ("stube.gif".equals(s)) {
+					xtgraphics.stube = returnImg(abyte0, toolkit);
+				}
+				if ("select.jpg".equals(s)) {
+					xtgraphics.sback = returnImg(abyte0, toolkit);
+				}
+				if ("destroyed.gif".equals(s)) {
+					xtgraphics.destr = returnImg(abyte0, toolkit);
+				}
+				if ("layout.gif".equals(s)) {
+					xtgraphics.lay = returnImg(abyte0, toolkit);
+				}
+				if ("comp.gif".equals(s)) {
+					xtgraphics.complete = returnImg(abyte0, toolkit);
+				}
+				if ("main.gif".equals(s)) {
+					xtgraphics.main = returnImg(abyte0, toolkit);
+				}
+				if ("radicalplay.gif".equals(s)) {
+					xtgraphics.rad = returnImg(abyte0, toolkit);
+				}
+				
+				for(int asInc = 0; asInc < 5; asInc++){
+					if (("a" + asInc + ".gif").equals(s)) {
+						xtgraphics.as[asInc] = returnImg(abyte0, toolkit);
+					}
+				}
+				
+				if ("inst1.gif".equals(s)) {
+					xtgraphics.inst1 = returnImg(abyte0, toolkit);
+				}
+				if ("inst2.gif".equals(s)) {
+					xtgraphics.inst2 = returnImg(abyte0, toolkit);
+				}
+				if ("inst3.gif".equals(s)) {
+					xtgraphics.inst3 = returnImg(abyte0, toolkit);
+				}
+				
+				if ("mars.jpg".equals(s)) {
+					xtgraphics.mars = returnImg(abyte0, toolkit);
+				}
+				
+				if ("failed.jpg".equals(s)) {
+					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.bpix);
+				}
+				if ("mission.jpg".equals(s)) {
+					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.mpix);
+				}
+				if ("over.jpg".equals(s)) {
+					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.opix);
+				}
+				
+				howManyImages++;
+				dnload += 3;
+			}			
+			zipinputstream.close();
+			System.out.println("Images loaded: " + howManyImages);
+		} catch (IOException e) {
+			System.out.println("Error Reading Images: " + e);
+			e.printStackTrace();
+		}
+		System.gc();
+	}
+
+    public void loaddata(xtGraphics xtgraphics) throws IOException {
+    	
+    	loadimages(xt); 
+    	/*
+    	 * I think the loadimages method increments the loading bar itself so I'll just make this 0, i dunno. 
+    	 * who cares about the loading bar anyway eh
+    	 */
+    	lstat("Loading Images...", 0);
+    	
         into = makeSound("data/music/intro.wav");
         lstat("Loading Music...", 24);
         miso = makeSound("data/music/mission.wav");
@@ -632,7 +662,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Sound Effects...", 12);
         hit = makeSound("data/sounds/hit.wav");
         lstat("Loading Sound Effects...", 25);
-        i = 0;
+        int i = 0;
         do {
             las[i] = makeSound("data/sounds/l" + i + ".wav");
             lstat("Loading Sound Effects...", 9);
@@ -642,15 +672,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         lstat("Loading Sound Effects...", 12);
     }
 
-    /*public void shake() {
-		try {
-			JSObject var1 = JSObject.getWindow(this);
-			var1.eval("shake()");
-		} catch (Exception var2) {
-			;
-		}
-
-	}*/
     public void setmover(int[] ints, ContO[] contos, userCraft usercraft, xtGraphics xtgraphics) {
         int i = 0;
         do {
@@ -678,18 +699,18 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             while ((string2 = objectReader.readLine()) != null) {
                 String string3 = "" + string2.trim();
                 if (string3.startsWith("l")) {
-                    String string4 = getstring("l", string3, 0);
+                    String string4 = Utility.getstring("l", string3, 0);
                     int i;
                     int j;
                     int k;
                     if (!flag) {
-                        i = getint("l", string3, 1) * 10;
-                        j = getint("l", string3, 2) * 10;
-                        k = getint("l", string3, 3) * 10;
+                        i = Utility.getint("l", string3, 1) * 10;
+                        j = Utility.getint("l", string3, 2) * 10;
+                        k = Utility.getint("l", string3, 3) * 10;
                     } else {
-                        i = getint("l", string3, 1);
-                        j = getint("l", string3, 2);
-                        k = getint("l", string3, 3);
+                        i = Utility.getint("l", string3, 1);
+                        j = Utility.getint("l", string3, 2);
+                        k = Utility.getint("l", string3, 3);
                     }
                     int l = 0;
                     do {
@@ -701,13 +722,13 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                     } while (l < 53);
                 }
                 if (string3.startsWith("xy")) {
-                    contos[maxco - 1].xy = getint("xy", string3, 0);
+                    contos[maxco - 1].xy = Utility.getint("xy", string3, 0);
                 }
                 if (string3.startsWith("xz")) {
-                    contos[maxco - 1].xz = getint("xz", string3, 0);
+                    contos[maxco - 1].xz = Utility.getint("xz", string3, 0);
                 }
                 if (string3.startsWith("zy")) {
-                    contos[maxco - 1].zy = getint("zy", string3, 0);
+                    contos[maxco - 1].zy = Utility.getint("zy", string3, 0);
                 }
                 if (string3.startsWith("xmult")) {
                     if (flag) {
@@ -725,6 +746,8 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     }
 
     public void runGame() {
+    	
+    	Utility.startTimer();
         
         // JIT/hotspot warmup:
         // this compiles the method into native code
@@ -781,11 +804,12 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             loadet[l] = false;
             ++l;
         } while (l < 7);
-        try {
-            downloadall(xt);
+        try {        	
+            loaddata(xt);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+        Utility.stopTimer();
         Date date = new Date();
         date.getTime();
         __j1 = 0;
@@ -1198,7 +1222,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
             String radxv = reader.readLine();
-            if (radxv != null && getint("radxv", radxv, 0) == 0) {
+            if (radxv != null && Utility.getint("radxv", radxv, 0) == 0) {
                 xtgraphics.sgame = 0;
             } else {
                 xtgraphics.sgame = 1;
@@ -1231,7 +1255,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             
             String line = reader.readLine();
             if (line != null)
-                xtgraphics.level = getint("radxv", line, 0);
+                xtgraphics.level = Utility.getint("radxv", line, 0);
             else {
                 reader.close();
                 return;
@@ -1240,7 +1264,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             //
             line = reader.readLine();
             for (int j = i; j < i + 13; ++j) {
-                contos[j].nhits = getint("radnhits", line, j);
+                contos[j].nhits = Utility.getint("radnhits", line, j);
                 if (contos[j].nhits >= contos[j].maxhits) {
                     contos[j].exp = true;
                     contos[j].out = true;
@@ -1252,7 +1276,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             //
             line = reader.readLine();
             for (int j = 0; j < 5; ++j) {
-                xtgraphics.dest[j] = getint("raddest", line, j) == 1;
+                xtgraphics.dest[j] = Utility.getint("raddest", line, j) == 1;
             }
             
             //radxv, radhits then raddest

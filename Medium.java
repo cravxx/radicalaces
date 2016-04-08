@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class Medium {
 
-    boolean isun = false;
+    private boolean isun = false;
 
     int focus_point = 400;
 
@@ -37,9 +37,9 @@ public class Medium {
 
     int h = 360;
 
-    int tart = 0;
+    private int tart = 0;
 
-    int yart = -100;
+    private int yart = -100;
 
     int zart = 0;
 
@@ -47,11 +47,11 @@ public class Medium {
 
     boolean td = false;
 
-    int vxz = 0;
+    private int vxz = 0;
 
-    int adv = -500;
+    private int adv = -500;
 
-    boolean vert = false;
+    private boolean vert = false;
 
     public void infront(ContO conto) {
         int i = conto.zy;

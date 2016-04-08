@@ -1,76 +1,80 @@
 import java.awt.Graphics;
 
+/**
+ * tank
+ * @author Omar Waly
+ */
 public class Tank {
 
-    cControl u = new cControl();
+    private cControl u = new cControl();
 
-    int rspeed = 0;
+    private int rspeed = 0;
 
-    int ltyp = 0;
+    private int ltyp = 0;
 
-    float speed = 0.0F;
+    private float speed = 0.0F;
 
-    boolean pexp = false;
+    private boolean pexp = false;
 
-    boolean left = false;
+    private boolean left = false;
 
-    boolean right = false;
+    private boolean right = false;
 
-    int[] lx = new int[20];
+    private int[] lx = new int[20];
 
-    int[] ly = new int[20];
+    private int[] ly = new int[20];
 
-    int[] lz = new int[20];
+    private int[] lz = new int[20];
 
-    int[] lxz = new int[20];
+    private int[] lxz = new int[20];
 
-    int[] lzy = new int[20];
+    private int[] lzy = new int[20];
 
-    int[] lxy = new int[20];
+    private int[] lxy = new int[20];
 
-    int[] lstage = new int[20];
+    private int[] lstage = new int[20];
 
-    int[] lspeed = new int[20];
+    private int[] lspeed = new int[20];
 
-    int[] lhit = new int[20];
+    private int[] lhit = new int[20];
 
-    int[] nf = new int[20];
+    private int[] nf = new int[20];
 
-    int nl = 0;
+    private int nl = 0;
 
-    Lasers lsr;
+    private Lasers lsr;
 
-    boolean skip = false;
+    private boolean skip = false;
 
-    int bulkc = 0;
+    private int bulkc = 0;
 
-    int[] sms = new int[4];
+    private int[] sms = new int[4];
 
-    int[] sx = new int[4];
+    private int[] sx = new int[4];
 
-    int[] sy = new int[4];
+    private int[] sy = new int[4];
 
-    int[] sz = new int[4];
+    private int[] sz = new int[4];
 
-    int[] sxz = new int[4];
+    private int[] sxz = new int[4];
 
-    int ns = 0;
+    private int ns = 0;
 
-    boolean smoke = false;
+    private boolean smoke = false;
 
-    int turnat = (int) (Math.random() * 50.0D);
+    private int turnat = (int) (Math.random() * 50.0D);
 
-    int tcnt = 0;
+    private int tcnt = 0;
 
-    int gxz = 0;
+    private int gxz = 0;
 
-    int attack = 0;
+    private int attack = 0;
 
-    boolean responce = false;
+    private boolean responce = false;
 
-    int trgxz = 180;
+    private int trgxz = 180;
 
-    int trgt = 0;
+    private int trgt = 0;
 
     public void preform(ContO conto, ContO[] contos, int i, int j) {
         int k;

@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
  *
  */
 public class Utility {
-	private final static Medium medium = new Medium();
 	
 	private static long startTime;
 	    
@@ -51,17 +50,17 @@ public class Utility {
      * @return The 2D X coordinate.
      */
     public static int xs(final int i, int j) {
-        if (j < medium.cz) {
-            j = medium.cz;
+        if (j < F51.m.cz) {
+            j = F51.m.cz;
         }
-        return (j - medium.focus_point) * (medium.cx - i) / j + i;
+        return (j - F51.m.focus_point) * (F51.m.cx - i) / j + i;
     }
     
     public static int cXs(final int i, int j) {
         if (j < 50) {
             j = 50;
         }
-        return (j - medium.focus_point) * (medium.cx - i) / j + i;
+        return (j - F51.m.focus_point) * (F51.m.cx - i) / j + i;
     }
 
     /**
@@ -78,14 +77,14 @@ public class Utility {
         if (j < 10) {
             j = 10;
         }
-        return (j - medium.focus_point) * (medium.cy - i) / j + i;
+        return (j - F51.m.focus_point) * (F51.m.cy - i) / j + i;
     }
     
     public static int cYs(final int i, int j) {
         if (j < 50) {
             j = 50;
         }
-        return (j - medium.focus_point) * (medium.cy - i) / j + i;
+        return (j - F51.m.focus_point) * (F51.m.cy - i) / j + i;
     }
 
     /**
@@ -145,7 +144,7 @@ public class Utility {
     }
         
     public static int spy(int i, int j) {
-		return (int) Math.sqrt((i - medium.cx) * (i - medium.cx) + j * j);
+		return (int) Math.sqrt((i - F51.m.cx) * (i - F51.m.cx) + j * j);
 	}
     
     public static float pys(int i, int j, int k, int l) {

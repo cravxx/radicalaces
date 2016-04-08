@@ -1,0 +1,22 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  
+env:
+  global:    
+    secure: "lCJJX5wTSnOjlvx14dk93PXKfMCDfC87PqTvpOtX6Igeo8n4gwf2Swb0WOH3tlyvSYRds
+g+OBRopMgUvA1tu//FRR1LoYvhs3Qmj2dfEkooCB36l0/WGnVRqGsqLblge3tTrLdOVJTtRH8sUgQoS7
+xDWsJ7Di8LZr4SaFr0KYJBkm9/pHBTOLqKKoUuv5GqC03NUg+y8CatUDx+MzRaiAYtpQfhvl5ZHSZ5/c
+IjrC8rnDm5+G1OiofjQy6ErRIUwJKntmvAT1wf6JhV8mOTcR0jOREZaKp5s76vmZzD2dhDVoDPgFfx+T
+6cNviqRyDKZ04qcLwQLt1FWWdhPD2nlzMtM+Kto0E3R9QsvWVYWOtnYQl+J+xqRDXQi1PANG3+m/pTFq
+EepAx1f1wDeSbDYawFJQXfq/h8LVO94gdQm9Ses1AeLS9tCMiZW2btmcUmvCWr0wCLAJbPvBW9pNyG6N
+J5jJDa7DEPl2LH2Rca078RKUzqd9Uh7RY9ZkIs598iGC8wtxv8tlW+4Px80HAPQvTW0a3uayNMSSEQLk
+QW0aIAne/t5fHD4Jqg4vduXP9I+qSGw9PE1s85IMjeKEj72vaDpcWg4wI6l5dconZ4jc8uVkd9fNn0Dg
+rHWa9skERuFB/388rUSb6KTqxLkMu5BNgFxaIfbadQRdWNXSu6gC+k="
+
+script:
+ - javac *.java -Xlint:deprecation
+ 
+after_success: 
+ - sh update_docs.sh

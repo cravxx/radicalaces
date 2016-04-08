@@ -133,41 +133,6 @@ public class F51 extends Applet implements Runnable {
 
     int dnload = 0;
 
-    public void stop() {
-        into.stop();
-        miso.stop();
-        selo.stop();
-        mano.stop();
-        upl.stop();
-        downl.stop();
-        low.stop();
-        med.stop();
-        ljump.stop();
-        grnd.stop();
-        exp.stop();
-        exph.stop();
-        hit.stop();
-        hitl.stop();
-        charged.stop();
-        int i = 0;
-        do {
-            las[i].stop();
-            ++i;
-        } while (i < 5);
-        i = 0;
-        do {
-            if (loadet[i]) {
-                mtrak[i].stop();
-            }
-            ++i;
-        } while (i < 7);
-        if (gamer != null) {
-            gamer.stop();
-        }
-        gamer = null;
-        rd.dispose();
-    }
-
     public boolean lostFocus(Event event, Object object) {
         if (!nounif) {
             mon = true;
@@ -453,13 +418,6 @@ public class F51 extends Applet implements Runnable {
         } catch (Exception var6) {
             ;
         }
-    }
-
-    public void destroy() {
-        if (gamer != null) {
-            gamer.stop();
-        }
-        gamer = null;
     }
 
     public void loadrots(ContO[] contos, boolean flag) {
@@ -1153,9 +1111,8 @@ public class F51 extends Applet implements Runnable {
                             loadsaved(conto1, xtgraphics, i);
                             xtgraphics.fase = -4;
                         }
-                        if (xtgraphics.select == 4 && maxmo != 0) {
-                            moner = "Exiting game...";
-                            mon = true;
+                        if (xtgraphics.select == 4) {
+                            System.exit(0);
                         }
                         u.space = false;
                     }
@@ -1210,11 +1167,6 @@ public class F51 extends Applet implements Runnable {
                             xtgraphics.cnty = 352;
                         }
                     }
-                    if (xtgraphics.fase == 7 && u.space) {
-                        moner = "One moment...";
-                        mon = true;
-                        u.space = false;
-                    }
                 }
             } else {
                 if (u.space) {
@@ -1223,31 +1175,6 @@ public class F51 extends Applet implements Runnable {
                 rd.setColor(new Color(223, 223, 223));
                 rd.fillRect(0, 0, 500, 360);
                 xtgraphics.drawcs(rd, 170, moner, 0, 0, 0, false);
-                if (moner.equals("Exiting game...")) {
-                    repaint();
-                    System.gc();
-                    /*try {
-						var42 = new URL(getCodeBase(), "web/exit.html");
-						getAppletContext().showDocument(var42);
-					} catch (Exception var37) {
-						;
-					}*/
-                    System.gc();
-                    gamer.stop();
-                }
-                if (moner.equals("One moment...")) {
-                    repaint();
-                    System.gc();
-                    unloadit();
-                    /*try {
-						var42 = new URL(getCodeBase(), "http://www.radicalplay.com/aces/winner/index.html");
-						getAppletContext().showDocument(var42);
-					} catch (Exception var36) {
-						;
-					}*/
-                    System.gc();
-                    gamer.stop();
-                }
             }
             repaint();
             if (!mon) {

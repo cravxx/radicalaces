@@ -69,7 +69,7 @@ public class RunApp extends Panel {
         applet.init();
         applet.start();
     }
-
+    
     public static void exitsequance() {
         applet.stop();
         frame.removeAll();

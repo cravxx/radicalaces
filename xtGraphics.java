@@ -691,15 +691,23 @@ public class xtGraphics extends Panel {
                     this.drawcs(graphics, 140, "G a m e   C o m p l e t e !", 0, 128, 255, true);
                     this.flik = true;
                 }
-                this.drawcs(graphics, 180, ">  Press Enter to continue  >", 150, 150, 150, false);
-                ++this.cnt;
-                if (this.cnt > 140) {
-                    control.space = true;
+                this.drawcs(graphics, 180, "Congratulations, you saved humanity!", 50, 50, 50, false);
+                if (this.cnt % 5 == 0) {
+                    this.drawcs(graphics, 195, "You are a true Radical Ace!", 255, 50, 50, false);
+                } else {
+                    this.drawcs(graphics, 195, "You are a true Radical Ace!", 150, 50, 50, false);
                 }
-            } else {
-                this.drawcs(graphics, 246, "Press Enter to continue >", 150, 150, 150, false);
+                ++this.cnt;
+                if (this.cnt > 600) {
+                    fase = 5;
+                }
+                if (control.space) {
+                    control.space = false;
+                    fase = 5;
+                }
             }
-            this.drawcs(graphics, 354, "Copyright Â© RadicalPlay.com", 255, 255, 255, true);
+            this.drawcs(graphics, 246, "> Press Enter to continue >", 150, 150, 150, false);
+            this.drawcs(graphics, 354, "Copyright © RadicalPlay.com", 255, 255, 255, true);
             if (control.space && this.fase != 7) {
                 if (this.fase == 5) {
                     this.fase = 6;

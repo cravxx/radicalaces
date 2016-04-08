@@ -13,7 +13,7 @@ public class DesktopStub implements AppletStub {
     AppletContext context = new DesktopContext();
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public boolean isActive() {
@@ -21,7 +21,7 @@ public class DesktopStub implements AppletStub {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public URL getDocumentBase() {
@@ -33,7 +33,7 @@ public class DesktopStub implements AppletStub {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public URL getCodeBase() {
@@ -53,7 +53,7 @@ public class DesktopStub implements AppletStub {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public AppletContext getAppletContext() {
@@ -61,7 +61,7 @@ public class DesktopStub implements AppletStub {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public void appletResize(int width, int height) {

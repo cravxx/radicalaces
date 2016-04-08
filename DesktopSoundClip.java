@@ -52,7 +52,7 @@ public class DesktopSoundClip implements AudioClip {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public void play() {
@@ -75,7 +75,7 @@ public class DesktopSoundClip implements AudioClip {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public void loop() {
@@ -96,7 +96,7 @@ public class DesktopSoundClip implements AudioClip {
     }
 
     /**
-    * @inheritdoc
+    * 
     */
     @Override
     public void stop() {

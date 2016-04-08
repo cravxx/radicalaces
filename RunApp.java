@@ -1,4 +1,9 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -31,9 +36,13 @@ public class RunApp extends Panel {
     }
 
     public static void main(String[] strings) {
-        System.runFinalizersOnExit(true);
         //Change this to the messgae of your preference
-        System.out.println("Nfm2-Mod Console");
+        System.out.println("<<< Radical Aces Console >>>");
+        System.out.println("OS: " + System.getProperty("os.name"));
+        System.out.println("OS Architecture: " + System.getProperty("os.arch"));
+        System.out.println("Java Runtime: " + System.getProperty("java.runtime.name"));
+        System.out.println("Java Version: " + System.getProperty("java.runtime.version"));
+        
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
@@ -49,7 +58,7 @@ public class RunApp extends Panel {
         frame.setIgnoreRepaint(true);
         frame.setIconImages(getIcons());
         applet = new F51();
-        applet.setStub(new DesktopStub());
+        applet.setDoubleBuffered(false); //prevents flickering
         frame.addWindowListener(new WindowAdapter() {
 
             @Override
@@ -58,7 +67,7 @@ public class RunApp extends Panel {
             }
         });
         //The resolution of your game goes here
-        applet.setPreferredSize(new java.awt.Dimension(500, 360));
+        applet.setPreferredSize(new Dimension(500, 360));
         frame.add("Center", applet);
         //If you plan to make you game support changes in resolution, you can comment out this line.
         frame.setResizable(false);
@@ -67,17 +76,14 @@ public class RunApp extends Panel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         applet.init();
-        applet.start();
     }
     
     public static void exitsequance() {
-        applet.stop();
         frame.removeAll();
         try {
             Thread.sleep(200L);
         } catch (Exception exception) {
         }
-        applet.destroy();
         applet = null;
         System.exit(0);
     }

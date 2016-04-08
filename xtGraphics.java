@@ -154,8 +154,8 @@ public class xtGraphics extends Panel {
         }
         if (fase == -8) {
             if (cnty < 351) {
-                graphics.drawImage(mars, 0, 0, (ImageObserver) null);
-                graphics.drawImage(text, 10, 380 - cnty, (ImageObserver) null);
+                graphics.drawImage(mars, 0, 0, null);
+                graphics.drawImage(text, 10, 380 - cnty, null);
                 if (cnty != 350) {
                     ++cnty;
                 } else {
@@ -174,7 +174,7 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == -7) {
-            graphics.drawImage(inst1, 0, 0, (ImageObserver) null);
+            graphics.drawImage(inst1, 0, 0, null);
             drawcs(graphics, 354, "Press Enter to continue >", 170, 170, 170, false);
             if (control.space) {
                 fase = -6;
@@ -182,7 +182,7 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == -6) {
-            graphics.drawImage(inst2, 0, 0, (ImageObserver) null);
+            graphics.drawImage(inst2, 0, 0, null);
             drawcs(graphics, 354, "Press Enter to continue >", 170, 170, 170, false);
             if (control.space) {
                 fase = -55;
@@ -190,7 +190,7 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == -55) {
-            graphics.drawImage(inst3, 0, 0, (ImageObserver) null);
+            graphics.drawImage(inst3, 0, 0, null);
             drawcs(graphics, 354, "Press Enter to continue >", 170, 170, 170, false);
             if (control.space) {
                 fase = oldfase;
@@ -198,10 +198,10 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == -5) {
-            graphics.drawImage(main, 0, 0, (ImageObserver) null);
+            graphics.drawImage(main, 0, 0, null);
             if (cnt < 7) {
-                graphics.drawImage(as[select], 25, 283, (ImageObserver) null);
-                graphics.drawImage(as[select], 423, 283, (ImageObserver) null);
+                graphics.drawImage(as[select], 25, 283, null);
+                graphics.drawImage(as[select], 423, 283, null);
                 ++cnt;
             } else {
                 cnt = 0;
@@ -220,7 +220,7 @@ public class xtGraphics extends Panel {
             if (control.space) {
                 cnts = 10;
             }
-            graphics.drawImage(rad, 500 + cnts, 50 + cntf, (ImageObserver) null);
+            graphics.drawImage(rad, 500 + cnts, 50 + cntf, null);
             drawcs(graphics, 274, "Start New Game", 0, 0, 0, false);
             if (sgame != 0) {
                 drawcs(graphics, 289, "Resume Saved Game", 0, 0, 0, false);
@@ -444,7 +444,7 @@ public class xtGraphics extends Panel {
             if (control.space) {
                 contos[selected].wire = false;
             }
-            graphics.drawImage(sback, 0, 0, (ImageObserver) null);
+            graphics.drawImage(sback, 0, 0, null);
             j = 0;
             do {
                 contos[j].d(graphics);
@@ -452,7 +452,7 @@ public class xtGraphics extends Panel {
                 ++j;
             } while (j < 5);
             if (dest[selected] && rcnt == 0) {
-                graphics.drawImage(destr, 117, 103, (ImageObserver) null);
+                graphics.drawImage(destr, 117, 103, null);
             }
             drawcs(graphics, 16, "Select your Ship", 255, 255, 255, false);
             drawcs(graphics, 354, "( use keyboard arrows to select )", 150, 150, 160, false);
@@ -508,7 +508,7 @@ public class xtGraphics extends Panel {
             graphics.drawString("Light Speed Jumps:  " + usercraft.dnjm[selected], 285, 330);
         }
         if (fase == -1) {
-            graphics.drawImage(mback, 0, 0, (ImageObserver) null);
+            graphics.drawImage(mback, 0, 0, null);
             if (level == 15) {
                 drawcs(graphics, 30, "Final Mission !", 255, 255, 255, true);
             } else {
@@ -516,7 +516,7 @@ public class xtGraphics extends Panel {
             }
             drawcs(graphics, 60, "Incoming Enemies:", 240, 240, 220, false);
             for (j = 0; j < nb; ++j) {
-                graphics.drawImage(lay, 79, 90 + 80 * j, (ImageObserver) null);
+                graphics.drawImage(lay, 79, 90 + 80 * j, null);
                 contos[ob[j]].d(graphics);
                 contos[ob[j]].xz += 7 + j;
                 drawcs(graphics, 125 + 80 * j, nam[j], 0, 0, 0, false);
@@ -560,7 +560,7 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == 1) {
-            graphics.drawImage(mback, 0, 0, (ImageObserver) null);
+            graphics.drawImage(mback, 0, 0, null);
             if (frst) {
                 frst = false;
             }
@@ -576,7 +576,7 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == 2) {
-            graphics.drawImage(mback, 0, 0, (ImageObserver) null);
+            graphics.drawImage(mback, 0, 0, null);
             if (alldest()) {
                 drawcs(graphics, 180, "All your ships were destroyed!", 255, 255, 255, true);
             } else {
@@ -594,7 +594,7 @@ public class xtGraphics extends Panel {
             }
         }
         if (fase == 3) {
-            graphics.drawImage(mback, 0, 0, (ImageObserver) null);
+            graphics.drawImage(mback, 0, 0, null);
             drawcs(graphics, 163, "Resume Game", 255, 255, 255, false);
             drawcs(graphics, 183, "Game Controls", 255, 255, 255, false);
             drawcs(graphics, 203, "Quit Game", 255, 255, 255, false);
@@ -657,7 +657,7 @@ public class xtGraphics extends Panel {
                     ++j;
                 } while (j < 250);
             }
-            graphics.drawImage(rad, 93, 32, (ImageObserver) null);
+            graphics.drawImage(rad, 93, 32, null);
             if (fase == 5) {
                 drawcs(graphics, 84, "Wild Polygons 3D engine by:", 0, 0, 0, false);
                 drawcs(graphics, 96, "Omar Waly", 100, 100, 100, false);
@@ -922,7 +922,7 @@ public class xtGraphics extends Panel {
             pix[i] = color2.getRGB();
             ++i;
         } while (i < 180000);
-        graphics.drawImage(createImage(new MemoryImageSource(500, 360, pix, 0, 500)), 0, 0, (ImageObserver) null);
+        graphics.drawImage(createImage(new MemoryImageSource(500, 360, pix, 0, 500)), 0, 0, null);
     }
 
     public void cmback(int i) {
@@ -997,7 +997,7 @@ public class xtGraphics extends Panel {
             pix[i] = color2.getRGB();
             ++i;
         } while (i < 180000);
-        graphics.drawImage(createImage(new MemoryImageSource(500, 360, pix, 0, 500)), 0, 0, (ImageObserver) null);
+        graphics.drawImage(createImage(new MemoryImageSource(500, 360, pix, 0, 500)), 0, 0, null);
     }
 
     public void drawovimg(Image image) {
@@ -1138,7 +1138,7 @@ public class xtGraphics extends Panel {
                 graphics.fillRect(110, 67, 270, 13);
                 rcnt = 0;
             }
-            graphics.drawImage(complete, 105, 60, (ImageObserver) null);
+            graphics.drawImage(complete, 105, 60, null);
             drawcs(graphics, 300, "Press Enter to continue", 0, 0, 0, false);
         }
         int i3;
@@ -1238,7 +1238,7 @@ public class xtGraphics extends Panel {
             drawcs(graphics, 300, "Ship Recharged !", 255 * m.er, 255 - m.eg * 100, 64 + m.eb * 191, false);
         }
         if (control.radar && !mcomp) {
-            graphics.drawImage(radar, 200, 60, (ImageObserver) null);
+            graphics.drawImage(radar, 200, 60, null);
             j1 = contos[ints2[0]].zy;
             for (i3 = -contos[ints2[0]].xz; j1 > 360; j1 -= 360) {
                 ;
@@ -1275,7 +1275,7 @@ public class xtGraphics extends Panel {
         if (control.plus || control.mins || cnts < 10) {
             graphics.setColor(new Color(0, 0, 0));
             graphics.drawString("" + usercraft.rspeed + " zic/tes", 50, 55);
-            graphics.drawImage(stube, 50, 60, (ImageObserver) null);
+            graphics.drawImage(stube, 50, 60, null);
             j1 = (int) (260.0F - (float) usercraft.rspeed * (200.0F / (float) usercraft.maxspeed[usercraft.ltyp]));
             graphics.setColor(new Color(255, j1 - 10, 0));
             graphics.fillRect(61, j1, 12, 260 - j1);

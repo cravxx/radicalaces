@@ -1,6 +1,8 @@
 import java.awt.Graphics;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+import java.io.InputStreamReader;
 
 public class ContO {
 
@@ -83,9 +85,9 @@ public class ContO {
         int[] var13 = new int[100];
         int[] var14 = new int[] { 50, 50, 50 };
         try {
-            DataInputStream datainputstream = new DataInputStream(new ByteArrayInputStream(b));
+            BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(b)));
             String var6;
-            while ((var6 = datainputstream.readLine()) != null) {
+            while ((var6 = bufferedreader.readLine()) != null) {
                 String var7 = "" + var6.trim();
                 if (var7.startsWith("<p>")) {
                     var8 = true;
@@ -139,7 +141,7 @@ public class ContO {
                     var10 = (float) getvalue("div", var7, 0) / 10.0F;
                 }
             }
-            datainputstream.close();
+            bufferedreader.close();
         } catch (Exception var16) {
             ;
         }

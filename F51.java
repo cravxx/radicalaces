@@ -374,8 +374,14 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         graphics.drawImage(offImage, 0, 0, this);
     }
 
+    /**
+     * Saves the game
+     * @param contos the contos
+     * @param xtgraphics the xtgraphics
+     * @param i this value must be __i
+     */
     public void savegame(ContO[] contos, xtGraphics xtgraphics, int i) {
-        try {//TODO
+        try {
             PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("savedata/game.dat"))));
             fout.println("radxv(" + xtgraphics.level + ")");
             
@@ -521,8 +527,10 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         System.gc();
     }
 
+    /** 
+     * Resets the game state
+     */
     public void set0() {
-        // TODO
         try {
             PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("savedata/game.dat"))));
             fout.println("radxv(0)");
@@ -1218,7 +1226,11 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         runGame();
     }
 
-    public void getslevel(xtGraphics xtgraphics) { //TODO
+    /**
+     * Loads the saved level
+     * @param xtgraphics the xtGraphics
+     */
+    public void getslevel(xtGraphics xtgraphics) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
             String radxv = reader.readLine();
@@ -1249,7 +1261,13 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         }
     }
 
-    public void loadsaved(ContO[] contos, xtGraphics xtgraphics, int i) { //TODO
+    /**
+     * Loads the saved game
+     * @param contos the game contos
+     * @param xtgraphics the xtgraphics
+     * @param i must be equal to __i
+     */
+    public void loadsaved(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("savedata/game.dat"))));
             

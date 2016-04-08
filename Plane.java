@@ -420,8 +420,8 @@ public class Plane {
             for (int i1 = 0; i1 < l; ++i1) {
                 int j1 = ints[i1];
                 int k1 = ints2[i1];
-                ints[i1] = i + (int) ((float) (j1 - i) * SinCos.getcos(k) - (float) (k1 - j) * SinCos.getsin(k));
-                ints2[i1] = j + (int) ((float) (j1 - i) * SinCos.getsin(k) + (float) (k1 - j) * SinCos.getcos(k));
+                ints[i1] = i + (int) ((float) (j1 - i) * RadicalMath.cos(k) - (float) (k1 - j) * RadicalMath.sin(k));
+                ints2[i1] = j + (int) ((float) (j1 - i) * RadicalMath.sin(k) + (float) (k1 - j) * RadicalMath.cos(k));
             }
         }
     }

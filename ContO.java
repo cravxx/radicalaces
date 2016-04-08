@@ -189,22 +189,22 @@ public class ContO {
             if (fire) {
                 dist = 1;
             }
-            j = m.cx + (int) ((float) (x - m.x - m.cx) * SinCos.getcos(m.xz) - (float) (z - m.z - m.cz) * SinCos.getsin(m.xz));
-            int k = m.cz + (int) ((float) (x - m.x - m.cx) * SinCos.getsin(m.xz) + (float) (z - m.z - m.cz) * SinCos.getcos(m.xz));
-            int l = m.cz + (int) ((float) (y - m.y - m.cy) * SinCos.getsin(m.zy) + (float) (k - m.cz) * SinCos.getcos(m.zy));
+            j = m.cx + (int) ((float) (x - m.x - m.cx) * RadicalMath.cos(m.xz) - (float) (z - m.z - m.cz) * RadicalMath.sin(m.xz));
+            int k = m.cz + (int) ((float) (x - m.x - m.cx) * RadicalMath.sin(m.xz) + (float) (z - m.z - m.cz) * RadicalMath.cos(m.xz));
+            int l = m.cz + (int) ((float) (y - m.y - m.cy) * RadicalMath.sin(m.zy) + (float) (k - m.cz) * RadicalMath.cos(m.zy));
             if (xs(j + maxR, l) > 0 && xs(j - maxR, l) < m.w && l > -maxR && l < 50000 && xs(j + maxR, l) - xs(j - maxR, l) > disp || exp) {
                 int i1;
                 int j1;
                 if (shadow || exp) {
-                    i1 = m.cy + (int) ((float) (m.ground - m.cy) * SinCos.getcos(m.zy) - (float) (k - m.cz) * SinCos.getsin(m.zy));
-                    int k1 = m.cz + (int) ((float) (m.ground - m.cy) * SinCos.getsin(m.zy) + (float) (k - m.cz) * SinCos.getcos(m.zy));
+                    i1 = m.cy + (int) ((float) (m.ground - m.cy) * RadicalMath.cos(m.zy) - (float) (k - m.cz) * RadicalMath.sin(m.zy));
+                    int k1 = m.cz + (int) ((float) (m.ground - m.cy) * RadicalMath.sin(m.zy) + (float) (k - m.cz) * RadicalMath.cos(m.zy));
                     if (ys(i1 + maxR, k1) > 0 && ys(i1 - maxR, k1) < m.h || exp) {
                         for (j1 = 0; j1 < npl; ++j1) {
                             p[j1].s(graphics, x - m.x, y - m.y, z - m.z, xz, xy, zy, loom);
                         }
                     }
                 }
-                i1 = m.cy + (int) ((float) (y - m.y - m.cy) * SinCos.getcos(m.zy) - (float) (k - m.cz) * SinCos.getsin(m.zy));
+                i1 = m.cy + (int) ((float) (y - m.y - m.cy) * RadicalMath.cos(m.zy) - (float) (k - m.cz) * RadicalMath.sin(m.zy));
                 if (ys(i1 + maxR, l) > 0 && ys(i1 - maxR, l) < m.h || exp) {
                     if (m.jumping != 0 && m.jumping < 4) {
                         hit = true;

@@ -5,13 +5,33 @@ public class Lasers {
 
     Medium m;
 
-    int[] speed = new int[12];
+    /**
+     * laser speed
+     */
+    public static int[] speed = {
+    		200, 150, 120, 120, 100, 100, 140, 100, 150, 120, 150, 150
+    };
 
-    int[] rads = new int[12];
+    /**
+     * laser rads
+     */
+    public static int[] rads = {
+    		200, 200, 300, 300, 200, 150, 160, 160, 160, 200, 200, 300
+    };
 
-    int[] srate = new int[12];
+    /**
+     * laser srate
+     */
+    public static int[] srate = {
+    		8, 8, 10, 10, 8, 6, 8, 6, 10, 10, 10, 10
+    };
 
-    int[] damg = new int[12];
+    /**
+     * laser damg
+     */
+    public static int[] damg = {
+    		3, 2, 2, 3, 2, 1, 1, 2, 2, 2, 3, 7
+    };
 
     public int ys(int i, int j) {
         if (j < 10) {
@@ -20,56 +40,8 @@ public class Lasers {
         return (j - m.focus_point) * (m.cy - i) / j + i;
     }
 
-    public Lasers(Medium var1) {
-        m = var1;
-        speed[0] = 200;
-        rads[0] = 200;
-        srate[0] = 8;
-        damg[0] = 3;
-        speed[1] = 150;
-        rads[1] = 200;
-        srate[1] = 8;
-        damg[1] = 2;
-        speed[2] = 120;
-        rads[2] = 300;
-        srate[2] = 10;
-        damg[2] = 2;
-        speed[3] = 120;
-        rads[3] = 300;
-        srate[3] = 10;
-        damg[3] = 3;
-        speed[4] = 100;
-        rads[4] = 200;
-        srate[4] = 8;
-        damg[4] = 2;
-        speed[5] = 100;
-        rads[5] = 150;
-        srate[5] = 6;
-        damg[5] = 1;
-        speed[6] = 140;
-        rads[6] = 160;
-        srate[6] = 8;
-        damg[6] = 1;
-        speed[7] = 100;
-        rads[7] = 160;
-        srate[7] = 6;
-        damg[7] = 2;
-        speed[8] = 150;
-        rads[8] = 160;
-        srate[8] = 10;
-        damg[8] = 2;
-        speed[9] = 120;
-        rads[9] = 200;
-        srate[9] = 10;
-        damg[9] = 2;
-        speed[10] = 150;
-        rads[10] = 200;
-        srate[10] = 10;
-        damg[10] = 3;
-        speed[11] = 150;
-        rads[11] = 300;
-        srate[11] = 10;
-        damg[11] = 7;
+    public Lasers(Medium medium) {
+        m = medium;
     }
 
     public void dt(Graphics graphics, int[] ints, int[] ints2, int[] ints3, int i, int j, int k, int l, int i1, int j1, int k1, int l2, int i2, int j2, int k2) {
@@ -951,8 +923,8 @@ public class Lasers {
             for (int i1 = 0; i1 < l; ++i1) {
                 int j1 = ints[i1];
                 int k1 = ints2[i1];
-                ints[i1] = i + (int) ((float) (j1 - i) * SinCos.getcos(k) - (float) (k1 - j) * SinCos.getsin(k));
-                ints2[i1] = j + (int) ((float) (j1 - i) * SinCos.getsin(k) + (float) (k1 - j) * SinCos.getcos(k));
+                ints[i1] = i + (int) ((float) (j1 - i) * RadicalMath.cos(k) - (float) (k1 - j) * RadicalMath.sin(k));
+                ints2[i1] = j + (int) ((float) (j1 - i) * RadicalMath.sin(k) + (float) (k1 - j) * RadicalMath.cos(k));
             }
         }
     }

@@ -1,4 +1,4 @@
-public class SinCos {
+public class RadicalMath {
 
     static float[] tcos = new float[360];
 
@@ -11,11 +11,11 @@ public class SinCos {
         }
     }
     
-    private SinCos() {
+    private RadicalMath() {
         
     }
 
-    public static float getsin(int i) {
+    public static float sin(int i) {
         while (i >= 360) {
             i -= 360;
         }
@@ -25,7 +25,7 @@ public class SinCos {
         return tsin[i];
     }
 
-    public static float getcos(int i) {
+    public static float cos(int i) {
         while (i >= 360) {
             i -= 360;
         }

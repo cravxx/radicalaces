@@ -1065,11 +1065,11 @@ public class xtGraphics extends Panel {
             }
             j = getcpy(contos[ints2[0]], contos[ints2[j1]]);
             if (j > s && !contos[ints2[j1]].exp) {
-                k1 = m.cx + (int) ((float) (contos[ints2[j1]].x - m.x - m.cx) * SinCos.getcos(m.xz) - (float) (contos[ints2[j1]].z - m.z - m.cz) * SinCos.getsin(m.xz));
-                l2 = m.cz + (int) ((float) (contos[ints2[j1]].x - m.x - m.cx) * SinCos.getsin(m.xz) + (float) (contos[ints2[j1]].z - m.z - m.cz) * SinCos.getcos(m.xz));
-                i2 = m.cz + (int) ((float) (contos[ints2[j1]].y - m.y - m.cy) * SinCos.getsin(m.zy) + (float) (l2 - m.cz) * SinCos.getcos(m.zy));
+                k1 = m.cx + (int) ((float) (contos[ints2[j1]].x - m.x - m.cx) * RadicalMath.cos(m.xz) - (float) (contos[ints2[j1]].z - m.z - m.cz) * RadicalMath.sin(m.xz));
+                l2 = m.cz + (int) ((float) (contos[ints2[j1]].x - m.x - m.cx) * RadicalMath.sin(m.xz) + (float) (contos[ints2[j1]].z - m.z - m.cz) * RadicalMath.cos(m.xz));
+                i2 = m.cz + (int) ((float) (contos[ints2[j1]].y - m.y - m.cy) * RadicalMath.sin(m.zy) + (float) (l2 - m.cz) * RadicalMath.cos(m.zy));
                 if (i2 > 100) {
-                    j2 = m.cy + (int) ((float) (contos[ints2[j1]].y - m.y - m.cy) * SinCos.getcos(m.zy) - (float) (l2 - m.cz) * SinCos.getsin(m.zy));
+                    j2 = m.cy + (int) ((float) (contos[ints2[j1]].y - m.y - m.cy) * RadicalMath.cos(m.zy) - (float) (l2 - m.cz) * RadicalMath.sin(m.zy));
                     k2 = xs(k1, i2);
                     int l3 = ys(j2, i2);
                     if (k2 > 0 && k2 < m.w && l3 > 0 && l3 < m.h) {
@@ -1142,10 +1142,10 @@ public class xtGraphics extends Panel {
         int i3;
         if (!flag && !contos[ints2[cl]].exp) {
             boolean flag3 = false;
-            i3 = m.cx + (int) ((float) (contos[ints2[cl]].x - m.x - m.cx) * SinCos.getcos(m.xz) - (float) (contos[ints2[cl]].z - m.z - m.cz) * SinCos.getsin(m.xz));
-            k1 = m.cz + (int) ((float) (contos[ints2[cl]].x - m.x - m.cx) * SinCos.getsin(m.xz) + (float) (contos[ints2[cl]].z - m.z - m.cz) * SinCos.getcos(m.xz));
-            l2 = m.cz + (int) ((float) (contos[ints2[cl]].y - m.y - m.cy) * SinCos.getsin(m.zy) + (float) (k1 - m.cz) * SinCos.getcos(m.zy));
-            i2 = m.cy + (int) ((float) (contos[ints2[cl]].y - m.y - m.cy) * SinCos.getcos(m.zy) - (float) (k1 - m.cz) * SinCos.getsin(m.zy));
+            i3 = m.cx + (int) ((float) (contos[ints2[cl]].x - m.x - m.cx) * RadicalMath.cos(m.xz) - (float) (contos[ints2[cl]].z - m.z - m.cz) * RadicalMath.sin(m.xz));
+            k1 = m.cz + (int) ((float) (contos[ints2[cl]].x - m.x - m.cx) * RadicalMath.sin(m.xz) + (float) (contos[ints2[cl]].z - m.z - m.cz) * RadicalMath.cos(m.xz));
+            l2 = m.cz + (int) ((float) (contos[ints2[cl]].y - m.y - m.cy) * RadicalMath.sin(m.zy) + (float) (k1 - m.cz) * RadicalMath.cos(m.zy));
+            i2 = m.cy + (int) ((float) (contos[ints2[cl]].y - m.y - m.cy) * RadicalMath.cos(m.zy) - (float) (k1 - m.cz) * RadicalMath.sin(m.zy));
             j2 = ys(i2, l2);
             k2 = xs(i3, l2);
             if (k2 < m.w && k2 > 0) {
@@ -1249,8 +1249,8 @@ public class xtGraphics extends Panel {
             }
             for (k1 = 1; k1 < i; ++k1) {
                 if (!contos[ints2[k1]].exp) {
-                    l2 = m.cx + (int) ((float) (contos[ints2[k1]].x - m.x - m.cx) * SinCos.getcos(i3) - (float) (contos[ints2[k1]].z - m.z - m.cz) * SinCos.getsin(i3));
-                    i2 = m.cz + (int) ((float) (contos[ints2[k1]].x - m.x - m.cx) * SinCos.getsin(i3) + (float) (contos[ints2[k1]].z - m.z - m.cz) * SinCos.getcos(i3));
+                    l2 = m.cx + (int) ((float) (contos[ints2[k1]].x - m.x - m.cx) * RadicalMath.cos(i3) - (float) (contos[ints2[k1]].z - m.z - m.cz) * RadicalMath.sin(i3));
+                    i2 = m.cz + (int) ((float) (contos[ints2[k1]].x - m.x - m.cx) * RadicalMath.sin(i3) + (float) (contos[ints2[k1]].z - m.z - m.cz) * RadicalMath.cos(i3));
                     graphics.setColor(new Color(0, 255, 128));
                     l2 = l2 / 400 + 249;
                     i2 = -i2 / 400 + 109;

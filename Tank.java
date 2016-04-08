@@ -259,9 +259,9 @@ public class Tank {
                             ++nf[j1];
                         }
                     }
-                    lx[j1] -= (int) ((float) lspeed[j1] * SinCos.getsin(lxz[j1]) * SinCos.getcos(lzy[j1]));
-                    lz[j1] += (int) ((float) lspeed[j1] * SinCos.getcos(lxz[j1]) * SinCos.getcos(lzy[j1]));
-                    ly[j1] -= (int) ((float) lspeed[j1] * SinCos.getsin(lzy[j1]));
+                    lx[j1] -= (int) ((float) lspeed[j1] * RadicalMath.sin(lxz[j1]) * RadicalMath.cos(lzy[j1]));
+                    lz[j1] += (int) ((float) lspeed[j1] * RadicalMath.cos(lxz[j1]) * RadicalMath.cos(lzy[j1]));
+                    ly[j1] -= (int) ((float) lspeed[j1] * RadicalMath.sin(lzy[j1]));
                     ++lstage[j1];
                     if (lstage[j1] > 80) {
                         lstage[j1] = 0;
@@ -277,9 +277,9 @@ public class Tank {
         } else if (conto.fire) {
             conto.fire = false;
         }
-        conto.x -= (int) (speed * SinCos.getsin(conto.xz) * SinCos.getcos(conto.zy));
-        conto.z += (int) (speed * SinCos.getcos(conto.xz) * SinCos.getcos(conto.zy));
-        conto.y -= (int) (speed * SinCos.getsin(conto.zy));
+        conto.x -= (int) (speed * RadicalMath.sin(conto.xz) * RadicalMath.cos(conto.zy));
+        conto.z += (int) (speed * RadicalMath.cos(conto.xz) * RadicalMath.cos(conto.zy));
+        conto.y -= (int) (speed * RadicalMath.sin(conto.zy));
         if (tcnt > turnat) {
             if (trgt != 0) {
                 trgt = 0;

@@ -101,12 +101,12 @@ public class userCraft {
         int l2;
         if (conto.y < 207) {
             if (control.up) {
-                conto.zy -= (int) ((float) (4 + elev[ltyp]) * SinCos.getcos(conto.xy));
-                conto.xz += (int) ((float) (b * (2 + elev[ltyp])) * SinCos.getsin(conto.xy));
+                conto.zy -= (int) ((float) (4 + elev[ltyp]) * RadicalMath.cos(conto.xy));
+                conto.xz += (int) ((float) (b * (2 + elev[ltyp])) * RadicalMath.sin(conto.xy));
             }
             if (control.down) {
-                conto.zy += (int) ((float) (4 + elev[ltyp]) * SinCos.getcos(conto.xy));
-                conto.xz -= (int) ((float) (b * (2 + elev[ltyp])) * SinCos.getsin(conto.xy));
+                conto.zy += (int) ((float) (4 + elev[ltyp]) * RadicalMath.cos(conto.xy));
+                conto.xz -= (int) ((float) (b * (2 + elev[ltyp])) * RadicalMath.sin(conto.xy));
             }
         } else {
             for (k = Math.abs(conto.zy); k > 90; k -= 180) {
@@ -152,7 +152,7 @@ public class userCraft {
                 smoke = true;
             }
             if (speed > 10.0F && control.down) {
-                conto.zy += (int) (5.0F * SinCos.getcos(conto.xy));
+                conto.zy += (int) (5.0F * RadicalMath.cos(conto.xy));
             }
         }
         if (control.left) {
@@ -169,9 +169,9 @@ public class userCraft {
                 conto.xz -= 2;
             }
         }
-        k = (int) ((float) (b * (3 + trnn[ltyp])) * SinCos.getsin(conto.xy));
+        k = (int) ((float) (b * (3 + trnn[ltyp])) * RadicalMath.sin(conto.xy));
         conto.xz -= k;
-        rlift = (int) (speed * SinCos.getcos(conto.zy) * SinCos.getcos(conto.xy)) - 40;
+        rlift = (int) (speed * RadicalMath.cos(conto.zy) * RadicalMath.cos(conto.xy)) - 40;
         if (lift < (double) rlift) {
             lift += 0.5D;
         }
@@ -181,7 +181,7 @@ public class userCraft {
         if (lift < (double) (-(50.0F - speed / 2.0F))) {
             lift = (double) (-(50.0F - speed / 2.0F));
         }
-        l = (int) (5.0F * SinCos.getcos(conto.zy) * SinCos.getcos(conto.xy));
+        l = (int) (5.0F * RadicalMath.cos(conto.zy) * RadicalMath.cos(conto.xy));
         if (lift > (double) l) {
             lift = (double) l;
         }
@@ -339,9 +339,9 @@ public class userCraft {
                             lzy[j1] = -((int) ((double) (90 + s2) - Math.atan((double) l3 / (double) (k2 - ly[j1])) / 0.017453292519943295D));
                         }
                     }
-                    lx[j1] -= (int) ((float) lspeed[j1] * SinCos.getsin(lxz[j1]) * SinCos.getcos(lzy[j1]));
-                    lz[j1] += (int) ((float) lspeed[j1] * SinCos.getcos(lxz[j1]) * SinCos.getcos(lzy[j1]));
-                    ly[j1] -= (int) ((float) lspeed[j1] * SinCos.getsin(lzy[j1]));
+                    lx[j1] -= (int) ((float) lspeed[j1] * RadicalMath.sin(lxz[j1]) * RadicalMath.cos(lzy[j1]));
+                    lz[j1] += (int) ((float) lspeed[j1] * RadicalMath.cos(lxz[j1]) * RadicalMath.cos(lzy[j1]));
+                    ly[j1] -= (int) ((float) lspeed[j1] * RadicalMath.sin(lzy[j1]));
                     ++lstage[j1];
                     if (lstage[j1] > 80) {
                         lstage[j1] = 0;
@@ -358,9 +358,9 @@ public class userCraft {
             conto.fire = false;
             bulkc = 0;
         }
-        conto.x -= (int) (speed * SinCos.getsin(conto.xz) * SinCos.getcos(conto.zy));
-        conto.z += (int) (speed * SinCos.getcos(conto.xz) * SinCos.getcos(conto.zy));
-        conto.y -= (int) (speed * SinCos.getsin(conto.zy));
+        conto.x -= (int) (speed * RadicalMath.sin(conto.xz) * RadicalMath.cos(conto.zy));
+        conto.z += (int) (speed * RadicalMath.cos(conto.xz) * RadicalMath.cos(conto.zy));
+        conto.y -= (int) (speed * RadicalMath.sin(conto.zy));
         if (conto.y > 215) {
             conto.y = 215;
         }

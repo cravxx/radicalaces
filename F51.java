@@ -458,8 +458,8 @@ public class F51 extends Applet implements Runnable {
             }
             zipinputstream.close();
             datainputstream.close();
-        } catch (Exception var12) {
-            System.out.println("Error Reading Models: " + var12);
+        } catch (IOException e) {
+            System.out.println("Error Reading Models: " + e);
         }
         System.gc();
     }

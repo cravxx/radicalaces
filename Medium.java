@@ -83,10 +83,10 @@ public class Medium {
         if (i < -90) {
             i = -180 - i;
         }
-        int k = conto.y + (int) ((float) (conto.y + yart - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z + 800 - conto.z) * SinCos.getsin(conto.zy));
-        int l = conto.z + (int) ((float) (conto.y + yart - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z + 800 - conto.z) * SinCos.getcos(conto.zy));
-        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * SinCos.getsin(conto.xz));
-        int j1 = conto.z + (int) ((float) (l - conto.z) * SinCos.getcos(conto.xz));
+        int k = conto.y + (int) ((float) (conto.y + yart - conto.y) * RadicalMath.cos(conto.zy) - (float) (conto.z + 800 - conto.z) * RadicalMath.sin(conto.zy));
+        int l = conto.z + (int) ((float) (conto.y + yart - conto.y) * RadicalMath.sin(conto.zy) + (float) (conto.z + 800 - conto.z) * RadicalMath.cos(conto.zy));
+        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * RadicalMath.sin(conto.xz));
+        int j1 = conto.z + (int) ((float) (l - conto.z) * RadicalMath.cos(conto.xz));
         zy = i;
         xz = -(j + 180);
         x += (i1 - cx - x) / 3;
@@ -108,8 +108,8 @@ public class Medium {
         int i = 70000;
         int j = 250;
         if (zy != 0) {
-            j = cy + (int) ((float) (250 - cy) * SinCos.getcos(zy) - (float) (70000 - cz) * SinCos.getsin(zy));
-            i = cz + (int) ((float) (250 - cy) * SinCos.getsin(zy) + (float) (70000 - cz) * SinCos.getcos(zy));
+            j = cy + (int) ((float) (250 - cy) * RadicalMath.cos(zy) - (float) (70000 - cz) * RadicalMath.sin(zy));
+            i = cz + (int) ((float) (250 - cy) * RadicalMath.sin(zy) + (float) (70000 - cz) * RadicalMath.cos(zy));
         }
         int[] ints = new int[4];
         int[] ints2 = new int[4];
@@ -181,10 +181,10 @@ public class Medium {
 
     public void watch(ContO conto) {
         if (!td) {
-            y = conto.y + (int) ((float) (conto.y - 300 - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z + 3000 - conto.z) * SinCos.getsin(conto.zy));
-            int i = conto.z + (int) ((float) (conto.y - 300 - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z + 3000 - conto.z) * SinCos.getcos(conto.zy));
-            x = conto.x + (int) ((float) (conto.x + 400 - conto.x) * SinCos.getcos(conto.xz) - (float) (i - conto.z) * SinCos.getsin(conto.xz));
-            z = conto.z + (int) ((float) (conto.x + 400 - conto.x) * SinCos.getsin(conto.xz) + (float) (i - conto.z) * SinCos.getcos(conto.xz));
+            y = conto.y + (int) ((float) (conto.y - 300 - conto.y) * RadicalMath.cos(conto.zy) - (float) (conto.z + 3000 - conto.z) * RadicalMath.sin(conto.zy));
+            int i = conto.z + (int) ((float) (conto.y - 300 - conto.y) * RadicalMath.sin(conto.zy) + (float) (conto.z + 3000 - conto.z) * RadicalMath.cos(conto.zy));
+            x = conto.x + (int) ((float) (conto.x + 400 - conto.x) * RadicalMath.cos(conto.xz) - (float) (i - conto.z) * RadicalMath.sin(conto.xz));
+            z = conto.z + (int) ((float) (conto.x + 400 - conto.x) * RadicalMath.sin(conto.xz) + (float) (i - conto.z) * RadicalMath.cos(conto.xz));
             td = true;
         }
         short s = 0;
@@ -211,8 +211,8 @@ public class Medium {
             b = 2;
         }
         y = conto.y + adv;
-        x = conto.x + (int) ((float) (conto.x - i + adv * b - conto.x) * SinCos.getcos(vxz));
-        z = conto.z + (int) ((float) (conto.x - i + adv * b - conto.x) * SinCos.getsin(vxz));
+        x = conto.x + (int) ((float) (conto.x - i + adv * b - conto.x) * RadicalMath.cos(vxz));
+        z = conto.z + (int) ((float) (conto.x - i + adv * b - conto.x) * RadicalMath.sin(vxz));
         if (i == 6000) {
             if (!vert) {
                 adv -= 10;
@@ -261,8 +261,8 @@ public class Medium {
 
     public void left(ContO conto) {
         int i = conto.y;
-        int j = conto.x + (int) ((float) (conto.x + 600 - conto.x) * SinCos.getcos(conto.xz));
-        int k = conto.z + (int) ((float) (conto.x + 600 - conto.x) * SinCos.getsin(conto.xz));
+        int j = conto.x + (int) ((float) (conto.x + 600 - conto.x) * RadicalMath.cos(conto.xz));
+        int k = conto.z + (int) ((float) (conto.x + 600 - conto.x) * RadicalMath.sin(conto.xz));
         zy = 0;
         xz = -(conto.xz + 90);
         x = (int) ((double) x + (double) (j - cx - x) / 1.5D);
@@ -272,8 +272,8 @@ public class Medium {
 
     public void right(ContO conto) {
         int i = conto.y;
-        int j = conto.x + (int) ((float) (conto.x - 600 - conto.x) * SinCos.getcos(conto.xz));
-        int k = conto.z + (int) ((float) (conto.x - 600 - conto.x) * SinCos.getsin(conto.xz));
+        int j = conto.x + (int) ((float) (conto.x - 600 - conto.x) * RadicalMath.cos(conto.xz));
+        int k = conto.z + (int) ((float) (conto.x - 600 - conto.x) * RadicalMath.sin(conto.xz));
         zy = 0;
         xz = -(conto.xz - 90);
         x += (j - cx - x) / 3;
@@ -304,10 +304,10 @@ public class Medium {
         if (i < -90) {
             i = -180 - i;
         }
-        int k = conto.y + (int) ((float) (conto.y + yart - conto.y) * SinCos.getcos(conto.zy) - (float) (conto.z - 600 - conto.z) * SinCos.getsin(conto.zy));
-        int l = conto.z + (int) ((float) (conto.y + yart - conto.y) * SinCos.getsin(conto.zy) + (float) (conto.z - 600 - conto.z) * SinCos.getcos(conto.zy));
-        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * SinCos.getsin(conto.xz));
-        int j1 = conto.z + (int) ((float) (l - conto.z) * SinCos.getcos(conto.xz));
+        int k = conto.y + (int) ((float) (conto.y + yart - conto.y) * RadicalMath.cos(conto.zy) - (float) (conto.z - 600 - conto.z) * RadicalMath.sin(conto.zy));
+        int l = conto.z + (int) ((float) (conto.y + yart - conto.y) * RadicalMath.sin(conto.zy) + (float) (conto.z - 600 - conto.z) * RadicalMath.cos(conto.zy));
+        int i1 = conto.x + (int) ((float) (-(l - conto.z)) * RadicalMath.sin(conto.xz));
+        int j1 = conto.z + (int) ((float) (l - conto.z) * RadicalMath.cos(conto.xz));
         zy = -i;
         xz = -j;
         x += (i1 - cx - x) / 3;

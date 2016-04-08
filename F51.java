@@ -5,14 +5,18 @@ import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
 import javax.imageio.ImageIO;
+
 import netscape.javascript.JSObject;
 
 public class F51 extends Applet implements Runnable {
@@ -482,7 +486,6 @@ public class F51 extends Applet implements Runnable {
             DataInputStream datainputstream = new DataInputStream(url.openStream());
             ZipInputStream zipinputstream = new ZipInputStream(datainputstream);
             ZipEntry zipentry = zipinputstream.getNextEntry();
-            Object object = null;
             for (int i = 0; zipentry != null; zipentry = zipinputstream.getNextEntry()) {
                 int j = (int) zipentry.getSize();
                 byte[] bytes = new byte[j];
@@ -515,10 +518,9 @@ public class F51 extends Applet implements Runnable {
         xtgraphics.nb = 0;
         xtgraphics.mcomp = false;
         try {
-            URL url = new URL(getCodeBase(), "levels/" + xtgraphics.level + ".txt");
-            DataInputStream datainputstream = new DataInputStream(url.openStream());
+            BufferedReader stageReader = new BufferedReader(new FileReader("levels/" + xtgraphics.level + ".txt"));
             String string;
-            while ((string = datainputstream.readLine()) != null) {
+            while ((string = stageReader.readLine()) != null) {
                 String string2 = "" + string.trim();
                 if (string2.startsWith("craft")) {
                     ints[maxmo] = getint("craft", string2, 0);
@@ -558,7 +560,7 @@ public class F51 extends Applet implements Runnable {
                     ++maxmo;
                 }
             }
-            datainputstream.close();
+            stageReader.close();
         } catch (Exception var12) {
             ;
         }
@@ -752,11 +754,10 @@ public class F51 extends Applet implements Runnable {
 
     public void loadobjects(ContO[] contos, ContO[] contos2, Medium medium, String string) {
         try {
-            URL url = new URL(getCodeBase(), "siters/" + string + ".txt");
-            DataInputStream datainputstream = new DataInputStream(url.openStream());
+            BufferedReader objectReader = new BufferedReader(new FileReader("siters/" + string + ".txt"));
             boolean flag = false;
             String string2;
-            while ((string2 = datainputstream.readLine()) != null) {
+            while ((string2 = objectReader.readLine()) != null) {
                 String string3 = "" + string2.trim();
                 if (string3.startsWith("l")) {
                     String string4 = getstring("l", string3, 0);
@@ -798,7 +799,7 @@ public class F51 extends Applet implements Runnable {
                     }
                 }
             }
-            datainputstream.close();
+            objectReader.close();
         } catch (Exception var15) {
             ;
         }
@@ -1222,7 +1223,6 @@ public class F51 extends Applet implements Runnable {
                 rd.setColor(new Color(223, 223, 223));
                 rd.fillRect(0, 0, 500, 360);
                 xtgraphics.drawcs(rd, 170, moner, 0, 0, 0, false);
-                URL url;
                 if (moner.equals("Exiting game...")) {
                     repaint();
                     System.gc();

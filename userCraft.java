@@ -101,12 +101,12 @@ public class userCraft {
         int l2;
         if (conto.y < 207) {
             if (control.up) {
-                conto.zy -= (int) ((float) (4 + this.elev[this.ltyp]) * conto.m.cs.getcos(conto.xy));
-                conto.xz += (int) ((float) (b * (2 + this.elev[this.ltyp])) * conto.m.cs.getsin(conto.xy));
+                conto.zy -= (int) ((float) (4 + this.elev[this.ltyp]) * SinCos.getcos(conto.xy));
+                conto.xz += (int) ((float) (b * (2 + this.elev[this.ltyp])) * SinCos.getsin(conto.xy));
             }
             if (control.down) {
-                conto.zy += (int) ((float) (4 + this.elev[this.ltyp]) * conto.m.cs.getcos(conto.xy));
-                conto.xz -= (int) ((float) (b * (2 + this.elev[this.ltyp])) * conto.m.cs.getsin(conto.xy));
+                conto.zy += (int) ((float) (4 + this.elev[this.ltyp]) * SinCos.getcos(conto.xy));
+                conto.xz -= (int) ((float) (b * (2 + this.elev[this.ltyp])) * SinCos.getsin(conto.xy));
             }
         } else {
             for (k = Math.abs(conto.zy); k > 90; k -= 180) {
@@ -152,7 +152,7 @@ public class userCraft {
                 this.smoke = true;
             }
             if (this.speed > 10.0F && control.down) {
-                conto.zy += (int) (5.0F * conto.m.cs.getcos(conto.xy));
+                conto.zy += (int) (5.0F * SinCos.getcos(conto.xy));
             }
         }
         if (control.left) {
@@ -169,9 +169,9 @@ public class userCraft {
                 conto.xz -= 2;
             }
         }
-        k = (int) ((float) (b * (3 + this.trnn[this.ltyp])) * conto.m.cs.getsin(conto.xy));
+        k = (int) ((float) (b * (3 + this.trnn[this.ltyp])) * SinCos.getsin(conto.xy));
         conto.xz -= k;
-        this.rlift = (int) (this.speed * conto.m.cs.getcos(conto.zy) * conto.m.cs.getcos(conto.xy)) - 40;
+        this.rlift = (int) (this.speed * SinCos.getcos(conto.zy) * SinCos.getcos(conto.xy)) - 40;
         if (this.lift < (double) this.rlift) {
             this.lift += 0.5D;
         }
@@ -181,7 +181,7 @@ public class userCraft {
         if (this.lift < (double) (-(50.0F - this.speed / 2.0F))) {
             this.lift = (double) (-(50.0F - this.speed / 2.0F));
         }
-        l = (int) (5.0F * conto.m.cs.getcos(conto.zy) * conto.m.cs.getcos(conto.xy));
+        l = (int) (5.0F * SinCos.getcos(conto.zy) * SinCos.getcos(conto.xy));
         if (this.lift > (double) l) {
             this.lift = (double) l;
         }
@@ -339,9 +339,9 @@ public class userCraft {
                             this.lzy[j1] = -((int) ((double) (90 + s2) - Math.atan((double) l3 / (double) (k2 - this.ly[j1])) / 0.017453292519943295D));
                         }
                     }
-                    this.lx[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.getsin(this.lxz[j1]) * conto.m.cs.getcos(this.lzy[j1]));
-                    this.lz[j1] += (int) ((float) this.lspeed[j1] * conto.m.cs.getcos(this.lxz[j1]) * conto.m.cs.getcos(this.lzy[j1]));
-                    this.ly[j1] -= (int) ((float) this.lspeed[j1] * conto.m.cs.getsin(this.lzy[j1]));
+                    this.lx[j1] -= (int) ((float) this.lspeed[j1] * SinCos.getsin(this.lxz[j1]) * SinCos.getcos(this.lzy[j1]));
+                    this.lz[j1] += (int) ((float) this.lspeed[j1] * SinCos.getcos(this.lxz[j1]) * SinCos.getcos(this.lzy[j1]));
+                    this.ly[j1] -= (int) ((float) this.lspeed[j1] * SinCos.getsin(this.lzy[j1]));
                     ++this.lstage[j1];
                     if (this.lstage[j1] > 80) {
                         this.lstage[j1] = 0;
@@ -358,9 +358,9 @@ public class userCraft {
             conto.fire = false;
             this.bulkc = 0;
         }
-        conto.x -= (int) (this.speed * conto.m.cs.getsin(conto.xz) * conto.m.cs.getcos(conto.zy));
-        conto.z += (int) (this.speed * conto.m.cs.getcos(conto.xz) * conto.m.cs.getcos(conto.zy));
-        conto.y -= (int) (this.speed * conto.m.cs.getsin(conto.zy));
+        conto.x -= (int) (this.speed * SinCos.getsin(conto.xz) * SinCos.getcos(conto.zy));
+        conto.z += (int) (this.speed * SinCos.getcos(conto.xz) * SinCos.getcos(conto.zy));
+        conto.y -= (int) (this.speed * SinCos.getsin(conto.zy));
         if (conto.y > 215) {
             conto.y = 215;
         }

@@ -1,12 +1,12 @@
 public class cControl {
 
-    boolean left = false;
+    public boolean left = false;
 
-    boolean right = false;
+    public boolean right = false;
 
-    boolean up = false;
+    public boolean up = false;
 
-    boolean down = false;
+    public boolean down = false;
 
-    boolean fire = false;
+    public boolean fire = false;
 }

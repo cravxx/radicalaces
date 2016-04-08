@@ -1,8 +1,8 @@
 public class RadicalMath {
 
-    static float[] tcos = new float[360];
+    private static float[] tcos = new float[360];
 
-    static float[] tsin = new float[360];
+    private static float[] tsin = new float[360];
 
     static {
         for (int i = 0; i < 360; i++) {

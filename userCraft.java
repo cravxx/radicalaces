@@ -6,17 +6,17 @@ import java.awt.Graphics;
  */
 public class userCraft {
 
-    int rspeed = 0;
+	public int rspeed = 0;
 
-    float speed = 0.0F;
+	public float speed = 0.0F;
 
-    int rlift = 0;
+    private int rlift = 0;
 
-    double lift = 0.0D;
+    private double lift = 0.0D;
 
-    boolean pexp = false;
+    private boolean pexp = false;
 
-    int ltyp = 0;
+    public int ltyp = 0;
 
     /**
      * max flying speed of plane
@@ -53,65 +53,65 @@ public class userCraft {
     		"E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend" 
     };
 
-    int njumps = 0;
+    public int njumps = 0;
 
-    int ester = 0;
+    public int ester = 0;
 
-    int[] lx = new int[20];
+    private int[] lx = new int[20];
 
-    int[] ly = new int[20];
+    private int[] ly = new int[20];
 
-    int[] lz = new int[20];
+    private int[] lz = new int[20];
 
-    int[] lxz = new int[20];
+    private int[] lxz = new int[20];
 
-    int[] lzy = new int[20];
+    private int[] lzy = new int[20];
 
-    int[] lxy = new int[20];
+    private int[] lxy = new int[20];
 
-    int[] lstage = new int[20];
+    private int[] lstage = new int[20];
 
-    int[] lspeed = new int[20];
+    private int[] lspeed = new int[20];
 
-    int[] lhit = new int[20];
+    private int[] lhit = new int[20];
 
-    int nl = 0;
+    private int nl = 0;
 
-    Lasers lsr;
+    private Lasers lsr;
 
-    boolean skip = false;
+    private boolean skip = false;
 
-    int bulkc = 0;
+    private int bulkc = 0;
 
-    int[] sms = new int[4];
+    public int[] sms = new int[4];
 
-    int[] sx = new int[4];
+    private int[] sx = new int[4];
 
-    int[] sy = new int[4];
+    private int[] sy = new int[4];
 
-    int[] sz = new int[4];
+    private int[] sz = new int[4];
 
-    int[] sxz = new int[4];
+    private int[] sxz = new int[4];
 
-    int[] szy = new int[4];
+    private int[] szy = new int[4];
 
-    int ns = 0;
+    private int ns = 0;
 
-    boolean smoke = false;
+    private boolean smoke = false;
 
-    int[] dms = new int[4];
+    private int[] dms = new int[4];
 
-    int[] dx = new int[4];
+    private int[] dx = new int[4];
 
-    int[] dy = new int[4];
+    private int[] dy = new int[4];
 
-    int[] dz = new int[4];
+    private int[] dz = new int[4];
 
-    int[] dxz = new int[4];
+    private int[] dxz = new int[4];
 
-    int[] dzy = new int[4];
+    private int[] dzy = new int[4];
 
-    int nd = 0;
+    private int nd = 0;
 
     public void preform(Control control, ContO conto, ContO[] contos, int[] ints, int i) {
         int j;

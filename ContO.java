@@ -27,13 +27,13 @@ public class ContO {
 
     int maxR = 0;
 
-    int disp = 0;
+    private int disp = 0;
 
-    boolean shadow = false;
+    private boolean shadow = false;
 
-    boolean loom = false;
+    private boolean loom = false;
 
-    int grounded = 1;
+    private int grounded = 1;
 
     boolean colides = false;
 
@@ -54,13 +54,6 @@ public class ContO {
     boolean wire = false;
 
     boolean exp = false;
-
-    public int ys(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - m.focus_point) * (m.cy - i) / j + i;
-    }
 
     public void reset() {
         exp = false;
@@ -94,14 +87,14 @@ public class ContO {
                 }
                 if (var8) {
                     if (var7.startsWith("c")) {
-                        var14[0] = getvalue("c", var7, 0);
-                        var14[1] = getvalue("c", var7, 1);
-                        var14[2] = getvalue("c", var7, 2);
+                        var14[0] = Utility.getvalue("c", var7, 0);
+                        var14[1] = Utility.getvalue("c", var7, 1);
+                        var14[2] = Utility.getvalue("c", var7, 2);
                     }
                     if (var7.startsWith("p")) {
-                        var11[var9] = (int) ((float) getvalue("p", var7, 0) * var10);
-                        var12[var9] = (int) ((float) getvalue("p", var7, 1) * var10);
-                        var13[var9] = (int) ((float) getvalue("p", var7, 2) * var10);
+                        var11[var9] = (int) ((float) Utility.getvalue("p", var7, 0) * var10);
+                        var12[var9] = (int) ((float) Utility.getvalue("p", var7, 1) * var10);
+                        var13[var9] = (int) ((float) Utility.getvalue("p", var7, 2) * var10);
                         ++var9;
                     }
                 }
@@ -111,10 +104,10 @@ public class ContO {
                     var8 = false;
                 }
                 if (var7.startsWith("MaxRadius")) {
-                    maxR = getvalue("MaxRadius", var7, 0);
+                    maxR = Utility.getvalue("MaxRadius", var7, 0);
                 }
                 if (var7.startsWith("disp")) {
-                    disp = getvalue("disp", var7, 0);
+                    disp = Utility.getvalue("disp", var7, 0);
                 }
                 if (var7.startsWith("shadow")) {
                     shadow = true;
@@ -126,18 +119,18 @@ public class ContO {
                     out = true;
                 }
                 if (var7.startsWith("hits")) {
-                    maxhits = getvalue("hits", var7, 0);
+                    maxhits = Utility.getvalue("hits", var7, 0);
                 }
                 if (var7.startsWith("colid")) {
                     colides = true;
-                    rcol = getvalue("colid", var7, 0);
-                    pcol = getvalue("colid", var7, 1);
+                    rcol = Utility.getvalue("colid", var7, 0);
+                    pcol = Utility.getvalue("colid", var7, 1);
                 }
                 if (var7.startsWith("grounded")) {
-                    grounded = getvalue("grounded", var7, 0);
+                    grounded = Utility.getvalue("grounded", var7, 0);
                 }
                 if (var7.startsWith("div")) {
-                    var10 = (float) getvalue("div", var7, 0) / 10.0F;
+                    var10 = (float) Utility.getvalue("div", var7, 0) / 10.0F;
                 }
             }
             bufferedreader.close();
@@ -192,20 +185,20 @@ public class ContO {
             j = m.cx + (int) ((float) (x - m.x - m.cx) * RadicalMath.cos(m.xz) - (float) (z - m.z - m.cz) * RadicalMath.sin(m.xz));
             int k = m.cz + (int) ((float) (x - m.x - m.cx) * RadicalMath.sin(m.xz) + (float) (z - m.z - m.cz) * RadicalMath.cos(m.xz));
             int l = m.cz + (int) ((float) (y - m.y - m.cy) * RadicalMath.sin(m.zy) + (float) (k - m.cz) * RadicalMath.cos(m.zy));
-            if (xs(j + maxR, l) > 0 && xs(j - maxR, l) < m.w && l > -maxR && l < 50000 && xs(j + maxR, l) - xs(j - maxR, l) > disp || exp) {
+            if (Utility.xs(j + maxR, l) > 0 && Utility.xs(j - maxR, l) < m.w && l > -maxR && l < 50000 && Utility.xs(j + maxR, l) - Utility.xs(j - maxR, l) > disp || exp) {
                 int i1;
                 int j1;
                 if (shadow || exp) {
                     i1 = m.cy + (int) ((float) (m.ground - m.cy) * RadicalMath.cos(m.zy) - (float) (k - m.cz) * RadicalMath.sin(m.zy));
                     int k1 = m.cz + (int) ((float) (m.ground - m.cy) * RadicalMath.sin(m.zy) + (float) (k - m.cz) * RadicalMath.cos(m.zy));
-                    if (ys(i1 + maxR, k1) > 0 && ys(i1 - maxR, k1) < m.h || exp) {
+                    if (Utility.ys(i1 + maxR, k1) > 0 && Utility.ys(i1 - maxR, k1) < m.h || exp) {
                         for (j1 = 0; j1 < npl; ++j1) {
                             p[j1].s(graphics, x - m.x, y - m.y, z - m.z, xz, xy, zy, loom);
                         }
                     }
                 }
                 i1 = m.cy + (int) ((float) (y - m.y - m.cy) * RadicalMath.cos(m.zy) - (float) (k - m.cz) * RadicalMath.sin(m.zy));
-                if (ys(i1 + maxR, l) > 0 && ys(i1 - maxR, l) < m.h || exp) {
+                if (Utility.ys(i1 + maxR, l) > 0 && Utility.ys(i1 - maxR, l) < m.h || exp) {
                     if (m.jumping != 0 && m.jumping < 4) {
                         hit = true;
                     }
@@ -281,27 +274,5 @@ public class ContO {
             reset();
         }
     }
-
-    public int getvalue(String string, String string2, int i) {
-        int j = 0;
-        String string3 = "";
-        for (int k = string.length() + 1; k < string2.length(); ++k) {
-            String string4 = "" + string2.charAt(k);
-            if (string4.equals(",") || string4.equals(")")) {
-                ++j;
-                ++k;
-            }
-            if (j == i) {
-                string3 = string3 + string2.charAt(k);
-            }
-        }
-        return Integer.valueOf(string3).intValue();
-    }
-
-    public int xs(int i, int j) {
-        if (j < 10) {
-            j = 10;
-        }
-        return (j - m.focus_point) * (m.cx - i) / j + i;
-    }
+    
 }

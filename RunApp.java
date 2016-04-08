@@ -15,9 +15,9 @@ public class RunApp extends Panel {
      */
     private static final long serialVersionUID = 2824314018556470097L;
 
-    static Frame frame;
+    public static Frame frame;
 
-    static F51 applet;
+    public static F51 applet;
 
     public static ArrayList<Image> icons;
 

@@ -1,26 +1,26 @@
 public class Control {
 
-    boolean left = false;
+    public boolean left = false;
 
-    boolean right = false;
+    public boolean right = false;
 
-    boolean up = false;
+    public boolean up = false;
 
-    boolean down = false;
+    public boolean down = false;
 
-    boolean plus = false;
+    public boolean plus = false;
 
-    boolean mins = false;
+    public boolean mins = false;
 
-    boolean space = false;
+    public boolean space = false;
 
-    int jump = 0;
+    public int jump = 0;
 
-    boolean fire = false;
+    public boolean fire = false;
 
-    boolean radar = false;
+    public boolean radar = false;
 
-    boolean jade = false;
+    public boolean jade = false;
 
-    boolean canclick = false;
+    public boolean canclick = false;
 }

@@ -3,73 +3,73 @@ import java.awt.Graphics;
 
 public class Plane {
 
-    Medium m;
+    private Medium m;
 
-    int[] ox;
+    public int[] ox;
 
-    int[] oy;
+    public int[] oy;
 
-    int[] oz;
+    public int[] oz;
 
-    int n;
+    public int n;
 
-    int[] c = new int[3];
+    public int[] c = new int[3];
 
-    float deltaf = 1.0F;
+    private float deltaf = 1.0F;
 
-    float projf = 1.0F;
+    private float projf = 1.0F;
 
-    int av = 0;
+    public int av = 0;
 
-    int exp = 0;
+    public int exp = 0;
 
-    int ofx = 0;
+    private int ofx = 0;
 
-    int adx = 0;
+    private int adx = 0;
 
-    int ofy = 0;
+    private int ofy = 0;
 
-    int adz = 0;
+    private int adz = 0;
 
-    int ofz = 0;
+    private int ofz = 0;
 
-    double ady = 0.0D;
+    private double ady = 0.0D;
 
-    int ofcx = 0;
+    private int ofcx = 0;
 
-    int ofcy = 0;
+    private int ofcy = 0;
 
-    int ofcz = 0;
+    private int ofcz = 0;
 
-    int nx = 0;
+    private int nx = 0;
 
-    int ny = 0;
+    private int ny = 0;
 
-    int nz = 0;
+    private int nz = 0;
 
-    int ezy = 0;
+    private int ezy = 0;
 
-    int exy = 0;
+    private int exy = 0;
 
-    int azy = 0;
+    private int azy = 0;
 
-    int axy = 0;
+    private int axy = 0;
 
-    int[] sx = new int[4];
+    private int[] sx = new int[4];
 
-    int[] sy = new int[4];
+    private int[] sy = new int[4];
 
-    int[] sz = new int[4];
+    private int[] sz = new int[4];
 
-    int sdx = 0;
+    private int sdx = 0;
 
-    int sdz = 0;
+    private int sdz = 0;
 
-    double sdy = 0.0D;
+    private double sdy = 0.0D;
 
-    int sr = 255;
+    private int sr = 255;
 
-    int sg = 220;
+    private int sg = 220;
 
     public void loadprojf() {
         projf = 1.0F;

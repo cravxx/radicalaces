@@ -7,7 +7,7 @@ import java.awt.Graphics;
  */
 public class Lasers {
 
-    Medium m;
+    private Medium m;
     
     /**
      * speed the lasers move at

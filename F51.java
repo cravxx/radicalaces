@@ -3,7 +3,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,19 +14,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
@@ -527,10 +522,10 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
         }
     }
     
-    /**Loads images from images.radq
-	 * 
-	 * @author Omar Wally
-	 */
+    /**
+     * Loads images
+     * @param xtgraphics xt instance 
+     */
 	public void loadimages(xtGraphics xtgraphics) {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		dnload += 12;
@@ -620,7 +615,11 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     public void loaddata(xtGraphics xtgraphics) throws IOException {
     	
     	loadimages(xt); 
-    	lstat("Loading Images...", 112);
+    	/*
+    	 * I think the loadimages method increments the loading bar itself so I'll just make this 0, i dunno. 
+    	 * who cares about the loading bar anyway eh
+    	 */
+    	lstat("Loading Images...", 0);
     	
         into = makeSound("data/music/intro.wav");
         lstat("Loading Music...", 24);

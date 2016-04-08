@@ -1,5 +1,9 @@
 import java.awt.Graphics;
 
+/**
+ * tank
+ * @author Omar Waly
+ */
 public class Tank {
 
     cControl u = new cControl();

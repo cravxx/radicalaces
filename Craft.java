@@ -1,5 +1,9 @@
 import java.awt.Graphics;
 
+/**
+ * craft
+ * @author Omar Waly
+ */
 public class Craft {
 
     cControl u = new cControl();

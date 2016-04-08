@@ -1,12 +1,16 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * lasers
+ * @author Omar Waly
+ */
 public class Lasers {
 
     Medium m;
-
+    
     /**
-     * laser speed
+     * speed the lasers move at
      */
     public static int[] speed = {
     		200, 150, 120, 120, 100, 100, 140, 100, 150, 120, 150, 150
@@ -20,14 +24,14 @@ public class Lasers {
     };
 
     /**
-     * laser srate
+     * laser fire rate
      */
     public static int[] srate = {
     		8, 8, 10, 10, 8, 6, 8, 6, 10, 10, 10, 10
     };
 
     /**
-     * laser damg
+     * damage dealt by a laser
      */
     public static int[] damg = {
     		3, 2, 2, 3, 2, 1, 1, 2, 2, 2, 3, 7

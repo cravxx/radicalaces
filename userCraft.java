@@ -1,5 +1,9 @@
 import java.awt.Graphics;
 
+/**
+ * usercraft
+ * @author Omar Waly
+ */
 public class userCraft {
 
     int rspeed = 0;
@@ -14,15 +18,40 @@ public class userCraft {
 
     int ltyp = 0;
 
-    int[] maxspeed = new int[] { 120, 100, 90, 80, 76 };
+    /**
+     * max flying speed of plane
+     */
+    public static int maxspeed[] = { 
+    		120, 100, 90, 80, 76
+    };
 
-    int[] elev = new int[] { 1, 2, 1, 1, 1 };
+    /**
+     * responsiveness of the craft
+     */
+    public static int elev[] = { 
+    		1, 2, 1, 1, 1 
+    };
 
-    int[] trnn = new int[] { 0, 0, 1, 2, 1 };
+    /**
+     * turning speed of craft
+     */
+    public static int trnn[] = { 
+    		0, 0, 1, 2, 1 
+    };
 
-    int[] dnjm = new int[] { 7, 5, 4, 3, 4 };
+    /**
+     * number of light speed jumps craft has
+     */
+    public static int dnjm[] = { 
+    		7, 5, 4, 3, 4 
+    };
 
-    String[] name = new String[] { "E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend" };
+    /**
+     * craft names
+     */
+    public static String name[] = { 
+    		"E-7 Sky Bullet", "BP-6 Hammer Head", "E-9 Dragon Bird", "EXA-1 Destroyer", "Silver F-51 Legend" 
+    };
 
     int njumps = 0;
 

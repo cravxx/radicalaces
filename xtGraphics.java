@@ -452,7 +452,7 @@ public class xtGraphics extends Panel {
             }
             drawcs(graphics, 16, "Select your Ship", 255, 255, 255, false);
             drawcs(graphics, 354, "( use keyboard arrows to select )", 150, 150, 160, false);
-            drawcs(graphics, 265, usercraft.name[selected], 190, 200, 255, false);
+            drawcs(graphics, 265, userCraft.name[selected], 190, 200, 255, false);
             if (control.space && dest[selected]) {
                 drawcs(graphics, 80, "Cannot Select Ship!", 255, 230, 230, true);
             }
@@ -483,7 +483,7 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("Max Speed", 57, 300);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(125, 295, (int) (100.0F * ((float) usercraft.maxspeed[selected] / 120.0F)), 4);
+            graphics.fillRect(125, 295, (int) (100.0F * ((float) userCraft.maxspeed[selected] / 120.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString(" Fire Power", 57, 315);
             graphics.setColor(new Color(190, 200, 255));
@@ -495,13 +495,13 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("       Turning", 285, 300);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(355, 295, (int) (100.0F * ((float) (usercraft.trnn[selected] + 3) / 5.0F)), 4);
+            graphics.fillRect(355, 295, (int) (100.0F * ((float) (userCraft.trnn[selected] + 3) / 5.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
             graphics.drawString("     Elevation", 285, 315);
             graphics.setColor(new Color(190, 200, 255));
-            graphics.fillRect(355, 310, (int) (100.0F * ((float) (usercraft.elev[selected] + 3) / 5.0F)), 4);
+            graphics.fillRect(355, 310, (int) (100.0F * ((float) (userCraft.elev[selected] + 3) / 5.0F)), 4);
             graphics.setColor(new Color(225, 225, 255));
-            graphics.drawString("Light Speed Jumps:  " + usercraft.dnjm[selected], 285, 330);
+            graphics.drawString("Light Speed Jumps:  " + userCraft.dnjm[selected], 285, 330);
         }
         if (fase == -1) {
             graphics.drawImage(mback, 0, 0, null);
@@ -1272,7 +1272,7 @@ public class xtGraphics extends Panel {
             graphics.setColor(new Color(0, 0, 0));
             graphics.drawString("" + usercraft.rspeed + " zic/tes", 50, 55);
             graphics.drawImage(stube, 50, 60, null);
-            j1 = (int) (260.0F - (float) usercraft.rspeed * (200.0F / (float) usercraft.maxspeed[usercraft.ltyp]));
+            j1 = (int) (260.0F - (float) usercraft.rspeed * (200.0F / (float) userCraft.maxspeed[usercraft.ltyp]));
             graphics.setColor(new Color(255, j1 - 10, 0));
             graphics.fillRect(61, j1, 12, 260 - j1);
             if (!control.plus && !control.mins) {

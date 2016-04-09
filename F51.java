@@ -38,10 +38,19 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 	 */
     private static final long serialVersionUID = -1399200686375699720L;
 
-    private static final String modelsDir = "data/models.radq";
+    /**
+     * Path to a zip file containing the game's models
+     */
+    private static final String modelsFile = "data/models.radq";
 
-    private static final String imagesDir = "data/images.radq";
+    /**
+     * Path to a zip file containing the game's images
+     */
+    private static final String imagesFile = "data/images.radq";
     
+    /**
+     * Directory where saved games are stored
+     */
     private static final String saveDir = "data/";
 
     private Graphics2D rd;
@@ -428,13 +437,13 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
      * @param toolkit toolkit
      * @return image
      */
-    public Image returnImg(byte b[], Toolkit toolkit) {
+    public Image getImage(byte b[], Toolkit toolkit) {
         return toolkit.createImage(b);
     }
 
     public void loadbase(ContO[] contos, Medium medium) {
         try {
-            DataInputStream datainputstream = new DataInputStream(new FileInputStream(modelsDir));
+            DataInputStream datainputstream = new DataInputStream(new FileInputStream(modelsFile));
             ZipInputStream zipinputstream = new ZipInputStream(datainputstream);
             ZipEntry zipentry = zipinputstream.getNextEntry();
             for (int i = 0; zipentry != null; zipentry = zipinputstream.getNextEntry()) {
@@ -530,6 +539,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     
     /**
      * Loads images
+     * 
      * @param xtgraphics xt instance 
      */
 	public void loadimages(xtGraphics xtgraphics) {
@@ -538,7 +548,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 		int howManyImages = 0;
 		
 		try {
-			ZipInputStream zipinputstream = new ZipInputStream(new FileInputStream(imagesDir));
+			ZipInputStream zipinputstream = new ZipInputStream(new FileInputStream(imagesFile));
 			for (ZipEntry zipentry = zipinputstream.getNextEntry(); zipentry != null; zipentry = zipinputstream
 					.getNextEntry()) {
 				int i = (int) zipentry.getSize();
@@ -552,58 +562,58 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 				}
 
 				if ("radar.gif".equals(s)) {
-					xtgraphics.radar = returnImg(abyte0, toolkit);
+					xtgraphics.radar = getImage(abyte0, toolkit);
 				}
 				if ("stube.gif".equals(s)) {
-					xtgraphics.stube = returnImg(abyte0, toolkit);
+					xtgraphics.stube = getImage(abyte0, toolkit);
 				}
 				if ("select.jpg".equals(s)) {
-					xtgraphics.sback = returnImg(abyte0, toolkit);
+					xtgraphics.sback = getImage(abyte0, toolkit);
 				}
 				if ("destroyed.gif".equals(s)) {
-					xtgraphics.destr = returnImg(abyte0, toolkit);
+					xtgraphics.destr = getImage(abyte0, toolkit);
 				}
 				if ("layout.gif".equals(s)) {
-					xtgraphics.lay = returnImg(abyte0, toolkit);
+					xtgraphics.lay = getImage(abyte0, toolkit);
 				}
 				if ("comp.gif".equals(s)) {
-					xtgraphics.complete = returnImg(abyte0, toolkit);
+					xtgraphics.complete = getImage(abyte0, toolkit);
 				}
 				if ("main.gif".equals(s)) {
-					xtgraphics.main = returnImg(abyte0, toolkit);
+					xtgraphics.main = getImage(abyte0, toolkit);
 				}
 				if ("radicalplay.gif".equals(s)) {
-					xtgraphics.rad = returnImg(abyte0, toolkit);
+					xtgraphics.rad = getImage(abyte0, toolkit);
 				}
 				
 				for(int asInc = 0; asInc < 5; asInc++){
 					if (("a" + asInc + ".gif").equals(s)) {
-						xtgraphics.as[asInc] = returnImg(abyte0, toolkit);
+						xtgraphics.as[asInc] = getImage(abyte0, toolkit);
 					}
 				}
 				
 				if ("inst1.gif".equals(s)) {
-					xtgraphics.inst1 = returnImg(abyte0, toolkit);
+					xtgraphics.inst1 = getImage(abyte0, toolkit);
 				}
 				if ("inst2.gif".equals(s)) {
-					xtgraphics.inst2 = returnImg(abyte0, toolkit);
+					xtgraphics.inst2 = getImage(abyte0, toolkit);
 				}
 				if ("inst3.gif".equals(s)) {
-					xtgraphics.inst3 = returnImg(abyte0, toolkit);
+					xtgraphics.inst3 = getImage(abyte0, toolkit);
 				}
 				
 				if ("mars.jpg".equals(s)) {
-					xtgraphics.mars = returnImg(abyte0, toolkit);
+					xtgraphics.mars = getImage(abyte0, toolkit);
 				}
 				
 				if ("failed.jpg".equals(s)) {
-					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.bpix);
+					xtgraphics.saveit(getImage(abyte0, toolkit), xtgraphics.bpix);
 				}
 				if ("mission.jpg".equals(s)) {
-					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.mpix);
+					xtgraphics.saveit(getImage(abyte0, toolkit), xtgraphics.mpix);
 				}
 				if ("over.jpg".equals(s)) {
-					xtgraphics.saveit(returnImg(abyte0, toolkit), xtgraphics.opix);
+					xtgraphics.saveit(getImage(abyte0, toolkit), xtgraphics.opix);
 				}
 				
 				howManyImages++;

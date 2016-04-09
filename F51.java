@@ -17,14 +17,12 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -385,11 +383,7 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     public void savegame(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
         	
-        	File cookieDat = new File(saveDir + "game.dat");
-        	if (!cookieDat.exists()) {
-        		cookieDat.createNewFile();
-			}
-            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(cookieDat)));
+            PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(saveDir + "game.dat"))));
             fout.println("radxv(" + xtgraphics.level + ")");
             
             StringBuilder sb = new StringBuilder();
@@ -529,9 +523,6 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
             PrintWriter fout = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(saveDir + "game.dat"))));
             fout.println("radxv(0)");
             fout.close();
-            
-            /*JSObject jsobject = JSObject.getWindow(this);
-            jsobject.eval("SetCookie(\'radxv\',\'0\')");*/
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1221,14 +1212,15 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
     }
 
     /**
-     * Loads the saved level
+     * Checks if the game has been saved at least once before
+     * 
      * @param xtgraphics the xtGraphics
      */
     public void getslevel(xtGraphics xtgraphics) {
         try {
-        	File cookieDat = new File(saveDir + "game.dat");
-        	if(cookieDat.exists()){
-        		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(cookieDat)));
+        	File saveFile = new File(saveDir + "game.dat");
+        	if (saveFile.exists()) {
+        		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(saveFile)));
                 String radxv = reader.readLine();
                 if (radxv != null && Utility.getint("radxv", radxv, 0) == 0) {
                     xtgraphics.sgame = 0;
@@ -1237,12 +1229,11 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
                     xtgraphics.select = 1;
                 }
                 reader.close();
-                System.out.println(cookieDat + " loaded!");
-        	}else{
-        		System.out.println(cookieDat + " does not exist yet!");
+                System.out.println(saveFile + " loaded!");
+        	} else {
+                failedLoad = true;
+        		System.out.println(saveFile + " does not exist yet!");
         	}
-        } catch (FileNotFoundException e) {
-        	e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
             failedLoad = true;
@@ -1252,72 +1243,49 @@ public class F51 extends JComponent implements KeyListener, MouseListener, Focus
 
     /**
      * Loads the saved game
+     * 
      * @param contos the game contos
      * @param xtgraphics the xtgraphics
      * @param i must be equal to __i
      */
     public void loadsaved(ContO[] contos, xtGraphics xtgraphics, int i) {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(saveDir + "game.dat"))));
+            File saveFile = new File(saveDir + "game.dat");
             
-            String line = reader.readLine();
-            if (line != null)
-                xtgraphics.level = Utility.getint("radxv", line, 0);
-            else {
+            if (saveFile.exists()) { //not required but i suppose it can stay
+                BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(saveFile)));
+                
+                String line = reader.readLine();
+                if (line != null)
+                    xtgraphics.level = Utility.getint("radxv", line, 0);
+                else {
+                    reader.close();
+                    return;
+                }
+                
+                //
+                line = reader.readLine();
+                for (int j = i; j < i + 13; ++j) {
+                    contos[j].nhits = Utility.getint("radnhits", line, j);
+                    if (contos[j].nhits >= contos[j].maxhits) {
+                        contos[j].exp = true;
+                        contos[j].out = true;
+                    } else {
+                        contos[j].out = false;
+                    }
+                }
+    
+                //
+                line = reader.readLine();
+                for (int j = 0; j < 5; ++j) {
+                    xtgraphics.dest[j] = Utility.getint("raddest", line, j) == 1;
+                }
+                
+                
+                //radxv, radhits then raddest
+                
                 reader.close();
-                return;
             }
-            
-            //
-            line = reader.readLine();
-            for (int j = i; j < i + 13; ++j) {
-                contos[j].nhits = Utility.getint("radnhits", line, j);
-                if (contos[j].nhits >= contos[j].maxhits) {
-                    contos[j].exp = true;
-                    contos[j].out = true;
-                } else {
-                    contos[j].out = false;
-                }
-            }
-
-            //
-            line = reader.readLine();
-            for (int j = 0; j < 5; ++j) {
-                xtgraphics.dest[j] = Utility.getint("raddest", line, j) == 1;
-            }
-            
-            //radxv, radhits then raddest
-            
-            reader.close();
-            
-            /*JSObject jsobject = JSObject.getWindow(this);
-            jsobject.eval("s=GetCookie(\'radxv\')");
-            String string = String.valueOf(String.valueOf(jsobject.getMember("s")));
-            xtgraphics.level = Integer.valueOf(string).intValue();
-            int j;
-            String string2;
-            for (j = i; j < i + 13; ++j) {
-                jsobject.eval("ss=GetCookie(\'radnhits" + j + "\')");
-                string2 = String.valueOf(String.valueOf(jsobject.getMember("ss")));
-                contos[j].nhits = Integer.valueOf(string2).intValue();
-                if (contos[j].nhits >= contos[j].maxhits) {
-                    contos[j].exp = true;
-                    contos[j].out = true;
-                } else {
-                    contos[j].out = false;
-                }
-            }
-            j = 0;
-            do {
-                jsobject.eval("sss=GetCookie(\'raddest" + j + "\')");
-                string2 = String.valueOf(String.valueOf(jsobject.getMember("sss")));
-                if (string2.equals("false")) {
-                    xtgraphics.dest[j] = false;
-                } else {
-                    xtgraphics.dest[j] = true;
-                }
-                ++j;
-            } while (j < 5);*/
         } catch (Exception e) {
             e.printStackTrace();
         }
